@@ -16,18 +16,28 @@ import 'package:renjuki/features/home_page/domain/usecases/resume_usecase.dart';
 import 'package:renjuki/features/home_page/domain/usecases/call_linkedin_usecase.dart';
 import 'package:renjuki/features/home_page/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
 
-final sl = GetIt.I;
+final GetIt sl=GetIt.instance;
 
 Future initSl() async {
-  //contorllers
 
-  sl.registerFactory(() => PortfolioBloc(
-        callLinkedInUsecase: sl(),
-        callResumeUsecase: sl(),
-        callMobAppAndiodUsecase: sl(),
-        callWebAppUsecase: sl(),
-        callMobAppIosUsecase: sl(),
-      ));
+
+  //data
+  sl.registerLazySingleton<ResumeData>(() => ResumeData());
+  sl.registerLazySingleton<CallLinkedInData>(() => CallLinkedInData());
+
+  sl.registerLazySingleton<CallMobAppData>(() => CallMobAppData());
+
+  //domain
+  sl.registerLazySingleton<CallResumeRepository>(
+          () => ResumeRepositoryData(resumeData: sl()));
+
+  sl.registerLazySingleton<CallLinkedInRepository>(
+          () => CallLinkedInDataRepository(sl()));
+
+  sl.registerLazySingleton<CallAnyLinkRepoBase>(
+          () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
+
+
   //usecases
   sl.registerLazySingleton<CallResumeUsecase>(() => CallResumeUsecase(sl()));
   sl.registerLazySingleton<CallLinkedInUsecase>(
@@ -39,19 +49,16 @@ Future initSl() async {
   sl.registerLazySingleton<CallMobAppIosUsecase>(
       () => CallMobAppIosUsecase(sl()));
 
-  //domain
-  sl.registerLazySingleton<CallResumeRepository>(
-      () => ResumeRepositoryData(resumeData: sl()));
 
-  sl.registerLazySingleton<CallLinkedInRepository>(
-      () => CallLinkedInDataRepository(sl()));
 
-  sl.registerLazySingleton<CallAnyLinkRepoBase>(
-      () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
-  //data
-  sl.registerLazySingleton<ResumeData>(() => ResumeData());
-  sl.registerLazySingleton<CallLinkedInData>(() => CallLinkedInData());
+  //contorllers
 
-  sl.registerLazySingleton<CallMobAppData>(() => CallMobAppData());
+  sl.registerFactory(() => RenJukiBloc(
+    callLinkedInUsecase: sl(),
+    callResumeUsecase: sl(),
+    callMobAppAndiodUsecase: sl(),
+    callWebAppUsecase: sl(),
+    callMobAppIosUsecase: sl(),
+  ));
 }

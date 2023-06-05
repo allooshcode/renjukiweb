@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/shared_widgets/list_tile.dart';
+
+import '../../../../../../global/shared_widgets/list_tile.dart';
 
 class AppsInfo extends StatelessWidget {
   const AppsInfo({super.key, required this.title, required this.subTitle});

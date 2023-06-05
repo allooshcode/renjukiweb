@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_porfolio/features/portfolio/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
-import 'package:my_porfolio/global/app_colors/app_colors_dark.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
+import 'package:renjuki/features/home_page/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
+import 'package:renjuki/global/app_colors/app_colors_dark.dart';
+import 'package:renjuki/global/utils/constants.dart';
 
 class FollowMeSymboles extends StatelessWidget {
   const FollowMeSymboles({super.key});
@@ -14,7 +14,7 @@ class FollowMeSymboles extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            BlocProvider.of<PortfolioBloc>(context)
+            BlocProvider.of<RenJukiBloc>(context)
                 .add(const CallLinkedInEvent());
           },
           child: Container(

@@ -1,7 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:my_porfolio/features/portfolio/domain/repositories/resume_repository.dart';
-import 'package:my_porfolio/global/errors/failures.dart';
+import 'package:renjuki/features/home_page/domain/repositories/resume_repository.dart';
+import 'package:renjuki/global/errors/failures.dart';
+
+
+
 
 class CallResumeUsecase extends Equatable {
   final CallResumeRepository repositoryCallResume;

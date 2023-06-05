@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/features/portfolio/presentation/widgets/home_page_widgets/web/header_info_web_widget.dart';
-import 'package:my_porfolio/global/animations/tween_animation.dart';
-import 'package:my_porfolio/global/shared_widgets/bottom_curve_painter.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
 
+
+import '../../../../../global/animations/tween_animation.dart';
+import '../../../../../global/shared_widgets/bottom_curve_painter.dart';
+import '../../../../../global/utils/constants.dart';
+import '../../widgets/home_page_widgets/web/header_info_web_widget.dart';
 import '../../widgets/home_page_widgets/web/photo_home.dart';
 
 class HomePageWeb extends StatelessWidget {

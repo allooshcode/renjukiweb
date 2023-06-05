@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/app_colors/app_colors_dark.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
+
+import '../app_colors/app_colors_dark.dart';
+import '../utils/constants.dart';
+
 
 class CustomButton extends StatelessWidget {
   const CustomButton(

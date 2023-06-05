@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:my_porfolio/global/errors/failures.dart';
+import 'package:renjuki/global/errors/failures.dart';
+
 
 abstract class CallAnyLinkRepoBase {
   Future<Either<Failure, bool>> callMobAppRepository();

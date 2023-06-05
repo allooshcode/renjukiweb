@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:renjuki/features/home_page//domain/repositories/resume_repository.dart';
+import 'package:renjuki/features/home_page/data/datasources/resume_data.dart';
 import 'package:renjuki/global/errors/exceptions.dart';
 import 'package:renjuki/global/errors/failures.dart';
 
-import '../datasources/resume_data.dart';
 
 class ResumeRepositoryData implements CallResumeRepository {
   final ResumeData resumeData;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_porfolio/features/portfolio/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
-import 'package:my_porfolio/global/shared_widgets/photo_widget.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
 
 import '../../../../../global/animations/tween_animation.dart';
+import '../../../../../global/shared_widgets/photo_widget.dart';
+import '../../../../../global/utils/constants.dart';
+import '../../bloc/port_folio_bloc/portfolio_bloc.dart';
 import '../../widgets/home_page_widgets/web/apps_info.dart';
 
 class WorkPageWeb extends StatelessWidget {
@@ -20,7 +20,7 @@ class WorkPageWeb extends StatelessWidget {
                 widgetToAnimate: PhotoWidget(
               photoPath: 'assets/mobileApp.png',
               fun: () {
-                BlocProvider.of<PortfolioBloc>(context)
+                BlocProvider.of<RenJukiBloc>(context)
                     .add(const CallMobLinkEvent(isIphoneApp: false));
               },
             )),
@@ -42,7 +42,7 @@ class WorkPageWeb extends StatelessWidget {
                   widgetToAnimate: PhotoWidget(
                 photoPath: 'assets/mobileApp.png',
                 fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                  BlocProvider.of<RenJukiBloc>(context)
                       .add(const CallMobLinkEvent(isIphoneApp: true));
                 },
               )),
@@ -65,7 +65,7 @@ class WorkPageWeb extends StatelessWidget {
                 widgetToAnimate: PhotoWidget(
               photoPath: 'assets/webApp.png',
               fun: () {
-                BlocProvider.of<PortfolioBloc>(context)
+                BlocProvider.of<RenJukiBloc>(context)
                     .add(const CallWebLinkEvent());
               },
             )),

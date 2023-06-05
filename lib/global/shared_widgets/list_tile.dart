@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/app_theme/app_theme_light.dart';
+import 'package:renjuki/global/app_theme/app_theme_light.dart';
 
 import '../utils/constants.dart';
 

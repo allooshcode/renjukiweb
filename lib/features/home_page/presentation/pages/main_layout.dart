@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:renjuki/features/home_page/presentation/pages/home_page.dart';
+import 'package:renjuki/features/home_page/presentation/pages/web/work_page_web.dart';
+import 'package:renjuki/global/animations/fade_animation.dart';
+import 'package:renjuki/global/shared_widgets/custom_button.dart';
+import 'package:renjuki/global/shared_widgets/top_curve_painter.dart';
+import 'package:renjuki/global/utils/icon_broken.dart';
 
-import 'package:my_porfolio/features/portfolio/presentation/pages/home_page.dart';
-import 'package:my_porfolio/features/portfolio/presentation/pages/web/work_page_web.dart';
-import 'package:my_porfolio/global/animations/fade_animation.dart';
-import 'package:my_porfolio/global/shared_widgets/custom_button.dart';
-import 'package:my_porfolio/global/utils/icon_broken.dart';
 
-import '../../../../global/shared_widgets/top_curve_painter.dart';
+
 
 class MainLayout extends StatelessWidget {
   const MainLayout({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_porfolio/features/portfolio/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
-import 'package:my_porfolio/features/portfolio/presentation/widgets/home_page_widgets/web/follow_me_symbols.dart';
-import 'package:my_porfolio/global/shared_widgets/custom_button.dart';
-import 'package:my_porfolio/global/shared_widgets/list_tile.dart';
-import 'package:my_porfolio/global/utils/icon_broken.dart';
+import 'package:renjuki/features/home_page//presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
+import 'package:renjuki/features/home_page//presentation/widgets/home_page_widgets/web/follow_me_symbols.dart';
+import 'package:renjuki/global/shared_widgets/custom_button.dart';
+import 'package:renjuki/global/shared_widgets/list_tile.dart';
+import 'package:renjuki/global/utils/icon_broken.dart';
 
 import '../../../../../../global/utils/constants.dart';
 
@@ -51,7 +51,7 @@ class HeaderInfoWebWidget extends StatelessWidget {
                 AppConstants.unitHeightValue(context),
           ),
           Expanded(
-              child: BlocConsumer<PortfolioBloc, PortfolioState>(
+              child: BlocConsumer<RenJukiBloc, PortfolioState>(
             listener: (context, state) {
               if (state is LaunchingWhatsState) {
                 Fluttertoast.showToast(
@@ -62,8 +62,8 @@ class HeaderInfoWebWidget extends StatelessWidget {
             },
             builder: (context, state) {
               return CustomButton(
-                fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                fun:  () {
+                   BlocProvider.of<RenJukiBloc>(context)
                       .add(const LaunchWhatsAppEvent());
                 },
                 icon: IconBroken.Call_Silent,
@@ -78,7 +78,7 @@ class HeaderInfoWebWidget extends StatelessWidget {
           Expanded(
             child: CustomButton(
                 fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                  BlocProvider.of<RenJukiBloc>(context)
                       .add(const CallResumeEvent());
                 },
                 title: "Resume",

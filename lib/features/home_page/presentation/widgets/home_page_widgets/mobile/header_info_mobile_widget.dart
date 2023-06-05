@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
-import 'package:my_porfolio/global/utils/icon_broken.dart';
+
+
+import '../../../../../../global/utils/constants.dart';
+import '../../../../../../global/utils/icon_broken.dart';
 
 class HeaderInfoMobileWidget extends StatelessWidget {
   const HeaderInfoMobileWidget({super.key});

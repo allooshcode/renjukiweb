@@ -15,7 +15,7 @@ class RenjukiApp extends StatelessWidget {
     return MaterialApp(
       home: MultiBlocProvider(providers: [
         BlocProvider(
-          create: (context) => PortfolioBloc(
+          create: (context) => RenJukiBloc(
               callLinkedInUsecase: sl(),
               callResumeUsecase: sl(),
               callMobAppAndiodUsecase: sl(),

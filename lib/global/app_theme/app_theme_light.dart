@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/app_colors/app_colors_dark.dart';
+
+import '../app_colors/app_colors_dark.dart';
 
 ThemeData getAppThemeDataLight() {
   return ThemeData(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_porfolio/global/utils/constants.dart';
 import 'package:progressive_image/progressive_image.dart';
+
+import '../../../../../../global/utils/constants.dart';
 
 class PhotoHome extends StatelessWidget {
   const PhotoHome({super.key});

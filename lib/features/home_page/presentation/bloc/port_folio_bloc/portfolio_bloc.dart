@@ -2,24 +2,26 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_porfolio/features/portfolio/domain/usecases/call_mob_link_usecase.dart';
-import 'package:my_porfolio/features/portfolio/domain/usecases/call_linkedin_usecase.dart';
-import 'package:my_porfolio/features/portfolio/domain/usecases/call_mob_mob_ios_usecase.dart';
-import 'package:my_porfolio/features/portfolio/domain/usecases/call_web_app_usecase.dart';
-import 'package:my_porfolio/features/portfolio/domain/usecases/resume_usecase.dart';
+
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../domain/usecases/call_linkedin_usecase.dart';
+import '../../../domain/usecases/call_mob_link_usecase.dart';
+import '../../../domain/usecases/call_mob_mob_ios_usecase.dart';
+import '../../../domain/usecases/call_web_app_usecase.dart';
+import '../../../domain/usecases/resume_usecase.dart';
 
 part 'portfolio_event.dart';
 part 'portfolio_state.dart';
 
-class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
+class RenJukiBloc extends Bloc<PortfolioEvent, PortfolioState> {
   final CallLinkedInUsecase callLinkedInUsecase;
   final CallResumeUsecase callResumeUsecase;
   final CallMobAppAndriodUsecase? callMobAppAndiodUsecase;
   final CallWebAppUsecase callWebAppUsecase;
   final CallMobAppIosUsecase callMobAppIosUsecase;
 
-  PortfolioBloc(
+  RenJukiBloc(
       {required this.callMobAppIosUsecase,
       required this.callMobAppAndiodUsecase,
       required this.callWebAppUsecase,
