@@ -4,8 +4,7 @@ import 'package:renjuki/features/home_page/data/datasources/resume_data.dart';
 import 'package:renjuki/global/errors/exceptions.dart';
 import 'package:renjuki/global/errors/failures.dart';
 
-
-class ResumeRepositoryData implements CallResumeRepository {
+class ResumeRepositoryData extends CallResumeRepository {
   final ResumeData resumeData;
   ResumeRepositoryData({required this.resumeData});
 

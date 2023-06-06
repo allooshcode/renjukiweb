@@ -5,7 +5,7 @@ import 'package:renjuki/global/errors/failures.dart';
 
 import '../datasources/call_linkedin_data.dart';
 
-class CallLinkedInDataRepository implements CallLinkedInRepository {
+class CallLinkedInDataRepository extends CallLinkedInRepository {
   final CallLinkedInData callLinkedInData;
   CallLinkedInDataRepository(this.callLinkedInData);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:renjuki/container_injection.dart';
 import 'package:renjuki/features/home_page//presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
 import 'package:renjuki/features/home_page//presentation/widgets/home_page_widgets/web/follow_me_symbols.dart';
 import 'package:renjuki/global/shared_widgets/custom_button.dart';
@@ -62,9 +63,10 @@ class HeaderInfoWebWidget extends StatelessWidget {
             },
             builder: (context, state) {
               return CustomButton(
-                fun:  () {
-                   BlocProvider.of<RenJukiBloc>(context)
-                      .add(const LaunchWhatsAppEvent());
+                fun: () async {
+                  // BlocProvider.of<RenJukiBloc>(context).add(const LaunchWhatsAppEvent());
+
+                  sl<RenJukiBloc>().add(const LaunchWhatsAppEvent());
                 },
                 icon: IconBroken.Call_Silent,
                 title: 'Contact Now',
@@ -78,8 +80,9 @@ class HeaderInfoWebWidget extends StatelessWidget {
           Expanded(
             child: CustomButton(
                 fun: () {
-                  BlocProvider.of<RenJukiBloc>(context)
-                      .add(const CallResumeEvent());
+                  // BlocProvider.of<RenJukiBloc>(context)
+                  //     .add(const CallResumeEvent());
+                  sl<RenJukiBloc>().add(const CallResumeEvent());
                 },
                 title: "Resume",
                 icon: IconBroken.Edit_Square),

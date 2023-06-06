@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../app_colors/app_colors_dark.dart';
-import '../utils/constants.dart';
-
+import 'package:renjuki2/global/app_colors/app_colors_dark.dart';
+import 'package:renjuki2/global/utils/constants.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(

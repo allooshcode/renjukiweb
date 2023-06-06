@@ -6,7 +6,7 @@ import '../../../../global/errors/exceptions.dart';
 import '../../../../global/errors/failures.dart';
 import '../../domain/repositories/call_mob_link_repo.dart';
 
-class CallAnyLinkRepoImp implements CallAnyLinkRepoBase {
+class CallAnyLinkRepoImp extends CallAnyLinkRepoBase {
   final CallMobAppData callAnyLinkData;
   CallAnyLinkRepoImp({required this.callAnyLinkData});
 
@@ -29,10 +29,10 @@ class CallAnyLinkRepoImp implements CallAnyLinkRepoBase {
       return left(ServerFuilure(err.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, bool>> callIosAppRepository() async {
-     try {
+    try {
       await callAnyLinkData.callMobileIosLink();
       return right(true);
     } on ServerException catch (err) {

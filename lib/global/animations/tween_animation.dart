@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../utils/constants.dart';
+import 'package:renjuki2/global/utils/constants.dart';
 
 class CustomTweenAnimation extends StatefulWidget {
   const CustomTweenAnimation({super.key, required this.widgetToAnimate});

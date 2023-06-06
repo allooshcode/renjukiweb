@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progressive_image/progressive_image.dart';
-
-import '../utils/constants.dart';
+import 'package:renjuki2/global/utils/constants.dart';
 
 class PhotoWidget extends StatelessWidget {
   final String photoPath;

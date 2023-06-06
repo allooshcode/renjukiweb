@@ -1,11 +1,11 @@
 {
-    "name": "renjukiweb",
-    "short_name": "renjukiweb",
+    "name": "renjuki2",
+    "short_name": "renjuki2",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Heavy Equipment",
+    "description": "Heavy Equipmnet",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

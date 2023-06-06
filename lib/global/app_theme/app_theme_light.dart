@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../app_colors/app_colors_dark.dart';
+import 'package:renjuki2/global/app_colors/app_colors_dark.dart';
 
 ThemeData getAppThemeDataLight() {
   return ThemeData(
