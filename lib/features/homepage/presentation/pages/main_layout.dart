@@ -16,40 +16,40 @@ class MainLayout extends StatelessWidget {
     final homeKey = GlobalKey();
     final workKey = GlobalKey();
 
-    return Scaffold(
-
-      appBar: AppBar(
-        flexibleSpace: Container(
-          width: double.infinity,
-          // height: AppConstants.unitHeightValue(context) * 50,
-          color: const Color.fromARGB(255, 243, 239, 239),
-          child: CustomPaint(
-            painter: TopCurvePainter(),
-          ),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('EXCAVATOR.jpeg'),
         ),
-        actions: [
-          CustomButton(
-              fun: () {
-                Scrollable.ensureVisible(homeKey.currentContext!);
-              },
-              title: "Home",
-              icon: IconBroken.Home),
-          CustomButton(
-              fun: () {
-                Scrollable.ensureVisible(workKey.currentContext!);
-              },
-              title: "Work",
-              icon: IconBroken.Work)
-        ],
       ),
-      body: Container(
-        decoration:const BoxDecoration(
-          image: DecorationImage(image:  AssetImage(
-            'EXCAVATOR.jpeg'
-          ),),
+      child: Scaffold(
+        appBar: AppBar(
+          flexibleSpace: Container(
+            width: double.infinity,
+            // height: AppConstants.unitHeightValue(context) * 50,
+            color: const Color.fromARGB(255, 243, 239, 239),
+            child: CustomPaint(
+              painter: TopCurvePainter(),
+            ),
+          ),
+          actions: [
+            CustomButton(
+                fun: () {
+                  Scrollable.ensureVisible(homeKey.currentContext!);
+                },
+                title: "Home",
+                icon: IconBroken.Home),
+            CustomButton(
+                fun: () {
+                  Scrollable.ensureVisible(workKey.currentContext!);
+                },
+                title: "Work",
+                icon: IconBroken.Work)
+          ],
         ),
-        child: SingleChildScrollView(
-
+        body: SingleChildScrollView(
           child: Column(children: [
             CustomFadeAnimation(
               widgetToAnimate: HomePage(

@@ -4,7 +4,8 @@ import 'package:renjuki2/global/app_colors/app_colors_dark.dart';
 ThemeData getAppThemeDataLight() {
   return ThemeData(
       // scaffoldBackgroundColor: Colors.blue[400],
-      scaffoldBackgroundColor: const Color(0xFF26a0d3),
+      // scaffoldBackgroundColor: const Color(0xFF26a0d3),
+      scaffoldBackgroundColor: Colors.transparent,
       appBarTheme: const AppBarTheme(
           elevation: 0,
           backgroundColor: Color(
