@@ -30,26 +30,19 @@ class HomePageWeb extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Expanded(child: HeaderInfoWebWidget()),
+                // const Expanded(child: HeaderInfoWebWidget()),
                 SizedBox(
                   width: AppConstants.secondaryText *
                       AppConstants.unitHeightValue(context),
                 ),
-                const Expanded(
-                    child: CustomTweenAnimation(widgetToAnimate: PhotoHome())),
+                // const Expanded(
+                //     child: CustomTweenAnimation(widgetToAnimate: PhotoHome())),
               ],
             ),
             SizedBox(
               height: AppConstants.unitHeightValue(context) * 20,
             ),
-            Container(
-              width: double.infinity,
-              // height: AppConstants.unitHeightValue(context) * 50,
-              color: const Color.fromARGB(255, 243, 239, 239),
-              child: CustomPaint(
-                painter: BottomCurvePainter(),
-              ),
-            ),
+
           ]),
     );
   }

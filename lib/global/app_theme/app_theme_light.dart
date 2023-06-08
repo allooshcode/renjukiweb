@@ -5,7 +5,11 @@ ThemeData getAppThemeDataLight() {
   return ThemeData(
       // scaffoldBackgroundColor: Colors.blue[400],
       // scaffoldBackgroundColor: const Color(0xFF26a0d3),
+<<<<<<< HEAD
       scaffoldBackgroundColor: Colors.transparent,
+=======
+    scaffoldBackgroundColor: Colors.transparent,
+>>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
       appBarTheme: const AppBarTheme(
           elevation: 0,
           backgroundColor: Color(
