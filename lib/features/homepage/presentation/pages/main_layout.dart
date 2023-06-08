@@ -17,30 +17,20 @@ class MainLayout extends StatelessWidget {
     final homeKey = GlobalKey();
     final workKey = GlobalKey();
 
-<<<<<<< HEAD
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('EXCAVATOR.jpeg'),
-        ),
-      ),
-      child: Scaffold(
-=======
-    return Stack(
-      children:[
-
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('EXCAVATOR.jpeg'),fit: BoxFit.cover,opacity: 0.4,),
+    return Stack(children: [
+      Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('EXCAVATOR.jpeg'),
+            fit: BoxFit.cover,
+            opacity: 0.4,
           ),
-          // width: double.infinity,
-          // height: MediaQuery.of(context).size.height,
         ),
-        Scaffold(
-
->>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
+        // width: double.infinity,
+        // height: MediaQuery.of(context).size.height,
+      ),
+      Scaffold(
+// >>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
         appBar: AppBar(
           flexibleSpace: Container(
             width: double.infinity,
@@ -66,10 +56,10 @@ class MainLayout extends StatelessWidget {
           ],
         ),
         body: SingleChildScrollView(
-<<<<<<< HEAD
-=======
-
->>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
+// <<<<<<< HEAD
+// =======
+//
+// >>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
           child: Column(children: [
             CustomFadeAnimation(
               widgetToAnimate: HomePage(
@@ -83,15 +73,15 @@ class MainLayout extends StatelessWidget {
             // )
           ]),
         ),
-          bottomNavigationBar: Container(
-            width: double.infinity,
-            // height: AppConstants.unitHeightValue(context) * 50,
-            color: const Color.fromARGB(255, 243, 239, 239),
-            child: CustomPaint(
-              painter: BottomCurvePainter(),
-            ),
+        bottomNavigationBar: Container(
+          width: double.infinity,
+          // height: AppConstants.unitHeightValue(context) * 50,
+          color: const Color.fromARGB(255, 243, 239, 239),
+          child: CustomPaint(
+            painter: BottomCurvePainter(),
           ),
-      ),]
-    );
+        ),
+      ),
+    ]);
   }
 }

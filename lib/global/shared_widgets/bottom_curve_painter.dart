@@ -16,7 +16,7 @@ class BottomCurvePainter extends CustomPainter {
 
     // canvas.drawPath(path, paint);
     var paint = Paint();
-    paint.color = const Color.fromARGB(255, 255, 255, 255);
+    paint.color = const Color.fromARGB(255, 9, 4, 165);
     paint.style = PaintingStyle.fill;
 
     var path = Path();

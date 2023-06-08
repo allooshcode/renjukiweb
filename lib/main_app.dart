@@ -35,13 +35,11 @@ class MyPortfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Scaffold(
-        // backgroundColor: Colors.blue,
-        // appBar: AppBar(),
+    return const Scaffold(
+      // backgroundColor: Colors.blue,
+      // appBar: AppBar(),
 
-        body: MainLayout(),
-      ),
+      body: MainLayout(),
     );
   }
 }
