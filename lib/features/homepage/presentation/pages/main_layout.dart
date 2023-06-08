@@ -6,6 +6,7 @@ import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 import 'package:renjuki2/global/utils/icon_broken.dart';
 
+import '../../../../global/shared_widgets/bottom_curve_painter.dart';
 import '../../../../global/shared_widgets/top_curve_painter.dart';
 
 class MainLayout extends StatelessWidget {
@@ -16,39 +17,43 @@ class MainLayout extends StatelessWidget {
     final homeKey = GlobalKey();
     final workKey = GlobalKey();
 
-    return Scaffold(
+    return Stack(
+      children:[
 
-      appBar: AppBar(
-        flexibleSpace: Container(
-          width: double.infinity,
-          // height: AppConstants.unitHeightValue(context) * 50,
-          color: const Color.fromARGB(255, 243, 239, 239),
-          child: CustomPaint(
-            painter: TopCurvePainter(),
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('EXCAVATOR.jpeg'),fit: BoxFit.cover,opacity: 0.4,),
           ),
+          // width: double.infinity,
+          // height: MediaQuery.of(context).size.height,
         ),
-        actions: [
-          CustomButton(
-              fun: () {
-                Scrollable.ensureVisible(homeKey.currentContext!);
-              },
-              title: "Home",
-              icon: IconBroken.Home),
-          CustomButton(
-              fun: () {
-                Scrollable.ensureVisible(workKey.currentContext!);
-              },
-              title: "Work",
-              icon: IconBroken.Work)
-        ],
-      ),
-      body: Container(
-        decoration:const BoxDecoration(
-          image: DecorationImage(image:  AssetImage(
-            'EXCAVATOR.jpeg'
-          ),),
+        Scaffold(
+
+        appBar: AppBar(
+          flexibleSpace: Container(
+            width: double.infinity,
+            // height: AppConstants.unitHeightValue(context) * 50,
+            color: const Color.fromARGB(255, 243, 239, 239),
+            child: CustomPaint(
+              painter: TopCurvePainter(),
+            ),
+          ),
+          actions: [
+            CustomButton(
+                fun: () {
+                  Scrollable.ensureVisible(homeKey.currentContext!);
+                },
+                title: "Home",
+                icon: IconBroken.Home),
+            CustomButton(
+                fun: () {
+                  Scrollable.ensureVisible(workKey.currentContext!);
+                },
+                title: "Work",
+                icon: IconBroken.Work)
+          ],
         ),
-        child: SingleChildScrollView(
+        body: SingleChildScrollView(
 
           child: Column(children: [
             CustomFadeAnimation(
@@ -56,14 +61,22 @@ class MainLayout extends StatelessWidget {
                 key: homeKey,
               ),
             ),
-            CustomFadeAnimation(
-              widgetToAnimate: WorkPageWeb(
-                key: workKey,
-              ),
-            )
+            // CustomFadeAnimation(
+            //   widgetToAnimate: WorkPageWeb(
+            //     key: workKey,
+            //   ),
+            // )
           ]),
         ),
-      ),
+          bottomNavigationBar: Container(
+            width: double.infinity,
+            // height: AppConstants.unitHeightValue(context) * 50,
+            color: const Color.fromARGB(255, 243, 239, 239),
+            child: CustomPaint(
+              painter: BottomCurvePainter(),
+            ),
+          ),
+      ),]
     );
   }
 }

@@ -16,12 +16,12 @@ class HomePageMobile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const HeaderInfoWebWidget(),
+            // const HeaderInfoWebWidget(),
             SizedBox(
               width: AppConstants.secondaryText *
                   AppConstants.unitHeightValue(context),
             ),
-            const CustomTweenAnimation(widgetToAnimate: PhotoHome()),
+            // const CustomTweenAnimation(widgetToAnimate: PhotoHome()),
             SizedBox(
               height: AppConstants.unitHeightValue(context) * 20,
             ),

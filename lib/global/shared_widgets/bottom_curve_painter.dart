@@ -29,9 +29,9 @@ class BottomCurvePainter extends CustomPainter {
       print(size.height.ceil());
     }
     path.quadraticBezierTo(
-        size.width / 5, -size.width / 8, size.width / 3, -size.width / 8);
+        size.width / 5, -size.width / 12, size.width / 3, -size.width / 12);
     path.quadraticBezierTo(
-        size.width / 1.5, -size.width / 8, size.width, -size.width / 5);
+        size.width / 1.5, -size.width / 12, size.width, -size.width / 8);
 
     // path.quadraticBezierTo(size.width * 0.75, size.height * 0.9584,
     //     size.width * 1.0, size.height * 0.9167);
