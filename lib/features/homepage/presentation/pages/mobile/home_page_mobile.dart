@@ -25,14 +25,7 @@ class HomePageMobile extends StatelessWidget {
             SizedBox(
               height: AppConstants.unitHeightValue(context) * 20,
             ),
-            Container(
-              width: double.infinity,
-              // height: AppConstants.unitHeightValue(context) * 50,
-              color: const Color.fromARGB(255, 243, 239, 239),
-              child: CustomPaint(
-                painter: BottomCurvePainter(),
-              ),
-            ),
+
           ]),
     );
   }

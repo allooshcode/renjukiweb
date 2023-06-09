@@ -21,11 +21,11 @@ class CustomButton extends StatelessWidget {
           right: AppConstants.unitWidthValu(context) * 2,
           bottom: AppConstants.unitHeightValue(context) * 2),
       child: ElevatedButton.icon(
-        icon: Align(
+         icon:MediaQuery.of(context).size.width > 580 ? Align(
             alignment: Alignment.topCenter,
             child: Icon(
               icon,
-            )),
+            )) : const SizedBox(),
         label: Align(
           alignment: Alignment.center,
           child: Text(
@@ -33,7 +33,10 @@ class CustomButton extends StatelessWidget {
             textAlign: TextAlign.justify,
             overflow: TextOverflow.ellipsis,
             style:
-                TextStyle(fontSize: AppConstants.unitWidthValu(context) * 1.2),
+                MediaQuery.of(context).size.width > 580 ?
+                TextStyle(fontSize: AppConstants.unitHeightValue(context) * 3) :
+                TextStyle(fontSize: AppConstants.unitHeightValue(context) * 2)
+            ,
           ),
         ),
         onPressed: () => fun(),

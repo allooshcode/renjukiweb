@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renjuki2/features/homepage/presentation/widgets/home_page_widgets/web/carausel_slider.dart';
 import 'package:renjuki2/features/homepage/presentation/widgets/home_page_widgets/web/header_info_web_widget.dart';
 import 'package:renjuki2/global/animations/tween_animation.dart';
 import 'package:renjuki2/global/shared_widgets/bottom_curve_painter.dart';
@@ -27,17 +28,10 @@ class HomePageWeb extends StatelessWidget {
             //     painter: TopCurvePainter(),
             //   ),
             // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // const Expanded(child: HeaderInfoWebWidget()),
-                SizedBox(
-                  width: AppConstants.secondaryText *
-                      AppConstants.unitHeightValue(context),
-                ),
-                // const Expanded(
-                //     child: CustomTweenAnimation(widgetToAnimate: PhotoHome())),
-              ],
+            const QarouselSlider(),
+            SizedBox(
+              width: AppConstants.secondaryText *
+                  AppConstants.unitHeightValue(context),
             ),
             SizedBox(
               height: AppConstants.unitHeightValue(context) * 20,

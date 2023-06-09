@@ -13,6 +13,7 @@ class MyPortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(providers: [
         BlocProvider(
           create: (context) => PortfolioBloc(
