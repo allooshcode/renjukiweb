@@ -8,6 +8,7 @@ import 'package:renjuki2/global/utils/icon_broken.dart';
 
 import '../../../../global/shared_widgets/bottom_curve_painter.dart';
 import '../../../../global/shared_widgets/top_curve_painter.dart';
+import '../widgets/home_page_widgets/singin_signup_container.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({super.key});
@@ -40,19 +41,21 @@ class MainLayout extends StatelessWidget {
               painter: TopCurvePainter(),
             ),
           ),
-          actions: [
-            CustomButton(
-                fun: () {
-                  Scrollable.ensureVisible(homeKey.currentContext!);
-                },
-                title: "Home",
-                icon: IconBroken.Home),
-            CustomButton(
-                fun: () {
-                  Scrollable.ensureVisible(workKey.currentContext!);
-                },
-                title: "Work",
-                icon: IconBroken.Work)
+          actions: const [
+            SignInSignUp(),
+
+            // CustomButton(
+            //     fun: () {
+            //       Scrollable.ensureVisible(homeKey.currentContext!);
+            //     },
+            //     title: "Home",
+            //     icon: IconBroken.Home),
+            // CustomButton(
+            //     fun: () {
+            //       Scrollable.ensureVisible(workKey.currentContext!);
+            //     },
+            //     title: "Work",
+            //     icon: IconBroken.Work)
           ],
         ),
         body: SingleChildScrollView(
