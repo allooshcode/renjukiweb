@@ -13,7 +13,7 @@ class CallLinkedInDataRepository implements CallLinkedInRepository {
   @override
   Future<Either<Failure, bool>> callLinkedInREpository() async {
     try {
-      callLinkedInData.callLink();
+      await callLinkedInData.callLink();
       return right(true);
     } on ServerException catch (err) {
       return left(ServerFuilure(err.msgError));
