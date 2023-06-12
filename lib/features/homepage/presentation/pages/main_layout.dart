@@ -8,7 +8,7 @@ import 'package:renjuki2/global/utils/icon_broken.dart';
 
 import '../../../../global/shared_widgets/bottom_curve_painter.dart';
 import '../../../../global/shared_widgets/top_curve_painter.dart';
-import '../widgets/home_page_widgets/singin_signup_container.dart';
+import '../widgets/singin_signup_container.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({super.key});

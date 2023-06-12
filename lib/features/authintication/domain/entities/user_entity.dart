@@ -1,16 +1,13 @@
-
 import 'package:equatable/equatable.dart';
 
-class UserEntity extends Equatable{
-
-
+class UserEntity extends Equatable {
   final String? userName;
   final String? userEmail;
-  bool isAdmin = false;
+  final bool isAdmin;
   final String? address;
   final String? userPhone;
 
-  UserEntity({
+  const UserEntity({
     required this.userName,
     required this.userEmail,
     required this.isAdmin,
@@ -18,10 +15,7 @@ class UserEntity extends Equatable{
     required this.userPhone,
   });
 
-
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
-
-
 }

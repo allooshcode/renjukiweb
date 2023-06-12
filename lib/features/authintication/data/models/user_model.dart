@@ -13,7 +13,7 @@ class UserModel extends UserEntity implements Equatable{
   static const String ADDRESS = 'userAddress';
   static const String USERPHONE = 'userPhone';
 
-  UserModel({required super.userName, required super.userEmail, required super.isAdmin,
+  const UserModel({required super.userName, required super.userEmail, required super.isAdmin,
     required super.address, required super.userPhone});
 
 
@@ -23,6 +23,9 @@ class UserModel extends UserEntity implements Equatable{
 
 
   }
+
+
+
 
 
 
