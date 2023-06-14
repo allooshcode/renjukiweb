@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
-  const Failure();
+  final String msgError;
+  const Failure(this.msgError);
 }
 
 class ServerFuilure extends Failure {
-  final String msgError;
-  const ServerFuilure(this.msgError);
+
+  const ServerFuilure(super.msgError);
   @override
   List<Object?> get props => throw UnimplementedError();
 }

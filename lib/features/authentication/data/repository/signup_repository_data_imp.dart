@@ -1,14 +1,16 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:renjuki2/features/authintication/data/data_sources/signup_user_data.dart';
-import 'package:renjuki2/features/authintication/domain/entities/user_entity.dart';
-import 'package:renjuki2/features/authintication/domain/repository/SignUpRepository.dart';
+
 import 'package:renjuki2/global/errors/failures.dart';
+
+import '../../domain/entities/user_entity.dart';
+import '../../domain/repository/SignUpRepository.dart';
+import '../data_sources/signup_user_data.dart';
 
 class SignUpRepositoryDataImp implements SignUpRepository{
   final SignUpUserData signUpUserData;
-  SignUpRepositoryDataImp(this.signUpUserData)
+  SignUpRepositoryDataImp(this.signUpUserData);
 
 
   @override

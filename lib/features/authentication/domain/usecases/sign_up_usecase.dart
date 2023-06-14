@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:renjuki2/features/authintication/domain/entities/user_entity.dart';
-import 'package:renjuki2/features/authintication/domain/repository/SignUpRepository.dart';
 
 import '../../../../global/errors/failures.dart';
+import '../entities/user_entity.dart';
+import '../repository/SignUpRepository.dart';
 
 class SignUpUseCase extends Equatable {
   final SignUpRepository signUpRepository;

@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:renjuki2/features/authintication/data/models/user_model.dart';
 import 'package:renjuki2/global/errors/exceptions.dart';
 import 'package:renjuki2/global/errors/failures.dart';
+
+import '../models/user_model.dart';
 
 class SignUpUserData extends Equatable {
   Future<Either<Failure, UserModel>> signUp(
