@@ -6,8 +6,8 @@ import '../../domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity implements Equatable{
 
-  static const String USERNAME = 'userName';
-  static const String USEREMAIL = 'userEmail';
+  static const String USERNAME ='userName';
+  static const String USEREMAIL ='userEmail';
   static const String ISADMIN = "isAdmin";
 
   static const String ADDRESS = 'userAddress';

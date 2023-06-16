@@ -6,27 +6,30 @@ import 'package:renjuki2/global/app_theme/app_theme_dark.dart';
 import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
 import 'features/homepage/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
+import 'global/router/app_router.dart';
 
 class MyPortfolioApp extends StatelessWidget {
   const MyPortfolioApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => PortfolioBloc(
-              callLinkedInUsecase: sl(),
-              callResumeUsecase: sl(),
-              callMobAppAndiodUsecase: sl(),
-              callWebAppUsecase: sl(),
-              callMobAppIosUsecase: sl()),
-        )
-      ], child: const MyPortfolio()),
+      // home: MultiBlocProvider(providers: [
+      //   BlocProvider(
+      //     create: (context) => PortfolioBloc(
+      //         callLinkedInUsecase: sl(),
+      //         callResumeUsecase: sl(),
+      //         callMobAppAndiodUsecase: sl(),
+      //         callWebAppUsecase: sl(),
+      //         callMobAppIosUsecase: sl()),
+      //   )
+      // ], child: const MyPortfolio()),
       theme: getAppThemeDataLight(),
       darkTheme: getAppThemeDataDark(),
       themeMode: ThemeMode.light,
+      routerDelegate: AppRouterDelegate(authenticationBloc: sl()),
+      routeInformationParser: AppRouteInformationParser(),
     );
   }
 }
