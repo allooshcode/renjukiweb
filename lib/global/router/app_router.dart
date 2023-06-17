@@ -34,10 +34,9 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
           key: navigatorKey,
           pages: [
             if (_currentConfiguration.isAuth)
-              MaterialPage(
-                  child: AuthPage(
-                      authenticationBloc: authenticationBloc)),
-            if (_currentConfiguration.isHome) const MaterialPage(child: HomePage()),
+              const MaterialPage(child: AuthPage()),
+            if (_currentConfiguration.isHome)
+              const MaterialPage(child: HomePage()),
           ],
           onPopPage: (route, result) {
             if (!route.didPop(result)) {
@@ -77,11 +76,9 @@ class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
     } else if (uri.pathSegments.length == 1 &&
         uri.pathSegments.first == 'home') {
       return RoutePath.home();
-    } else if( uri.pathSegments.first == 'auth'){
-
-      return RoutePath.auth()
-    }
-    else {
+    } else if (uri.pathSegments.first == 'auth') {
+      return RoutePath.auth();
+    } else {
       return RoutePath.unknown();
     }
   }

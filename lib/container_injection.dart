@@ -1,4 +1,9 @@
 import 'package:get_it/get_it.dart';
+import 'package:renjuki2/features/authentication/data/data_sources/signup_user_data.dart';
+import 'package:renjuki2/features/authentication/data/repository/signup_repository_data_imp.dart';
+import 'package:renjuki2/features/authentication/domain/repository/SignUpRepository.dart';
+import 'package:renjuki2/features/authentication/domain/usecases/sign_up_usecase.dart';
+import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/data/datasources/call_any_link_data.dart';
 import 'package:renjuki2/features/homepage/data/datasources/call_linkedin_data.dart';
 import 'package:renjuki2/features/homepage/data/datasources/resume_data.dart';
@@ -19,6 +24,7 @@ final sl = GetIt.I;
 
 Future initSl() async {
   //contorllers
+  sl.registerFactory(() => AuthBloc(signUpUseCase: sl()));
 
   sl.registerFactory(() => PortfolioBloc(
         callLinkedInUsecase: sl(),
@@ -28,6 +34,9 @@ Future initSl() async {
         callMobAppIosUsecase: sl(),
       ));
   //usecases
+
+  sl.registerLazySingleton<SignUpUseCase>(
+      () => SignUpUseCase(signUpRepository: sl()));
   sl.registerLazySingleton<CallResumeUsecase>(() => CallResumeUsecase(sl()));
   sl.registerLazySingleton<CallLinkedInUsecase>(
       () => CallLinkedInUsecase(sl()));
@@ -39,6 +48,9 @@ Future initSl() async {
       () => CallMobAppIosUsecase(sl()));
 
   //domain
+
+  sl.registerLazySingleton<SignUpRepository>(
+      () => SignUpRepositoryDataImp(sl()));
   sl.registerLazySingleton<CallResumeRepository>(
       () => ResumeRepositoryData(resumeData: sl()));
 
@@ -49,6 +61,7 @@ Future initSl() async {
       () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
+  sl.registerLazySingleton<SignUpUserData>(() => SignUpUserData());
   sl.registerLazySingleton<ResumeData>(() => ResumeData());
   sl.registerLazySingleton<CallLinkedInData>(() => CallLinkedInData());
 

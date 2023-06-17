@@ -4,6 +4,11 @@ abstract class AuthEvent extends Equatable {
   const AuthEvent();
 }
 
+class LogoutEvent extends AuthEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
 
 class SignUpEvent extends AuthEvent {
   final String email;
@@ -14,9 +19,6 @@ class SignUpEvent extends AuthEvent {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
-
-
-
 }
 
 class SignInEvent extends AuthEvent {
@@ -28,6 +30,4 @@ class SignInEvent extends AuthEvent {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
-
-
 }
