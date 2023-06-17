@@ -4,20 +4,22 @@ import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/aut
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+
       body: BlocConsumer<AuthBloc, AuthState>(
           builder: (BuildContext context, state) {
             if(state is SignUpSuccessState){
-              Navigator.of(context).pushNamed('HomePage',arguments: );
+              Navigator.of(context).pushNamed('HomePage', );
 
             }
 
 
 
-            return Container();
+            return const Center(child: Text('sign up'));
           },
           listener: (BuildContext context, state) {}),
     );
