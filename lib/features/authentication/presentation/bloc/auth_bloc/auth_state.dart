@@ -9,6 +9,12 @@ class AuthInitial extends AuthState {
   List<Object> get props => [];
 }
 
+class GoSignUpState extends AuthState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
 
 
 class SignUpLoadingState extends AuthState {

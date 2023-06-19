@@ -12,8 +12,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignUpUseCase signUpUseCase;
 
   AuthBloc({required this.signUpUseCase}) : super(AuthInitial()) {
-    on<SignUpEvent>((event, emit) async {
+
+    on<GoSignupEvent>((event, emit) {
+
       emit(SignInLoadingState());
+      emit(GoSignUpState());});
+
+    on<SignUpEvent>((event, emit) async {
+      emit(SignUpLoadingState());
       final response = await signUpUseCase.call(event.email, event.password);
       response.fold((l) => emit(SignUpFailureState(l.msgError)),
           (r) => emit(SignUpSuccessState()));

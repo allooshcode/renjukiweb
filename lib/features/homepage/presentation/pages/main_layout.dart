@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progressive_image/progressive_image.dart';
+import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
@@ -42,7 +43,10 @@ class MainLayout extends StatelessWidget {
             ),
           ),
           actions: const [
-            SignInSignUp(),
+            BlocProvider(
+              create: (context) => AuthBloc(signUpUseCase: sl()),
+              child: SignInSignUp(authBloc: null,),
+            ),
 
             // CustomButton(
             //     fun: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 
 import '../../features/homepage/presentation/pages/home_page.dart';
 
@@ -10,33 +11,39 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
   final GlobalKey<NavigatorState> navigatorKey;
 
   final bool _isInitialized = false;
-  late RoutePath _currentConfiguration;
+  late RoutePath _currentPath;
 
   AppRouterDelegate({required this.authenticationBloc})
       : navigatorKey = GlobalKey<NavigatorState>(),
-        _currentConfiguration = RoutePath.initial();
+        _currentPath = RoutePath.initial();
 
   @override
-  RoutePath get currentConfiguration => _currentConfiguration;
+  RoutePath get currentPath => _currentPath;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       bloc: authenticationBloc,
       builder: (context, state) {
-        if (state is SignInSuccessState) {
-          _currentConfiguration = RoutePath.home();
-        } else {
-          _currentConfiguration = RoutePath.auth();
-        }
+        if(state is GoSignUpState){
+          _currentPath = RoutePath.signup();
 
+        }
+        if (state is SignInSuccessState) {
+          _currentPath = RoutePath.home();
+        } else if(state is SignUpSuccessState){
+          _currentPath = RoutePath.signup();
+        }
+        else{ _currentPath = RoutePath.unknown();}
         return Navigator(
           key: navigatorKey,
           pages: [
-            if (_currentConfiguration.isAuth)
-              const MaterialPage(child: AuthPage()),
-            if (_currentConfiguration.isHome)
-              const MaterialPage(child: HomePage()),
+            if (_currentPath.isSignup)
+              const MaterialPage(child: SignUpPage()),
+            if (_currentPath.isHome)
+              const MaterialPage(child: MainLayout()),
+            if(_currentPath.isUnknown)
+              const MaterialPage(child: MainLayout()),
           ],
           onPopPage: (route, result) {
             if (!route.didPop(result)) {
@@ -76,18 +83,18 @@ class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
     } else if (uri.pathSegments.length == 1 &&
         uri.pathSegments.first == 'home') {
       return RoutePath.home();
-    } else if (uri.pathSegments.first == 'auth') {
-      return RoutePath.auth();
+    } else if (uri.pathSegments.first == 'signup') {
+      return RoutePath.signup();
     } else {
       return RoutePath.unknown();
     }
   }
 
   @override
-  RouteInformation restoreRouteInformation(RoutePath configuration) {
-    if (configuration.isAuth) {
-      return const RouteInformation(location: '/auth');
-    } else if (configuration.isHome) {
+  RouteInformation restoreRouteInformation(RoutePath path) {
+    if (path.isSignup) {
+      return const RouteInformation(location: '/signup');
+    } else if (path.isHome) {
       return const RouteInformation(location: '/home');
     } else {
       return const RouteInformation(location: '/unknown');
@@ -96,25 +103,25 @@ class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
 }
 
 class RoutePath {
-  final bool isAuth;
+  final bool isSignup;
   final bool isHome;
   final bool isUnknown;
 
   RoutePath({
-    required this.isAuth,
+    required this.isSignup,
     required this.isHome,
     required this.isUnknown,
   });
 
-  factory RoutePath.auth() =>
-      RoutePath(isAuth: true, isHome: false, isUnknown: false);
+  factory RoutePath.signup() =>
+      RoutePath(isSignup: true, isHome: false, isUnknown: false);
 
   factory RoutePath.home() =>
-      RoutePath(isAuth: false, isHome: true, isUnknown: false);
+      RoutePath(isSignup: false, isHome: true, isUnknown: false);
 
   factory RoutePath.unknown() =>
-      RoutePath(isAuth: false, isHome: false, isUnknown: true);
+      RoutePath(isSignup: false, isHome: false, isUnknown: true);
 
   factory RoutePath.initial() =>
-      RoutePath(isAuth: false, isHome: true, isUnknown: false);
+      RoutePath(isSignup: false, isHome: true, isUnknown: false);
 }
