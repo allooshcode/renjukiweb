@@ -2,15 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/container_injection.dart';
+import 'package:renjuki2/global/router/app_router.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
+  void navigateBackToHomePage(BuildContext context) {
+    final routerDelegate = Router.of(context).routerDelegate as AppRouterDelegate;
+    routerDelegate.setInitialRoutePath(RoutePath.home());
 
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+appBar: AppBar(
+  title: Center(
+        child: ElevatedButton(
+        onPressed: () {
+      navigateBackToHomePage(context);
+    },
+    child: const Text('Home Page'),
+    ),),),
 
       body: BlocProvider(
         create: (context) => AuthBloc(signUpUseCase:sl() ),

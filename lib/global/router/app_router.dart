@@ -4,6 +4,7 @@ import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/aut
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 
+import '../../container_injection.dart';
 import '../../features/homepage/presentation/pages/home_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
@@ -17,50 +18,71 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
       : navigatorKey = GlobalKey<NavigatorState>(),
         _currentPath = RoutePath.initial();
 
+
   @override
   RoutePath get currentPath => _currentPath;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
-      bloc: authenticationBloc,
-      builder: (context, state) {
-        if(state is GoSignUpState){
-          _currentPath = RoutePath.signup();
+    // return MultiBlocProvider(
+    //   providers: [
+    //     BlocProvider<AuthBloc>( create: (context) => AuthBloc(signUpUseCase: sl()),
+    // )
+    //   ],
+    //   child: BlocBuilder<AuthBloc,AuthState>(
+    // builder: (context, state){
+    //
+    // if (state is GoSignUpState) {
+    // _currentPath = RoutePath.signup();
+    // }
+    // if (state is SignInSuccessState) {
+    // _currentPath = RoutePath.home();
+    // } else if (state is SignUpSuccessState) {
+    // _currentPath = RoutePath.signup();
+    // }
+    // else {
+    // _currentPath = RoutePath.unknown();
+    // }
 
-        }
-        if (state is SignInSuccessState) {
-          _currentPath = RoutePath.home();
-        } else if(state is SignUpSuccessState){
-          _currentPath = RoutePath.signup();
-        }
-        else{ _currentPath = RoutePath.unknown();}
-        return Navigator(
-          key: navigatorKey,
-          pages: [
-            if (_currentPath.isSignup)
-              const MaterialPage(child: SignUpPage()),
-            if (_currentPath.isHome)
-              const MaterialPage(child: MainLayout()),
-            if(_currentPath.isUnknown)
-              const MaterialPage(child: MainLayout()),
-          ],
-          onPopPage: (route, result) {
-            if (!route.didPop(result)) {
-              return false;
-            }
+            return Navigator(
+              key: navigatorKey,
+              pages: [
+                if (_currentPath.isSignup)
+                  const MaterialPage(child: SignUpPage(),fullscreenDialog: true),
+                if (_currentPath.isHome)
+                  const MaterialPage(child: MainLayout()),
+                if(_currentPath.isUnknown)
+                  const MaterialPage(child: MainLayout()),
+              ],
+              onPopPage: (route, result) {
+                if (!route.didPop(result)) {
+                  return false;
+                }
 
-            // Handle navigation back from the home page
-            authenticationBloc.add(LogoutEvent());
-            return true;
-          },
-        );
-      },
-    );
-  }
+                // Handle navigation back from the home page
+                authenticationBloc.add(LogoutEvent());
+                return true;
+              },
+            );
+          }
+
+
+
+
+
+
 
   @override
   Future<void> setNewRoutePath(RoutePath configuration) async {
+    _currentPath = configuration;
+    notifyListeners();
+
+    // final routeInformation = RouteInformation(
+    //   location: _currentPath.toLocation(),
+    // );
+    // final routePath = configuration;
+    // Router.of(navigatorKey.currentContext!).routerDelegate.setInitialRoutePath(routePath);
+
     // Handle the route changes here if necessary
     // For simplicity, we won't handle any route changes in this example
   }
@@ -70,6 +92,13 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
     // TODO: implement popRoute
     throw UnimplementedError();
   }
+  //
+  // @override
+  // Future<void> setInitialRoutePath(RoutePath configuration) {
+  //   _currentPath = configuration;
+  //   notifyListeners();
+  //   return super.setInitialRoutePath(configuration);
+  // }
 }
 
 class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
@@ -81,9 +110,9 @@ class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
     if (uri.pathSegments.isEmpty) {
       return RoutePath.home();
     } else if (uri.pathSegments.length == 1 &&
-        uri.pathSegments.first == 'home') {
+        uri.pathSegments.first == '/home') {
       return RoutePath.home();
-    } else if (uri.pathSegments.first == 'signup') {
+    } else if (uri.pathSegments.first == '/signup') {
       return RoutePath.signup();
     } else {
       return RoutePath.unknown();
@@ -91,10 +120,10 @@ class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
   }
 
   @override
-  RouteInformation restoreRouteInformation(RoutePath path) {
-    if (path.isSignup) {
+  RouteInformation restoreRouteInformation(RoutePath configuration) {
+    if (configuration.isSignup) {
       return const RouteInformation(location: '/signup');
-    } else if (path.isHome) {
+    } else if (configuration.isHome) {
       return const RouteInformation(location: '/home');
     } else {
       return const RouteInformation(location: '/unknown');
@@ -112,6 +141,18 @@ class RoutePath {
     required this.isHome,
     required this.isUnknown,
   });
+
+  String toLocation() {
+    if (isHome) {
+      return '/home';
+    } else if (isSignup) {
+      return '/auth';
+    } else if (isUnknown) {
+      return '/unknown';
+    }
+
+    return '/';
+  }
 
   factory RoutePath.signup() =>
       RoutePath(isSignup: true, isHome: false, isUnknown: false);

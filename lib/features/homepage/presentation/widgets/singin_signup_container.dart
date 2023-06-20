@@ -4,9 +4,16 @@ import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/aut
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/container_injection.dart';
 
+import '../../../../global/router/app_router.dart';
+
 class SignInSignUp extends StatelessWidget {
   const SignInSignUp({super.key, required this.authBloc});
   final AuthBloc authBloc;
+
+  void navigateToAuthPage(BuildContext context) {
+    final routerDelegate = Router.of(context).routerDelegate as AppRouterDelegate;
+    routerDelegate.setNewRoutePath(RoutePath.signup());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +31,7 @@ class SignInSignUp extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
             },
@@ -32,7 +40,8 @@ class SignInSignUp extends StatelessWidget {
           const SizedBox(height: 8.0),
           OutlinedButton(
             onPressed: () {
-              authBloc.add(GoSignupEvent());
+              navigateToAuthPage(context);
+              // authBloc.add(GoSignupEvent());
               // Handle Sign Up button pressed
               // You can navigate to the Sign Up page or perform any desired action
             },

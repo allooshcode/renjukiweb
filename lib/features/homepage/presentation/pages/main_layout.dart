@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progressive_image/progressive_image.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
@@ -7,6 +8,7 @@ import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 import 'package:renjuki2/global/utils/icon_broken.dart';
 
+import '../../../../container_injection.dart';
 import '../../../../global/shared_widgets/bottom_curve_painter.dart';
 import '../../../../global/shared_widgets/top_curve_painter.dart';
 import '../widgets/singin_signup_container.dart';
@@ -42,11 +44,8 @@ class MainLayout extends StatelessWidget {
               painter: TopCurvePainter(),
             ),
           ),
-          actions: const [
-            BlocProvider(
-              create: (context) => AuthBloc(signUpUseCase: sl()),
-              child: SignInSignUp(authBloc: null,),
-            ),
+          actions:  [
+            SignInSignUp(authBloc: sl(),),
 
             // CustomButton(
             //     fun: () {
