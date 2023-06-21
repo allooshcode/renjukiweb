@@ -7,20 +7,23 @@ import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 import '../../container_injection.dart';
 import '../../features/homepage/presentation/pages/home_page.dart';
 
-class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
+class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier,PopNavigatorRouterDelegateMixin {
   final AuthBloc authenticationBloc;
-  final GlobalKey<NavigatorState> navigatorKey;
+  // final GlobalKey<NavigatorState> navigatorKey;
 
   final bool _isInitialized = false;
   late RoutePath _currentPath;
 
   AppRouterDelegate({required this.authenticationBloc})
-      : navigatorKey = GlobalKey<NavigatorState>(),
-        _currentPath = RoutePath.initial();
+      // : navigatorKey = GlobalKey<NavigatorState>(),
+        :_currentPath = RoutePath.initial();
 
 
   @override
-  RoutePath get currentPath => _currentPath;
+  RoutePath get currentPath {
+return _currentPath;
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +61,11 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
                 if (!route.didPop(result)) {
                   return false;
                 }
+                notifyListeners();
+                _currentPath = RoutePath.home();
 
                 // Handle navigation back from the home page
-                authenticationBloc.add(LogoutEvent());
+                // authenticationBloc.add(LogoutEvent());
                 return true;
               },
             );
@@ -74,7 +79,12 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
 
   @override
   Future<void> setNewRoutePath(RoutePath configuration) async {
-    _currentPath = configuration;
+    if(configuration.isHome) {
+      _currentPath = RoutePath.home();
+    }
+    else {
+      _currentPath = RoutePath.signup();
+    }
     notifyListeners();
 
     // final routeInformation = RouteInformation(
@@ -92,6 +102,10 @@ class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier {
     // TODO: implement popRoute
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement navigatorKey
+  GlobalKey<NavigatorState>? get navigatorKey => GlobalKey<NavigatorState>();
   //
   // @override
   // Future<void> setInitialRoutePath(RoutePath configuration) {
