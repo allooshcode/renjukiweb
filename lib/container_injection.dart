@@ -18,7 +18,7 @@ import 'package:renjuki2/features/homepage/domain/usecases/call_mob_link_usecase
 import 'package:renjuki2/features/homepage/domain/usecases/call_mob_mob_ios_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/resume_usecase.dart';
-import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
+import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/home_bloc.dart';
 
 final sl = GetIt.I;
 
@@ -26,7 +26,7 @@ Future initSl() async {
   //contorllers
   sl.registerFactory(() => AuthBloc(signUpUseCase: sl()));
 
-  sl.registerFactory(() => PortfolioBloc(
+  sl.registerFactory(() => HomeBloc(
         callLinkedInUsecase: sl(),
         callResumeUsecase: sl(),
         callMobAppAndiodUsecase: sl(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
+import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/home_bloc.dart';
 import 'package:renjuki2/global/shared_widgets/photo_widget.dart';
 import 'package:renjuki2/global/utils/constants.dart';
 
@@ -20,7 +20,7 @@ class WorkPageWeb extends StatelessWidget {
                 widgetToAnimate: PhotoWidget(
               photoPath: 'assets/mobileApp.png',
               fun: () {
-                BlocProvider.of<PortfolioBloc>(context)
+                BlocProvider.of<HomeBloc>(context)
                     .add(const CallMobLinkEvent(isIphoneApp: false));
               },
             )),
@@ -42,7 +42,7 @@ class WorkPageWeb extends StatelessWidget {
                   widgetToAnimate: PhotoWidget(
                 photoPath: 'assets/mobileApp.png',
                 fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                  BlocProvider.of<HomeBloc>(context)
                       .add(const CallMobLinkEvent(isIphoneApp: true));
                 },
               )),
@@ -65,7 +65,7 @@ class WorkPageWeb extends StatelessWidget {
                 widgetToAnimate: PhotoWidget(
               photoPath: 'assets/webApp.png',
               fun: () {
-                BlocProvider.of<PortfolioBloc>(context)
+                BlocProvider.of<HomeBloc>(context)
                     .add(const CallWebLinkEvent());
               },
             )),

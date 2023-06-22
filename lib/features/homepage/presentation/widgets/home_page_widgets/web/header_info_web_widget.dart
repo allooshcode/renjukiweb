@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/portfolio_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/widgets/home_page_widgets/web/follow_me_symbols.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 import 'package:renjuki2/global/shared_widgets/list_tile.dart';
@@ -51,7 +50,7 @@ class HeaderInfoWebWidget extends StatelessWidget {
                 AppConstants.unitHeightValue(context),
           ),
           Expanded(
-              child: BlocConsumer<PortfolioBloc, PortfolioState>(
+              child: BlocConsumer<HomeBloc, HomeState>(
             listener: (context, state) {
               if (state is LaunchingWhatsState) {
                 Fluttertoast.showToast(
@@ -63,7 +62,7 @@ class HeaderInfoWebWidget extends StatelessWidget {
             builder: (context, state) {
               return CustomButton(
                 fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                  BlocProvider.of<HomeBloc>(context)
                       .add(const LaunchWhatsAppEvent());
                 },
                 icon: IconBroken.Call_Silent,
@@ -78,7 +77,7 @@ class HeaderInfoWebWidget extends StatelessWidget {
           Expanded(
             child: CustomButton(
                 fun: () {
-                  BlocProvider.of<PortfolioBloc>(context)
+                  BlocProvider.of<HomeBloc>(context)
                       .add(const CallResumeEvent());
                 },
                 title: "Resume",

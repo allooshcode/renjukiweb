@@ -5,24 +5,25 @@ import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_pa
 import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 
 import '../../container_injection.dart';
+import '../../features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import '../../features/homepage/presentation/pages/home_page.dart';
 
-class AppRouterDelegate extends RouterDelegate<RoutePath> with ChangeNotifier,PopNavigatorRouterDelegateMixin {
+class AppRouterDelegate extends RouterDelegate<RoutePath>
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   final AuthBloc authenticationBloc;
+  final HomeBloc homeBloc;
   // final GlobalKey<NavigatorState> navigatorKey;
 
   final bool _isInitialized = false;
   late RoutePath _currentPath;
 
-  AppRouterDelegate({required this.authenticationBloc})
+  AppRouterDelegate({required this.authenticationBloc, required this.homeBloc})
       // : navigatorKey = GlobalKey<NavigatorState>(),
-        :_currentPath = RoutePath.initial();
-
+      : _currentPath = RoutePath.initial();
 
   @override
   RoutePath get currentPath {
-return _currentPath;
-
+    return _currentPath;
   }
 
   @override
@@ -47,42 +48,45 @@ return _currentPath;
     // _currentPath = RoutePath.unknown();
     // }
 
-            return Navigator(
-              key: navigatorKey,
-              pages: [
-                if (_currentPath.isSignup)
-                  const MaterialPage(child: SignUpPage(),fullscreenDialog: true),
-                if (_currentPath.isHome)
-                  const MaterialPage(child: MainLayout()),
-                if(_currentPath.isUnknown)
-                  const MaterialPage(child: MainLayout()),
-              ],
-              onPopPage: (route, result) {
-                if (!route.didPop(result)) {
-                  return false;
-                }
-                notifyListeners();
-                _currentPath = RoutePath.home();
+    return Navigator(
+      key: navigatorKey,
+      pages: [
+        if (_currentPath.isSignup)
+          MaterialPage(
+              child: SignUpPage(
+                authBloc: authenticationBloc,
+              ),
+              fullscreenDialog: true),
+        if (_currentPath.isHome)
+          MaterialPage(
+              child: MainLayout(
+            homeBloc: homeBloc,
+          )),
+        if (_currentPath.isUnknown)
+          MaterialPage(
+              child: MainLayout(
+            homeBloc: homeBloc,
+          )),
+      ],
+      onPopPage: (route, result) {
+        if (!route.didPop(result)) {
+          return false;
+        }
+        notifyListeners();
+        _currentPath = RoutePath.home();
 
-                // Handle navigation back from the home page
-                // authenticationBloc.add(LogoutEvent());
-                return true;
-              },
-            );
-          }
-
-
-
-
-
-
+        // Handle navigation back from the home page
+        // authenticationBloc.add(LogoutEvent());
+        return true;
+      },
+    );
+  }
 
   @override
   Future<void> setNewRoutePath(RoutePath configuration) async {
-    if(configuration.isHome) {
+    if (configuration.isHome) {
       _currentPath = RoutePath.home();
-    }
-    else {
+    } else {
       _currentPath = RoutePath.signup();
     }
     notifyListeners();

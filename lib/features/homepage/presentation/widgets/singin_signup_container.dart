@@ -11,8 +11,7 @@ class SignInSignUp extends StatelessWidget {
   final AuthBloc authBloc;
 
   void navigateToAuthPage(BuildContext context) {
-    final routerDelegate = Router.of(context).routerDelegate as AppRouterDelegate;
-    routerDelegate.setNewRoutePath(RoutePath.signup());
+    authBloc.add(GoSignupEvent());
   }
 
   @override
@@ -31,7 +30,6 @@ class SignInSignUp extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
             },
