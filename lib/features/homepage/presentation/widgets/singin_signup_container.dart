@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/container_injection.dart';
+import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 
 import '../../../../global/router/app_router.dart';
 
 class SignInSignUp extends StatelessWidget {
-  const SignInSignUp({super.key, required this.authBloc});
-  final AuthBloc authBloc;
+  const SignInSignUp({super.key, required this.homeBloc});
+  final HomeBloc homeBloc;
 
   void navigateToAuthPage(BuildContext context) {
-    authBloc.add(GoSignupEvent());
+    homeBloc.add(NavigateToAuthPageEvent());
   }
 
   @override

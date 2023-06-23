@@ -74,6 +74,7 @@ class MainLayout extends StatelessWidget {
             CustomFadeAnimation(
               widgetToAnimate: HomePage(
                 key: homeKey,
+                homeBloc: sl(),
               ),
             ),
             // CustomFadeAnimation(

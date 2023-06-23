@@ -20,19 +20,15 @@ import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.
 import 'package:renjuki2/features/homepage/domain/usecases/resume_usecase.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/port_folio_bloc/home_bloc.dart';
 
+import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
+
 final sl = GetIt.I;
 
 Future initSl() async {
   //contorllers
   sl.registerFactory(() => AuthBloc(signUpUseCase: sl()));
 
-  sl.registerFactory(() => HomeBloc(
-        callLinkedInUsecase: sl(),
-        callResumeUsecase: sl(),
-        callMobAppAndiodUsecase: sl(),
-        callWebAppUsecase: sl(),
-        callMobAppIosUsecase: sl(),
-      ));
+  sl.registerFactory(() => HomeBloc());
   //usecases
 
   sl.registerLazySingleton<SignUpUseCase>(

@@ -16,6 +16,7 @@ class HomePageOpenState extends HomeState {}
 class HomePageClosedState extends HomeState {}
 
 class NavigateToAuthPageState extends HomeState {}
+
 //
 // class LaunchingWhatsState extends HomeState {}
 //

@@ -28,7 +28,7 @@ class MyPortfolioApp extends StatelessWidget {
       theme: getAppThemeDataLight(),
       darkTheme: getAppThemeDataDark(),
       themeMode: ThemeMode.light,
-      routerDelegate: AppRouterDelegate(authenticationBloc: sl()),
+      routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
       routeInformationParser: AppRouteInformationParser(),
     );
   }

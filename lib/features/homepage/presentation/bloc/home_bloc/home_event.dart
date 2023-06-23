@@ -7,7 +7,15 @@ abstract class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GoToSignupEvent extends HomeEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
 class NavigateToAuthPageEvent extends HomeEvent {}
+
+class HomePageOpenedEvent extends HomeEvent {}
 
 // class LaunchWhatsAppEvent extends HomeEvent {
 //   const LaunchWhatsAppEvent();
