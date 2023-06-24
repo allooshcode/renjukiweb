@@ -32,41 +32,50 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(listeners: [
+    return MultiBlocProvider(
+      providers:[ BlocProvider(create: (context)=>HomeBloc()),BlocProvider(create: (context)=>AuthBloc(signUpUseCase: sl()))],
+      child: MultiBlocListener(listeners: [
 
-      BlocListener<AuthBloc,AuthState>(listener: (context,state){})
-,
-      BlocListener<HomeBloc,HomeState>(listener: (context,state){})
-    ],
+        BlocListener<AuthBloc, AuthState>(listener: (context, state) {
 
-        child:      Navigator(
-          key: navigatorKey,
-          pages: [
-            if (homeBloc.isHomePage)
-              MaterialPage(
-                key: const ValueKey('HomePage'),
-                child: HomePage(homeBloc: homeBloc),
-              )
-            else if (authBloc.isAuthPage)
-              MaterialPage(
-                key: const ValueKey('AuthenticationPage'),
-                child: SignUpPage(authBloc: authBloc),
-              ),
-          ],
-          onPopPage: (route, result) {
-            if (!route.didPop(result)) {
-              return false;
-            }
 
-            if (authBloc.isAuthPage) {
-              authBloc.add(CloseAuthPageEvent());
-            }
+        })
+        ,
+        BlocListener<HomeBloc, HomeState>(listener: (context, state) {})
+      ],
 
-            return true;
-          },
-        )
-    )
+          child: Navigator(
+            key: navigatorKey,
+            pages: [
+              if (homeBloc.isHomePage)
+                MaterialPage(
+                  key: const ValueKey('HomePage'),
+                  child: MainLayout(homeBloc: sl(),),
+                )
+              else
+                if (authBloc.isAuthPage)
+                  MaterialPage(
+                    key: const ValueKey('AuthenticationPage'),
+                    child: SignUpPage(authBloc: authBloc),
+                  ),
+            ],
+            onPopPage: (route, result) {
+              if (!route.didPop(result)) {
+                return false;
+              }
+
+              if (authBloc.isAuthPage) {
+                authBloc.add(CloseAuthPageEvent());
+              }
+
+              return true;
+            },
+          )
+      ),
+    );
   }
+
+
 
   @override
   Future<void> setNewRoutePath(AppRoutePath path) async {

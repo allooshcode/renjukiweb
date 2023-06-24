@@ -8,9 +8,7 @@ abstract class HomeEvent extends Equatable {
 }
 
 class GoToSignupEvent extends HomeEvent {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+
 }
 
 class NavigateToAuthPageEvent extends HomeEvent {}

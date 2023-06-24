@@ -5,11 +5,10 @@ import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 import 'package:renjuki2/global/app_theme/app_theme_dark.dart';
 import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
-import 'features/homepage/presentation/bloc/port_folio_bloc/home_bloc.dart';
 import 'global/router/app_router.dart';
 
-class MyPortfolioApp extends StatelessWidget {
-  const MyPortfolioApp({super.key});
+class RenJukiApp extends StatelessWidget {
+  const RenJukiApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +33,16 @@ class MyPortfolioApp extends StatelessWidget {
   }
 }
 
-class MyPortfolio extends StatelessWidget {
-  const MyPortfolio({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       // backgroundColor: Colors.blue,
       // appBar: AppBar(),
 
-      body: MainLayout(),
+      body: MainLayout(homeBloc: sl(),),
     );
   }
 }

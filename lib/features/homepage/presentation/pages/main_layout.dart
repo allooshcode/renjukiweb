@@ -48,7 +48,7 @@ class MainLayout extends StatelessWidget {
           ),
           actions: [
             SignInSignUp(
-              authBloc: sl(),
+               homeBloc: sl(),
             ),
 
             // CustomButton(

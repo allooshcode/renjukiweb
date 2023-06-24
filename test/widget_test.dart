@@ -13,7 +13,7 @@ import 'package:renjuki2/main_app.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyPortfolioApp());
+    await tester.pumpWidget(const RenJukiApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

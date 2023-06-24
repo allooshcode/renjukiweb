@@ -25,7 +25,6 @@ appBar: AppBar(
         child: BlocConsumer<AuthBloc, AuthState>(
             builder: (BuildContext context, state) {
               if (state is SignUpSuccessState) {
-                AuthBloc
               }
 
 

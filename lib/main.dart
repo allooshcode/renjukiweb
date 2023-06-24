@@ -22,5 +22,5 @@ Future<void> main() async {
 
     ),
   );
-  runApp(const MyPortfolioApp());
+  runApp(const RenJukiApp());
 }
