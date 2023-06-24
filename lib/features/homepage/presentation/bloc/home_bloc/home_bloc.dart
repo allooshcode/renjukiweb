@@ -22,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       debugPrint('NavigateToAuthPageEvent');
       _isHomePageOpen = false;
       emit(HomePageClosedState());
+      emit(NavigateToAuthPageState());
     });
   }
 }

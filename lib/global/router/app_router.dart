@@ -17,8 +17,8 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
   final AuthBloc authBloc;
 
   AppRouterDelegate({required this.homeBloc, required this.authBloc}) {
-    // homeBloc.addListener(notifyListeners);
-    // authBloc.addListener(notifyListeners);
+    // homeBloc.stream.listen((event) {});
+    // authBloc.stream.listen((event) {});
   }
 
   @override
@@ -30,57 +30,74 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
     }
   }
 
+  List<Page> homepages = [
+    MaterialPage(
+      key: const ValueKey('HomePage'),
+      child: MainLayout(
+        homeBloc: sl(),
+      ),
+    )
+  ];
+  List<Page> authPages = [
+    MaterialPage(
+      key: const ValueKey('Signup'),
+      child: SignUpPage(
+        authBloc: sl(),
+      ),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers:[ BlocProvider(create: (context)=>HomeBloc()),BlocProvider(create: (context)=>AuthBloc(signUpUseCase: sl()))],
-      child: MultiBlocListener(listeners: [
+        providers: [
+          BlocProvider<HomeBloc>(create: (context) => sl()),
+          BlocProvider<AuthBloc>(
+              create: (context) => AuthBloc(signUpUseCase: sl()))
+        ],
+        child: BlocBuilder<HomeBloc, HomeState>(
+            bloc: HomeBloc(),
+            builder: (context, state) {
+              if (state is NavigateToAuthPageState) {
+                return Navigator(
+                  key: navigatorKey,
+                  pages: authPages,
+                  onPopPage: (route, result) {
+                    if (!route.didPop(result)) {
+                      return false;
+                    }
 
-        BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+                    if (authBloc.isAuthPage) {
+                      authBloc.add(CloseAuthPageEvent());
+                    }
 
+                    return true;
+                  },
+                );
+              } else {
+                return Navigator(
+                  key: navigatorKey,
+                  pages: homepages,
+                  onPopPage: (route, result) {
+                    if (!route.didPop(result)) {
+                      return false;
+                    }
 
-        })
-        ,
-        BlocListener<HomeBloc, HomeState>(listener: (context, state) {})
-      ],
+                    if (authBloc.isAuthPage) {
+                      authBloc.add(CloseAuthPageEvent());
+                    }
 
-          child: Navigator(
-            key: navigatorKey,
-            pages: [
-              if (homeBloc.isHomePage)
-                MaterialPage(
-                  key: const ValueKey('HomePage'),
-                  child: MainLayout(homeBloc: sl(),),
-                )
-              else
-                if (authBloc.isAuthPage)
-                  MaterialPage(
-                    key: const ValueKey('AuthenticationPage'),
-                    child: SignUpPage(authBloc: authBloc),
-                  ),
-            ],
-            onPopPage: (route, result) {
-              if (!route.didPop(result)) {
-                return false;
+                    return true;
+                  },
+                );
               }
-
-              if (authBloc.isAuthPage) {
-                authBloc.add(CloseAuthPageEvent());
-              }
-
-              return true;
-            },
-          )
-      ),
-    );
+            }));
   }
-
-
 
   @override
   Future<void> setNewRoutePath(AppRoutePath path) async {
     if (path.isSignup) {
-      authBloc.add(AuthPageOpenedEvent());
+      homeBloc.add(NavigateToAuthPageEvent());
     } else {
       homeBloc.add(HomePageOpenedEvent());
     }
@@ -93,9 +110,9 @@ class AppRouteInformationParser extends RouteInformationParser<AppRoutePath> {
       RouteInformation routeInformation) async {
     final uri = Uri.parse(routeInformation.location!);
 
-    if (uri.pathSegments.length >= 2 && uri.pathSegments[1] == 'unknown') {
+    if (uri.pathSegments.isNotEmpty && uri.pathSegments[1] == '/unknown') {
       return AppRoutePath.unknown();
-    } else if (uri.pathSegments.length >= 2 && uri.pathSegments[1] == 'auth') {
+    } else if (uri.pathSegments.isNotEmpty && uri.pathSegments[1] == '/auth') {
       return AppRoutePath.signup();
     } else {
       return AppRoutePath.home();
