@@ -5,6 +5,8 @@ import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 import 'package:renjuki2/global/app_theme/app_theme_dark.dart';
 import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
+import 'features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'global/router/app_router.dart';
 
 class RenJukiApp extends StatelessWidget {
@@ -12,23 +14,30 @@ class RenJukiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      // home: MultiBlocProvider(providers: [
-      //   BlocProvider(
-      //     create: (context) => PortfolioBloc(
-      //         callLinkedInUsecase: sl(),
-      //         callResumeUsecase: sl(),
-      //         callMobAppAndiodUsecase: sl(),
-      //         callWebAppUsecase: sl(),
-      //         callMobAppIosUsecase: sl()),
-      //   )
-      // ], child: const MyPortfolio()),
-      theme: getAppThemeDataLight(),
-      darkTheme: getAppThemeDataDark(),
-      themeMode: ThemeMode.light,
-      routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
-      routeInformationParser: AppRouteInformationParser(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBloc>(create: (context) => sl()),
+        BlocProvider<AuthBloc>(
+            create: (context) => AuthBloc(signUpUseCase: sl()))
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        // home: MultiBlocProvider(providers: [
+        //   BlocProvider(
+        //     create: (context) => PortfolioBloc(
+        //         callLinkedInUsecase: sl(),
+        //         callResumeUsecase: sl(),
+        //         callMobAppAndiodUsecase: sl(),
+        //         callWebAppUsecase: sl(),
+        //         callMobAppIosUsecase: sl()),
+        //   )
+        // ], child: const MyPortfolio()),
+        theme: getAppThemeDataLight(),
+        darkTheme: getAppThemeDataDark(),
+        themeMode: ThemeMode.light,
+        routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
+        routeInformationParser: AppRouteInformationParser(),
+      ),
     );
   }
 }

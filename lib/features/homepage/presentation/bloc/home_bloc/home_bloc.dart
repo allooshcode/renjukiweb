@@ -13,6 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   bool get isHomePage => _isHomePageOpen;
 
   HomeBloc() : super(HomePageInitState()) {
+
     on<HomePageOpenedEvent>((event, emit) {
       _isHomePageOpen = true;
       emit(HomePageOpenState());

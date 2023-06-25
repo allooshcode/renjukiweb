@@ -12,7 +12,7 @@ class SignInSignUp extends StatelessWidget {
   final HomeBloc homeBloc;
 
   void navigateToAuthPage(BuildContext context) {
-    homeBloc.add(NavigateToAuthPageEvent());
+    BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
   }
 
   @override
