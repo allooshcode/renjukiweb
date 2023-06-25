@@ -49,10 +49,46 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          print('$state' 'in blockbuilder');
-          if (state is NavigateToAuthPageState) {
+    // return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+    //   return Navigator(
+    //     key: navigatorKey,
+    //     pages: authPages,
+    //     onPopPage: (route, result) {
+    //       if (!route.didPop(result)) {
+    //         return false;
+    //       }
+    //
+    //       if (BlocProvider.of<AuthBloc>(context).isAuthPage) {
+    //         BlocProvider.of<AuthBloc>(context).add(CloseAuthPageEvent());
+    //       }
+    //
+    //       return true;
+    //     },
+    //   );
+    // });
+
+    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+      print('$state' 'in blockbuilder');
+      if (!BlocProvider.of<HomeBloc>(context).isHomePage) {
+        return BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthPageClosedState) {
+              return Navigator(
+                key: navigatorKey,
+                pages: homepages,
+                onPopPage: (route, result) {
+                  if (!route.didPop(result)) {
+                    return false;
+                  }
+
+                  if (authBloc.isAuthPage) {
+                    authBloc.add(CloseAuthPageEvent());
+                  }
+
+                  return true;
+                },
+              );
+            }
             return Navigator(
               key: navigatorKey,
               pages: authPages,
@@ -62,30 +98,32 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
                 }
 
                 if (BlocProvider.of<AuthBloc>(context).isAuthPage) {
+                  print('pop form auth page');
                   BlocProvider.of<AuthBloc>(context).add(CloseAuthPageEvent());
                 }
 
                 return true;
               },
             );
-          } else {
-            return Navigator(
-              key: navigatorKey,
-              pages: homepages,
-              onPopPage: (route, result) {
-                if (!route.didPop(result)) {
-                  return false;
-                }
-
-                if (authBloc.isAuthPage) {
-                  authBloc.add(CloseAuthPageEvent());
-                }
-
-                return true;
-              },
-            );
+          },
+        );
+      }
+      return Navigator(
+        key: navigatorKey,
+        pages: homepages,
+        onPopPage: (route, result) {
+          if (!route.didPop(result)) {
+            return false;
           }
-        });
+
+          if (authBloc.isAuthPage) {
+            authBloc.add(CloseAuthPageEvent());
+          }
+
+          return true;
+        },
+      );
+    });
   }
 
   @override
@@ -109,9 +147,9 @@ class AppRouteInformationParser extends RouteInformationParser<AppRoutePath> {
       RouteInformation routeInformation) async {
     final uri = Uri.parse(routeInformation.location!);
 
-    if (uri.pathSegments.length >=2 && uri.pathSegments[1] == '/unknown') {
+    if (uri.pathSegments.length >= 2 && uri.pathSegments[1] == '/unknown') {
       return AppRoutePath.unknown();
-    } else if (uri.pathSegments.length >=2 && uri.pathSegments[1] == '/auth') {
+    } else if (uri.pathSegments.length >= 2 && uri.pathSegments[1] == '/auth') {
       return AppRoutePath.signup();
     } else {
       return AppRoutePath.home();
