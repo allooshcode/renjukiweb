@@ -49,29 +49,40 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
 
   @override
   Widget build(BuildContext context) {
-    // return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-    //   return Navigator(
-    //     key: navigatorKey,
-    //     pages: authPages,
-    //     onPopPage: (route, result) {
-    //       if (!route.didPop(result)) {
-    //         return false;
-    //       }
-    //
-    //       if (BlocProvider.of<AuthBloc>(context).isAuthPage) {
-    //         BlocProvider.of<AuthBloc>(context).add(CloseAuthPageEvent());
-    //       }
-    //
-    //       return true;
-    //     },
-    //   );
-    // });
+//     if(!homeBloc.isHomePage) {
+//       return BlocProvider(
+//   create: (context) => authBloc,
+//   child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+//       return Navigator(
+//         key: navigatorKey,
+//         pages: authPages,
+//         onPopPage: (route, result) {
+//           if (!route.didPop(result)) {
+//             return false;
+//           }
+//
+//           if (BlocProvider.of<AuthBloc>(context).isAuthPage) {
+//             BlocProvider.of<AuthBloc>(context).add(CloseAuthPageEvent());
+//           }
+//
+//           return true;
+//         },
+//       );
+//     }),
+// );
+//     }
 
-    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+    return BlocProvider(
+  create: (context) => homeBloc,
+  child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       print('$state' 'in blockbuilder');
-      if (!BlocProvider.of<HomeBloc>(context).isHomePage) {
-        return BlocBuilder<AuthBloc, AuthState>(
+      if(state !is NavigateToAuthPageState) {
+        print('im now in auth proviber....');
+        return BlocProvider(
+  create: (context) => authBloc,
+  child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
+            print('$state im now in auth builder....');
             if (state is AuthPageClosedState) {
               return Navigator(
                 key: navigatorKey,
@@ -106,8 +117,10 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
               },
             );
           },
-        );
+        ),
+);
       }
+
       return Navigator(
         key: navigatorKey,
         pages: homepages,
@@ -123,7 +136,8 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
           return true;
         },
       );
-    });
+    }),
+);
   }
 
   @override

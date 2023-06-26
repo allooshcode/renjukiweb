@@ -14,30 +14,23 @@ class RenJukiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HomeBloc>(create: (context) => sl()),
-        BlocProvider<AuthBloc>(
-            create: (context) => AuthBloc(signUpUseCase: sl()))
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        // home: MultiBlocProvider(providers: [
-        //   BlocProvider(
-        //     create: (context) => PortfolioBloc(
-        //         callLinkedInUsecase: sl(),
-        //         callResumeUsecase: sl(),
-        //         callMobAppAndiodUsecase: sl(),
-        //         callWebAppUsecase: sl(),
-        //         callMobAppIosUsecase: sl()),
-        //   )
-        // ], child: const MyPortfolio()),
-        theme: getAppThemeDataLight(),
-        darkTheme: getAppThemeDataDark(),
-        themeMode: ThemeMode.light,
-        routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
-        routeInformationParser: AppRouteInformationParser(),
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      // home: MultiBlocProvider(providers: [
+      //   BlocProvider(
+      //     create: (context) => PortfolioBloc(
+      //         callLinkedInUsecase: sl(),
+      //         callResumeUsecase: sl(),
+      //         callMobAppAndiodUsecase: sl(),
+      //         callWebAppUsecase: sl(),
+      //         callMobAppIosUsecase: sl()),
+      //   )
+      // ], child: const MyPortfolio()),
+      theme: getAppThemeDataLight(),
+      darkTheme: getAppThemeDataDark(),
+      themeMode: ThemeMode.light,
+      routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
+      routeInformationParser: AppRouteInformationParser(),
     );
   }
 }
