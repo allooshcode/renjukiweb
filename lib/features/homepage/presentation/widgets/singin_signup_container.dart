@@ -8,10 +8,13 @@ import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc
 import '../../../../global/router/app_router.dart';
 
 class SignInSignUp extends StatelessWidget {
-  const SignInSignUp({super.key, required this.homeBloc});
-  final HomeBloc homeBloc;
+  const SignInSignUp({
+    super.key,
+  });
+  // final HomeBloc homeBloc;
 
   void navigateToAuthPage(BuildContext context) {
+    // BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
     BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
   }
 

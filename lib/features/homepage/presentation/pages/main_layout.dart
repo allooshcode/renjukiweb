@@ -46,10 +46,10 @@ class MainLayout extends StatelessWidget {
               painter: TopCurvePainter(),
             ),
           ),
-          actions: [
+          actions: const [
             SignInSignUp(
-               homeBloc: sl(),
-            ),
+                // homeBloc: sl(),
+                ),
 
             // CustomButton(
             //     fun: () {

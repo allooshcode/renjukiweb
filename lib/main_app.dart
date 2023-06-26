@@ -14,23 +14,29 @@ class RenJukiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      // home: MultiBlocProvider(providers: [
-      //   BlocProvider(
-      //     create: (context) => PortfolioBloc(
-      //         callLinkedInUsecase: sl(),
-      //         callResumeUsecase: sl(),
-      //         callMobAppAndiodUsecase: sl(),
-      //         callWebAppUsecase: sl(),
-      //         callMobAppIosUsecase: sl()),
-      //   )
-      // ], child: const MyPortfolio()),
-      theme: getAppThemeDataLight(),
-      darkTheme: getAppThemeDataDark(),
-      themeMode: ThemeMode.light,
-      routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
-      routeInformationParser: AppRouteInformationParser(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => AuthBloc(signUpUseCase: sl()))
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        // home: MultiBlocProvider(providers: [
+        //   BlocProvider(
+        //     create: (context) => PortfolioBloc(
+        //         callLinkedInUsecase: sl(),
+        //         callResumeUsecase: sl(),
+        //         callMobAppAndiodUsecase: sl(),
+        //         callWebAppUsecase: sl(),
+        //         callMobAppIosUsecase: sl()),
+        //   )
+        // ], child: const MyPortfolio()),
+        theme: getAppThemeDataLight(),
+        darkTheme: getAppThemeDataDark(),
+        themeMode: ThemeMode.light,
+        routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
+        routeInformationParser: AppRouteInformationParser(),
+      ),
     );
   }
 }
@@ -40,11 +46,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       // backgroundColor: Colors.blue,
       // appBar: AppBar(),
 
-      body: MainLayout(homeBloc: sl(),),
+      body: MainLayout(
+        homeBloc: sl(),
+      ),
     );
   }
 }
