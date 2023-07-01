@@ -4,7 +4,7 @@ import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/aut
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/container_injection.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
-
+import 'package:renjuki2/main.dart';
 import '../../../../global/router/app_router.dart';
 
 class SignInSignUp extends StatelessWidget {
@@ -15,6 +15,8 @@ class SignInSignUp extends StatelessWidget {
 
   void navigateToAuthPage(BuildContext context) {
     // BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
+    appRouter.setNewRoutePath(AppRoutePath.signup());
+
     BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
   }
 

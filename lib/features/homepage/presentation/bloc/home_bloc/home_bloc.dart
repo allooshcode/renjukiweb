@@ -3,12 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
+import 'package:renjuki2/global/router/app_router.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   bool _isHomePageOpen = true;
+  // final AppRouterDelegate routerDelegate;
 
   bool get isHomePage => _isHomePageOpen;
 

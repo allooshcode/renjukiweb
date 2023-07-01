@@ -9,7 +9,12 @@ import '../../container_injection.dart';
 import '../../features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import '../../features/homepage/presentation/pages/home_page.dart';
 
+
+
 // App Router Delegate
+
+final appRouter = AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>());
+
 class AppRouterDelegate extends RouterDelegate<AppRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppRoutePath> {
   @override
@@ -122,74 +127,15 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
       },
     );
 
-    // return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-    //   print('$state' 'in blockbuilder');
-    //   if (state! is NavigateToAuthPageState) {
-    //     print('im now in auth proviber....');
-    //     return BlocBuilder<AuthBloc, AuthState>(
-    //       builder: (context, state) {
-    //         print('$state im now in auth builder....');
-    //         if (state is AuthPageClosedState) {
-    //           return Navigator(
-    //             key: navigatorKey,
-    //             pages: homepages,
-    //             onPopPage: (route, result) {
-    //               if (!route.didPop(result)) {
-    //                 return false;
-    //               }
-    //
-    //               if (authBloc.isAuthPage) {
-    //                 authBloc.add(CloseAuthPageEvent());
-    //               }
-    //
-    //               return true;
-    //             },
-    //           );
-    //         }
-    //         return Navigator(
-    //           key: navigatorKey,
-    //           pages: authPages,
-    //           onPopPage: (route, result) {
-    //             if (!route.didPop(result)) {
-    //               return false;
-    //             }
-    //
-    //             if (BlocProvider.of<AuthBloc>(context).isAuthPage) {
-    //               print('pop form auth page');
-    //               BlocProvider.of<AuthBloc>(context).add(CloseAuthPageEvent());
-    //             }
-    //
-    //             return true;
-    //           },
-    //         );
-    //       },
-    //     );
-    //   }
-    //
-    //   return Navigator(
-    //     key: navigatorKey,
-    //     pages: homepages,
-    //     onPopPage: (route, result) {
-    //       if (!route.didPop(result)) {
-    //         return false;
-    //       }
-    //
-    //       if (authBloc.isAuthPage) {
-    //         authBloc.add(CloseAuthPageEvent());
-    //       }
-    //
-    //       return true;
-    //     },
-    //   );
-    // });
   }
 
   @override
   Future<void> setNewRoutePath(AppRoutePath path) async {
     if (path.isSignup) {
       print('setNewRoutePath to singn up ........');
+      setInitialRoutePath(path);
 
-      BlocProvider.of<AuthBloc>(context!).add(AuthPageOpenedEvent());
+      // BlocProvider.of<AuthBloc>(context!).add(AuthPageOpenedEvent());
       notifyListeners();
     } else {
       if (path.isHome) {
@@ -198,6 +144,8 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
       BlocProvider.of<HomeBloc>(context!).add(HomePageOpenedEvent());
       notifyListeners();
     }
+    print('its set new route path...');
+
   }
 }
 
@@ -214,11 +162,11 @@ class AppRouteInformationParser extends RouteInformationParser<AppRoutePath> {
     final path = uri.pathSegments.first;
 
     switch (path) {
-      case 'auth':
+      case '/auth':
         // Handle profile page route
         // You can extract any additional path segments or query parameters as needed
         return AppRoutePath.signup();
-      case 'home':
+      case '/home':
         // Handle authentication page route
         // You can extract any additional path segments or query parameters as needed
         return AppRoutePath.home();

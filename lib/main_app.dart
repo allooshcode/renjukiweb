@@ -34,7 +34,7 @@ class RenJukiApp extends StatelessWidget {
         theme: getAppThemeDataLight(),
         darkTheme: getAppThemeDataDark(),
         themeMode: ThemeMode.light,
-        routerDelegate: AppRouterDelegate(authBloc: sl(), homeBloc: sl()),
+        routerDelegate: AppRouterDelegate(authBloc: sl<AuthBloc>(), homeBloc: sl<HomeBloc>()),
         routeInformationParser: AppRouteInformationParser(),
       ),
     );
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       // appBar: AppBar(),
 
       body: MainLayout(
-        homeBloc: sl(),
+        homeBloc: sl<HomeBloc>(),
       ),
     );
   }
