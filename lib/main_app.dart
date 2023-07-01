@@ -34,8 +34,9 @@ class RenJukiApp extends StatelessWidget {
         theme: getAppThemeDataLight(),
         darkTheme: getAppThemeDataDark(),
         themeMode: ThemeMode.light,
-        routerDelegate: AppRouterDelegate(authBloc: sl<AuthBloc>(), homeBloc: sl<HomeBloc>()),
-        routeInformationParser: AppRouteInformationParser(),
+        routerConfig: ,
+        // routerDelegate: AppRouterDelegate(authBloc: sl<AuthBloc>(), homeBloc: sl<HomeBloc>()),
+        // routeInformationParser: AppRouteInformationParser(),
       ),
     );
   }
