@@ -15,8 +15,9 @@ import '../../../../global/shared_widgets/top_curve_painter.dart';
 import '../widgets/singin_signup_container.dart';
 
 class MainLayout extends StatelessWidget {
-  const MainLayout({super.key, required this.homeBloc});
-  final HomeBloc homeBloc;
+  const MainLayout({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/container_injection.dart';
@@ -15,9 +16,8 @@ class SignInSignUp extends StatelessWidget {
 
   void navigateToAuthPage(BuildContext context) {
     // BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
-    appRouter.setNewRoutePath(AppRoutePath.signup());
 
-    BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
+    context.go('/login');
   }
 
   @override
@@ -36,6 +36,8 @@ class SignInSignUp extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              context.go('/login'); // authBloc.add(GoSignupEvent());
+
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
             },
@@ -44,8 +46,6 @@ class SignInSignUp extends StatelessWidget {
           const SizedBox(height: 8.0),
           OutlinedButton(
             onPressed: () {
-              navigateToAuthPage(context);
-              // authBloc.add(GoSignupEvent());
               // Handle Sign Up button pressed
               // You can navigate to the Sign Up page or perform any desired action
             },

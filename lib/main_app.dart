@@ -10,7 +10,8 @@ import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'global/router/app_router.dart';
 
 class RenJukiApp extends StatelessWidget {
-  const RenJukiApp({super.key});
+  const RenJukiApp({super.key, required this.appRouter});
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class RenJukiApp extends StatelessWidget {
         theme: getAppThemeDataLight(),
         darkTheme: getAppThemeDataDark(),
         themeMode: ThemeMode.light,
-        routerConfig: ,
+        routerConfig: appRouter.router,
         // routerDelegate: AppRouterDelegate(authBloc: sl<AuthBloc>(), homeBloc: sl<HomeBloc>()),
         // routeInformationParser: AppRouteInformationParser(),
       ),
@@ -47,13 +48,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // backgroundColor: Colors.blue,
       // appBar: AppBar(),
 
-      body: MainLayout(
-        homeBloc: sl<HomeBloc>(),
-      ),
+      body: MainLayout(),
     );
   }
 }
