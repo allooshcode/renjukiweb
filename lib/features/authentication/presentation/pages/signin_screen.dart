@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:renjuki2/global/shared_widgets/custom_button.dart';
+
+import '../../../../global/app_theme/app_styles.dart';
+import '../../../../global/app_theme/icon_broken.dart';
 
 class SignInScreen extends StatefulWidget {
   static const SIGNINSCREEN = 'SignInscreen';
@@ -18,86 +22,72 @@ class _SignInScreenState extends State<SignInScreen> {
 
   final _keyScaffold = GlobalKey<ScaffoldState>();
 
-  void _submit(
-      {required String username,
-      required String email,
-      required String password,
-      required BuildContext context,
-      Product? fromWhere,
-     }) {
-    FocusScope.of(context).unfocus();
-
-    if (!_keyForm.currentState!.validate()) {
-      return;
-    }
-    setState(() {
-      _isLoading = !_isLoading;
-    });
-    // try {
-
-    Provider.of<UserProvider>(context, listen: false)
-        .signIn(email, password, isAdmin: widget.isAdmin)
-        .then((value) {
-      if (value == null) {
-        setState(() {
-          _isLoading = !_isLoading;
-        });
-        return;
-      }
-      debugPrint('...................');
-      // Provider.of<UserProvider>(context, listen: false).getUserRole();
-      Provider.of<UserProvider>(context, listen: false).singInNow = true;
-      HiveHelper.addUserToken(token: value.user!.refreshToken!);
-      // Provider.of<UserProvider>(context, listen: false).userToken =
-      //     value.credential!.token!;
-
-      setState(() {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(lang.getText('signed').toString())),
-        );
-        _isLoading = !_isLoading;
-        // });
-
-        // Phoenix.rebirth(context);
-        if (fromWhere == null) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (ctx) =>
-                  kIsWeb ? const ViewControllerWeb() : const ViewController(),
-            ),
-            (_) => false,
-          );
-        } else {
-          Navigator.of(context).popAndPushNamed(
-            ProductDetails.productdetails,
-            arguments: fromWhere,
-          );
-        }
-      });
-    }).catchError((err) {
-      if (mounted) {
-        setState(() {
-          _isLoading = !_isLoading;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(err.toString()),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      }
-    });
-  }
+  // void _submit({
+  //   required String username,
+  //   required String email,
+  //   required String password,
+  //   required BuildContext context,
+  // }) {
+  //   FocusScope.of(context).unfocus();
+  //
+  //   if (!_keyForm.currentState!.validate()) {
+  //     return;
+  //   }
+  //   setState(() {
+  //     _isLoading = !_isLoading;
+  //   });
+  //   // try {
+  //
+  //   Provider.of<UserProvider>(context, listen: false)
+  //       .signIn(email, password, isAdmin: widget.isAdmin)
+  //       .then((value) {
+  //     if (value == null) {
+  //       setState(() {
+  //         _isLoading = !_isLoading;
+  //       });
+  //       return;
+  //     }
+  //     debugPrint('...................');
+  //     // Provider.of<UserProvider>(context, listen: false).getUserRole();
+  //     Provider.of<UserProvider>(context, listen: false).singInNow = true;
+  //     HiveHelper.addUserToken(token: value.user!.refreshToken!);
+  //     // Provider.of<UserProvider>(context, listen: false).userToken =
+  //     //     value.credential!.token!;
+  //
+  //     setState(() {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text(lang.getText('signed').toString())),
+  //       );
+  //       _isLoading = !_isLoading;
+  //       // });
+  //
+  //
+  //     });
+  //   }).catchError((err) {
+  //     if (mounted) {
+  //       setState(() {
+  //         _isLoading = !_isLoading;
+  //       });
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //           content: Text(err.toString()),
+  //           behavior: SnackBarBehavior.floating,
+  //         ),
+  //       );
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final _lang = Provider.of<LanguageProvider>(context, listen: false);
-    final bool isEnglish =
-        Provider.of<LanguageProvider>(context, listen: true).isEnglish;
-    final _userValue = Provider.of<UserProvider>(context, listen: false);
-    final fromWhere = ModalRoute.of(context)?.settings.arguments as Product?;
+    const bool isEnglish = true;
+    // final _lang = Provider.of<LanguageProvider>(context, listen: false);
+    // final bool isEnglish =
+    //     Provider.of<LanguageProvider>(context, listen: true).isEnglish;
+    // final _userValue = Provider.of<UserProvider>(context, listen: false);
+    // final fromWhere = ModalRoute.of(context)?.settings.arguments as Product?;
     return Directionality(
-      textDirection: isEnglish ? TextDirection.ltr : TextDirection.rtl,
+      textDirection:  TextDirection.ltr,
       child: Scaffold(
         key: _keyScaffold,
         appBar: AppBar(
@@ -132,7 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               style: AppStyles.getStyleOpen(context),
                             ),
                             TextSpan(
-                              text: _lang.getText('PLEASE SIGN IN').toString(),
+                              text: 'PLEASE SIGN IN',
                               style: AppStyles.styleOpen,
                             ),
                             // TextSpan(text: 'SIGN UP'),
@@ -158,11 +148,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               child: TextFormField(
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return _lang
-                                        .getText(
-                                          'please enter you email or phone',
-                                        )
-                                        .toString();
+                                    return 'please enter you email or phone';
                                   }
                                 },
                                 textDirection: isEnglish
@@ -174,7 +160,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  labelText: _lang.getText('Email').toString(),
+                                  labelText: 'Email',
                                 ),
                                 onSaved: (value) {
                                   userInfo['email'] = value!.trim();
@@ -195,11 +181,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                       if (value == null ||
                                           value.isEmpty ||
                                           value.length < 6) {
-                                        return _lang
-                                            .getText(
+                                        return
                                               'password should be at least 6 letters',
-                                            )
-                                            .toString();
+
                                       }
                                     },
                                     onSaved: (value) {
@@ -214,8 +198,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       labelText:
-                                          _lang.getText('Password').toString(),
-                                      suffix: IconButton(
+                                      'Password',                                      suffix: IconButton(
                                         onPressed: () {
                                           _userValue.changeShowPassword();
                                         },
@@ -238,10 +221,10 @@ class _SignInScreenState extends State<SignInScreen> {
                               const Center(
                                 child: CircularProgressIndicator(),
                               ),
-                            CustomElevatedIconButton(
-                              function: _isLoading
+                            CustomButton(
+                              fun: _isLoading
                                   ? null
-                                  : () async {
+                                  : ()  {
                                       _keyForm.currentState!.save();
 
                                       _submit(
@@ -251,9 +234,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                           context: context,
                                           fromWhere: fromWhere,
                                           lang: _lang);
-                                    },
-                              text: 'SIGN IN',
-                              icon: const Icon(IconBroken.Login),
+                                    }, title: 'SIGN IN',
+                              icon:( const {IconBroken. as IconData) ,
                             ),
 
                             customDivider(),

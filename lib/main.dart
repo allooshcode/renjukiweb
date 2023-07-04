@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,11 +25,7 @@ Future<void> main() async {
         appId: "1:809331067449:web:4925aea344ed1cbe579be8",
         measurementId: "G-2KZSHY58GT"),
   );
-  FirebaseUIAuth.configureProviders([
-    EmailAuthProvider(),
-    PhoneAuthProvider(),
-    GoogleProvider(clientId: GOOGLE_CLIENT_ID),
-  ]);
+
   Bloc.observer = MyBlocObserver();
   runApp(RenJukiApp(
     appRouter: appRouter,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
-import 'package:renjuki2/features/authentication/presentation/bloc/pages/auth_page.dart';
 import 'package:renjuki2/container_injection.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:renjuki2/main.dart';

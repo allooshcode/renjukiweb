@@ -6,7 +6,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton(
       {super.key, required this.fun, required this.title, required this.icon});
 
-  final VoidCallback fun;
+  final VoidCallback? fun;
   final String title;
   final IconData icon;
 
@@ -21,22 +21,23 @@ class CustomButton extends StatelessWidget {
           right: AppConstants.unitWidthValu(context) * 2,
           bottom: AppConstants.unitHeightValue(context) * 2),
       child: ElevatedButton.icon(
-         icon:MediaQuery.of(context).size.width > 580 ? Align(
-            alignment: Alignment.topCenter,
-            child: Icon(
-              icon,
-            )) : const SizedBox(),
+        icon: MediaQuery.of(context).size.width > 580
+            ? Align(
+                alignment: Alignment.topCenter,
+                child: Icon(
+                  icon,
+                ))
+            : const SizedBox(),
         label: Align(
           alignment: Alignment.center,
           child: Text(
             title,
             textAlign: TextAlign.justify,
             overflow: TextOverflow.ellipsis,
-            style:
-                MediaQuery.of(context).size.width > 580 ?
-                TextStyle(fontSize: AppConstants.unitHeightValue(context) * 3) :
-                TextStyle(fontSize: AppConstants.unitHeightValue(context) * 2)
-            ,
+            style: MediaQuery.of(context).size.width > 580
+                ? TextStyle(fontSize: AppConstants.unitHeightValue(context) * 3)
+                : TextStyle(
+                    fontSize: AppConstants.unitHeightValue(context) * 2),
           ),
         ),
         onPressed: () => fun(),
