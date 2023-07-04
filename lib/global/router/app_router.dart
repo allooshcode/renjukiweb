@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:renjuki2/features/authentication/presentation/pages/auth_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 
 class AppRouter extends Equatable {
@@ -22,12 +23,7 @@ class AppRouter extends Equatable {
       GoRoute(
           path: '/login',
           builder: (BuildContext context, GoRouterState state) {
-            return SignInScreen(
-              providers: [
-                EmailAuthProvider(),
-                GoogleAuthProvider(),
-              ],
-            );
+            return const SignInScreen();
           }),
       GoRoute(
         path: '/profile',
