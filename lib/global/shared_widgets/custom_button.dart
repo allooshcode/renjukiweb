@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
                     fontSize: AppConstants.unitHeightValue(context) * 2),
           ),
         ),
-        onPressed: () => fun(),
+        onPressed: () => fun,
         style: ButtonStyle(
             foregroundColor:
                 MaterialStateProperty.all<Color>(AppColorsLight.primaryColor),

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
 
 import '../../features/authentication/presentation/pages/signin_screen.dart';
+import '../../features/authentication/presentation/pages/signup_screen.dart';
 
 class AppRouter extends Equatable {
   @override
@@ -19,12 +20,18 @@ class AppRouter extends Equatable {
         builder: (BuildContext context, GoRouterState state) {
           return const MainLayout();
         },
-      ),
-      GoRoute(
+
+      ),GoRoute(
           path: '/login',
           builder: (BuildContext context, GoRouterState state) {
             return const SignInScreen();
-          }),
+          },),GoRoute(
+          path: '/signup',
+          builder: (BuildContext context, GoRouterState state) {
+
+            return const SignUpScreen();
+          })
+
     ],
   );
 }

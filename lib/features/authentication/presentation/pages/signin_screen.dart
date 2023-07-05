@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 
 import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/app_theme/icon_broken.dart';
+import '../../../../global/shared_widgets/reusable_components.dart';
 
 class SignInScreen extends StatefulWidget {
   static const SIGNINSCREEN = 'SignInscreen';
@@ -22,61 +24,21 @@ class _SignInScreenState extends State<SignInScreen> {
 
   final _keyScaffold = GlobalKey<ScaffoldState>();
 
-  // void _submit({
-  //   required String username,
-  //   required String email,
-  //   required String password,
-  //   required BuildContext context,
-  // }) {
-  //   FocusScope.of(context).unfocus();
-  //
-  //   if (!_keyForm.currentState!.validate()) {
-  //     return;
-  //   }
-  //   setState(() {
-  //     _isLoading = !_isLoading;
-  //   });
-  //   // try {
-  //
-  //   Provider.of<UserProvider>(context, listen: false)
-  //       .signIn(email, password, isAdmin: widget.isAdmin)
-  //       .then((value) {
-  //     if (value == null) {
-  //       setState(() {
-  //         _isLoading = !_isLoading;
-  //       });
-  //       return;
-  //     }
-  //     debugPrint('...................');
-  //     // Provider.of<UserProvider>(context, listen: false).getUserRole();
-  //     Provider.of<UserProvider>(context, listen: false).singInNow = true;
-  //     HiveHelper.addUserToken(token: value.user!.refreshToken!);
-  //     // Provider.of<UserProvider>(context, listen: false).userToken =
-  //     //     value.credential!.token!;
-  //
-  //     setState(() {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text(lang.getText('signed').toString())),
-  //       );
-  //       _isLoading = !_isLoading;
-  //       // });
-  //
-  //
-  //     });
-  //   }).catchError((err) {
-  //     if (mounted) {
-  //       setState(() {
-  //         _isLoading = !_isLoading;
-  //       });
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text(err.toString()),
-  //           behavior: SnackBarBehavior.floating,
-  //         ),
-  //       );
-  //     }
-  //   });
-  // }
+  void _submit({
+    required String username,
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) {
+    FocusScope.of(context).unfocus();
+
+    if (!_keyForm.currentState!.validate()) {
+      return;
+    }
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
             IconButton(
               color: Theme.of(context).primaryColor,
               icon: const Icon(IconBroken.Close_Square),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => context.pop(),
             )
           ],
         ),
@@ -118,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: '${_lang.getText('WELCOME BACK..')}\n',
+                              text: 'WELCOME BACK..\n',
                               style: AppStyles.getStyleOpen(context),
                             ),
                             TextSpan(
@@ -167,56 +129,56 @@ class _SignInScreenState extends State<SignInScreen> {
                                 },
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.all(4),
-                              width: double.infinity,
-                              height: 55,
-                              child: Selector<UserProvider, bool>(
-                                selector: (ctx, showPassword) =>
-                                    showPassword.showPassword,
-                                builder: (ctx, showPassword, ch) {
-                                  return TextFormField(
-                                    obscureText: showPassword,
-                                    validator: (value) {
-                                      if (value == null ||
-                                          value.isEmpty ||
-                                          value.length < 6) {
-                                        return
-                                              'password should be at least 6 letters',
-
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      userInfo['password'] = value!.trim();
-                                    },
-                                    textDirection: isEnglish
-                                        ? TextDirection.ltr
-                                        : TextDirection.ltr,
-                                    textInputAction: TextInputAction.next,
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      labelText:
-                                      'Password',                                      suffix: IconButton(
-                                        onPressed: () {
-                                          _userValue.changeShowPassword();
-                                        },
-                                        icon: Selector<UserProvider, bool>(
-                                          selector: (ctx, showPassword) =>
-                                              showPassword.showPassword,
-                                          builder: (ctx, showPassword, ch) {
-                                            return showPassword
-                                                ? const Icon(IconBroken.Show)
-                                                : const Icon(IconBroken.Hide);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
+                            // Container(
+                            //   margin: const EdgeInsets.all(4),
+                            //   width: double.infinity,
+                            //   height: 55,
+                            //   child: Selector<UserProvider, bool>(
+                            //     selector: (ctx, showPassword) =>
+                            //         showPassword.showPassword,
+                            //     builder: (ctx, showPassword, ch) {
+                            //       return TextFormField(
+                            //         obscureText: showPassword,
+                            //         validator: (value) {
+                            //           if (value == null ||
+                            //               value.isEmpty ||
+                            //               value.length < 6) {
+                            //             return
+                            //                   'password should be at least 6 letters',
+                            //
+                            //           }
+                            //         },
+                            //         onSaved: (value) {
+                            //           userInfo['password'] = value!.trim();
+                            //         },
+                            //         textDirection: isEnglish
+                            //             ? TextDirection.ltr
+                            //             : TextDirection.ltr,
+                            //         textInputAction: TextInputAction.next,
+                            //         decoration: InputDecoration(
+                            //           border: OutlineInputBorder(
+                            //             borderRadius: BorderRadius.circular(30),
+                            //           ),
+                            //           labelText:
+                            //           'Password',                                      suffix: IconButton(
+                            //             onPressed: () {
+                            //               _userValue.changeShowPassword();
+                            //             },
+                            //             icon: Selector<UserProvider, bool>(
+                            //               selector: (ctx, showPassword) =>
+                            //                   showPassword.showPassword,
+                            //               builder: (ctx, showPassword, ch) {
+                            //                 return showPassword
+                            //                     ? const Icon(IconBroken.Show)
+                            //                     : const Icon(IconBroken.Hide);
+                            //               },
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       );
+                            //     },
+                            //   ),
+                            // ),
                             if (_isLoading)
                               const Center(
                                 child: CircularProgressIndicator(),
@@ -232,37 +194,36 @@ class _SignInScreenState extends State<SignInScreen> {
                                           email: userInfo['email']!,
                                           password: userInfo['password']!,
                                           context: context,
-                                          fromWhere: fromWhere,
-                                          lang: _lang);
+                                          );
                                     }, title: 'SIGN IN',
-                              icon:( const {IconBroken. as IconData) ,
+                              icon: IconBroken.Login ,
                             ),
 
                             customDivider(),
 
-                            CustomElevatedIconButton(
-                              function: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => PhoneSingIn(),
-                                    fullscreenDialog: true,
-                                  ),
-                                );
-                              },
-                              text: 'Sign in Using Phone Number',
-                              icon: const Icon(
-                                IconBroken.Login,
-                                color: Colors.white,
-                              ),
-                            ),
+                            // CustomElevatedIconButton(
+                            //   function: () {
+                            //     Navigator.of(context).push(
+                            //       MaterialPageRoute(
+                            //         builder: (ctx) => PhoneSingIn(),
+                            //         fullscreenDialog: true,
+                            //       ),
+                            //     );
+                            //   },
+                            //   text: 'Sign in Using Phone Number',
+                            //   icon: const Icon(
+                            //     IconBroken.Login,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
 
                             // Text('- or -'),
 
                             CustomMaterialButton(
                               function: () {
-                                Navigator.of(context).pushNamed(SignUp.Signup);
+                                context.pushNamed('/signup');
                               },
-                              text: 'Sign Up', color: Colors.white,
+                              text: 'If No Account, Sign Up', color: Colors.white,
                               // color: Colors.black,
                             ),
                           ],

@@ -13,11 +13,7 @@ class SignInSignUp extends StatelessWidget {
   });
   // final HomeBloc homeBloc;
 
-  void navigateToAuthPage(BuildContext context) {
-    // BlocProvider.of<HomeBloc>(context).add(NavigateToAuthPageEvent());
 
-    context.go('/login');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class SignInSignUp extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              context.go('/login'); // authBloc.add(GoSignupEvent());
+              context.pushNamed('/login'); // authBloc.add(GoSignupEvent());
 
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
@@ -43,13 +39,13 @@ class SignInSignUp extends StatelessWidget {
             child: const Text('Sign In'),
           ),
           const SizedBox(height: 8.0),
-          OutlinedButton(
-            onPressed: () {
-              // Handle Sign Up button pressed
-              // You can navigate to the Sign Up page or perform any desired action
-            },
-            child: const Text('Sign Up'),
-          ),
+          // OutlinedButton(
+          //   onPressed: () {
+          //     // Handle Sign Up button pressed
+          //     // You can navigate to the Sign Up page or perform any desired action
+          //   },
+          //   child: const Text('Sign Up'),
+          // ),
         ],
       ),
     );
