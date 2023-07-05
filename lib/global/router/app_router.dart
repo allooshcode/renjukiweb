@@ -20,18 +20,18 @@ class AppRouter extends Equatable {
         builder: (BuildContext context, GoRouterState state) {
           return const MainLayout();
         },
-
-      ),GoRoute(
-          path: '/login',
-          builder: (BuildContext context, GoRouterState state) {
-            return const SignInScreen();
-          },),GoRoute(
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          return const SignInScreen();
+        },
+      ),
+      GoRoute(
           path: '/signup',
           builder: (BuildContext context, GoRouterState state) {
-
             return const SignUpScreen();
           })
-
     ],
   );
 }

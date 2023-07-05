@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,13 +27,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _keyScaffold = GlobalKey<ScaffoldState>();
 
   Future _submit(String username, String email, String password,
-      BuildContext context) async {
-
-  }
+      BuildContext context) async {}
 
   @override
   Widget build(BuildContext context) {
-
     const bool isEnglish = true;
 
     return Directionality(
@@ -49,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             IconButton(
               color: Theme.of(context).primaryColor,
               icon: const Icon(Icons.close),
-              onPressed: () => context.pop(),
+              onPressed: () => context.go('/login'),
             )
           ],
         ),
@@ -64,13 +59,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     Align(
                       alignment:
-                      isEnglish ? Alignment.topLeft : Alignment.topRight,
+                          isEnglish ? Alignment.topLeft : Alignment.topRight,
                       child: RichText(
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text:
-                        'Please sign up..',                              style: TextStyle(
+                              text: 'Please sign up..',
+                              style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 36,
                                 fontFamily: 'Quicksand-Bold',
@@ -109,9 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
-                                  label: const Text(
-                                    'your Name'
-                                  ),
+                                  label: const Text('your Name'),
                                   border: AppStyles.outLinedBorder,
                                 ),
                               ),
@@ -136,9 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
-                                  label: const Text(
-                                    'Email Address'
-                                  ),
+                                  label: const Text('Email Address'),
                                   border: AppStyles.outLinedBorder,
                                 ),
                                 keyboardType: TextInputType.emailAddress,
@@ -163,22 +154,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  isDense:
-                                  true, // this will remove the default content padding
-                                  // now you can customize it here or add padding widget
                                   contentPadding:
-                                  const EdgeInsetsDirectional.only(
+                                      const EdgeInsetsDirectional.only(
                                     start: 10,
                                     end: -5,
                                     bottom: 15,
                                   ),
-                                  label: const Text(
-                                    'password',
-                                  ),
-                                  border: AppStyles.outLinedBorder,
                                   // suffix: const SuffixIcon(),
+                                  border: AppStyles.outLinedBorder,
+                                  label: const Text(
+                                    'Confirm Password',
+                                  ),
                                 ),
                                 controller: _passwordController,
+
                                 // obscureText: _userValue.showPassword,
                               ),
                             ),
@@ -198,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                                 decoration: InputDecoration(
                                   contentPadding:
-                                  const EdgeInsetsDirectional.only(
+                                      const EdgeInsetsDirectional.only(
                                     start: 10,
                                     end: -5,
                                     bottom: 15,
@@ -221,14 +210,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               function: _isLoading
                                   ? null
                                   : () {
-                                _keyForm.currentState!.save();
-                                _submit(
-                                  userInfo['username']!,
-                                  userInfo['email']!,
-                                  userInfo["password"]!,
-                                  context,
-                                );
-                              },
+                                      _keyForm.currentState!.save();
+                                      _submit(
+                                        userInfo['username']!,
+                                        userInfo['email']!,
+                                        userInfo["password"]!,
+                                        context,
+                                      );
+                                    },
                               text: 'Proceed',
                               icon: const Icon(IconBroken.Login),
                             ),

@@ -13,8 +13,6 @@ class SignInSignUp extends StatelessWidget {
   });
   // final HomeBloc homeBloc;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +21,7 @@ class SignInSignUp extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const Text(
-            'Welcome to RENJUKI!',
+            'Welcome to RENJUKI!  ',
             style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
@@ -31,7 +29,7 @@ class SignInSignUp extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              context.pushNamed('/login'); // authBloc.add(GoSignupEvent());
+              context.go('/login'); // authBloc.add(GoSignupEvent());
 
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
