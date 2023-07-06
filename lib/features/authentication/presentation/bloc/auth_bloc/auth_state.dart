@@ -9,28 +9,16 @@ class AuthInitial extends AuthState {
   List<Object> get props => [];
 }
 
-class AuthPageOpenState extends AuthState {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class AuthPageClosedState extends AuthState {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
-
 class GoSignUpState extends AuthState {
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class SignUpLoadingState extends AuthState {
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class SignUpSuccessState extends AuthState {
@@ -38,7 +26,7 @@ class SignUpSuccessState extends AuthState {
   // const SignUpSuccessState(this.userEntity);
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class SignUpFailureState extends AuthState {

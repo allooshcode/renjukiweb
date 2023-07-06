@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../global/errors/failures.dart';
 import '../entities/user_entity.dart';

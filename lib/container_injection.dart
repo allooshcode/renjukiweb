@@ -26,10 +26,11 @@ final sl = GetIt.I;
 
 Future initSl() async {
   //contorllers
-  sl.registerFactory(() => AuthBloc(signUpUseCase: sl()));
+  sl.registerFactory<AuthBloc>(
+      () => AuthBloc(signUpUseCase: sl<SignUpUseCase>()));
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
 
-  sl.registerFactory(() => HomeBloc());
+  sl.registerFactory<HomeBloc>(() => HomeBloc());
   //usecases
 
   sl.registerLazySingleton<SignUpUseCase>(

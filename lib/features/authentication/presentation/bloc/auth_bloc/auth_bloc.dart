@@ -17,10 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   bool get isAuthPage => _isAuthPageOpen;
 
   AuthBloc({required this.signUpUseCase}) : super(AuthInitial()) {
-
-
-
-
     on<SignUpEvent>((event, emit) async {
       debugPrint('sign up event work...');
       emit(SignUpLoadingState());
