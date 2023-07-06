@@ -34,6 +34,8 @@ class SignUpLoadingState extends AuthState {
 }
 
 class SignUpSuccessState extends AuthState {
+  // final UserEntity userEntity;
+  // const SignUpSuccessState(this.userEntity);
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();

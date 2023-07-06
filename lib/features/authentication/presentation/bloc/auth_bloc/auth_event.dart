@@ -18,14 +18,10 @@ class SignUpEvent extends AuthEvent {
 
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [email,password];
 }
 
-class AuthPageOpenedEvent extends AuthEvent {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
+
 
 class CloseAuthPageEvent extends AuthEvent {
   @override

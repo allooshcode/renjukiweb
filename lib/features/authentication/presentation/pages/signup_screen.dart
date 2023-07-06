@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 
+import '../../../../container_injection.dart';
 import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/app_theme/icon_broken.dart';
 import '../../../../global/shared_widgets/reusable_components.dart';
@@ -16,7 +19,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  bool _isLoading = false;
+  final AuthBloc authBloc = sl<AuthBloc>();
 
   Map<String, String> userInfo = {'username': '', 'email': '', 'password': ''};
 
@@ -27,11 +30,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _keyScaffold = GlobalKey<ScaffoldState>();
 
   Future _submit(String username, String email, String password,
-      BuildContext context) async {}
+      BuildContext context) async {
+     _keyForm.currentState?.validate();
+     authBloc.add(SignUpEvent(email, password));
+     debugPrint('signup button .....');
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
     const bool isEnglish = true;
+
+    return BlocConsumer<AuthBloc, AuthState>(
+  listener: (context, state) {
+    debugPrint('$state');
+   if(state is SignUpSuccessState){
+      showToast('Signed Up Successfully');
+      context.go('/home');
+
+    }
+   if(state is SignUpLoadingState){
+     const Center(child: CircularProgressIndicator());
+   }
+
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    debugPrint('$state');
 
     return Directionality(
       textDirection: isEnglish ? TextDirection.ltr : TextDirection.rtl,
@@ -204,12 +230,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             //
-                            if (_isLoading)
-                              const Center(child: CircularProgressIndicator()),
+
                             CustomElevatedIconButton(
-                              function: _isLoading
-                                  ? null
-                                  : () {
+                              function: () {
                                       _keyForm.currentState!.save();
                                       _submit(
                                         userInfo['username']!,
@@ -233,5 +256,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  },
+);
   }
 }
