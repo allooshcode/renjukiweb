@@ -56,9 +56,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ],
         ),
         backgroundColor: Colors.white,
-        body: BlocBuilder<AuthBloc, AuthState>(
+        body: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is SignUpSuccessState) {
+              context.go('/home', extra: state);
+            }
+
+            if (state is SignUpFailureState) {
+              showToast(state.error.toString());
+            }
+          },
           builder: (context, state) {
             debugPrint('$state');
+            // if (state is SignUpLoadingState) {
+            //   return const Center(
+            //     child: CircularProgressIndicator(),
+            //   );
+            // }
             return SafeArea(
               child: SingleChildScrollView(
                 child: Form(
@@ -215,7 +229,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                 ),
                                 //
-
+                                Visibility(
+                                    visible: (state is SignUpLoadingState),
+                                    child: const CircularProgressIndicator()),
                                 CustomElevatedIconButton(
                                   function: () {
                                     _keyForm.currentState!.save();
