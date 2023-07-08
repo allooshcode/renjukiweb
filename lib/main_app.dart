@@ -23,6 +23,7 @@ class RenJukiApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+
         // home: MultiBlocProvider(providers: [
         //   BlocProvider(
         //     create: (context) => PortfolioBloc(

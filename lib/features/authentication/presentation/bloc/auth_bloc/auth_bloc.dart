@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/domain/entities/user_entity.dart';
@@ -13,16 +14,20 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignUpUseCase signUpUseCase;
-  bool _isAuthPageOpen = false;
+  late UserEntity? user;
+
+  final bool _isAuthPageOpen = false;
   bool get isAuthPage => _isAuthPageOpen;
 
-  AuthBloc({required this.signUpUseCase}) : super(AuthInitial()) {
+  AuthBloc({required this.signUpUseCase, this.user}) : super(AuthInitial()) {
     on<SignUpEvent>((event, emit) async {
       debugPrint('sign up event work...');
       emit(SignUpLoadingState());
       final response = await signUpUseCase.call(event.email, event.password);
-      response.fold((l) => emit(SignUpFailureState(l.msgError)),
-          (r) => emit(SignUpSuccessState()));
+      response.fold((l) => emit(SignUpFailureState(l.msgError)), (r) {
+        user = r;
+        emit(SignUpSuccessState());
+      });
     });
   }
 

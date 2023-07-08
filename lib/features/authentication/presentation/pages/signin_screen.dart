@@ -132,6 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                           width: double.infinity,
                                           height: 55,
                                           child: TextFormField(
+                                              obscureText: true,
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty ||

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progressive_image/progressive_image.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/app_drawer.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
@@ -37,6 +38,7 @@ class MainLayout extends StatelessWidget {
         // height: MediaQuery.of(context).size.height,
       ),
       Scaffold(
+        drawer: const DrawerApp(),
 // >>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
         appBar: AppBar(
           flexibleSpace: Container(

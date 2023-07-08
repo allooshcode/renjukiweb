@@ -165,6 +165,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   width: double.infinity,
                                   height: 50,
                                   child: TextFormField(
+                                    obscureText: true,
+
                                     textDirection: TextDirection.ltr,
                                     textInputAction: TextInputAction.next,
                                     onSaved: (value) {
@@ -202,6 +204,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   width: double.infinity,
                                   height: 50,
                                   child: TextFormField(
+                                    obscureText: true,
+
                                     onSaved: (value) {
                                       userInfo['password'] = value!.trim();
                                     },
