@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:renjuki2/features/authentication/data/data_sources/signup_user_data.dart';
-import 'package:renjuki2/features/authentication/data/repository/signup_repository_data_imp.dart';
-import 'package:renjuki2/features/authentication/domain/repository/SignUpRepository.dart';
-import 'package:renjuki2/features/authentication/domain/usecases/sign_up_usecase.dart';
+import 'package:renjuki2/features/authentication/data/data_sources/auth_user_data.dart';
+import 'package:renjuki2/features/authentication/data/repository/auth_repository_data_imp.dart';
+import 'package:renjuki2/features/authentication/domain/repository/auth_Repository.dart';
+import 'package:renjuki2/features/authentication/domain/usecases/auth_usecase.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/data/datasources/call_any_link_data.dart';
 import 'package:renjuki2/features/homepage/data/datasources/call_linkedin_data.dart';
@@ -27,14 +27,14 @@ final sl = GetIt.I;
 Future initSl() async {
   //contorllers
   sl.registerFactory<AuthBloc>(
-      () => AuthBloc(signUpUseCase: sl<SignUpUseCase>()));
+      () => AuthBloc(signUpUseCase: sl<AuthUseCase>()));
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
 
   sl.registerFactory<HomeBloc>(() => HomeBloc());
   //usecases
 
-  sl.registerLazySingleton<SignUpUseCase>(
-      () => SignUpUseCase(signUpRepository: sl()));
+  sl.registerLazySingleton<AuthUseCase>(
+      () => AuthUseCase(authRepository: sl()));
   sl.registerLazySingleton<CallResumeUsecase>(() => CallResumeUsecase(sl()));
   sl.registerLazySingleton<CallLinkedInUsecase>(
       () => CallLinkedInUsecase(sl()));
@@ -47,8 +47,7 @@ Future initSl() async {
 
   //domain
 
-  sl.registerLazySingleton<SignUpRepository>(
-      () => SignUpRepositoryDataImp(sl()));
+  sl.registerLazySingleton<AuthRepository>(() => SignUpRepositoryDataImp(sl()));
   sl.registerLazySingleton<CallResumeRepository>(
       () => ResumeRepositoryData(resumeData: sl()));
 
@@ -59,7 +58,7 @@ Future initSl() async {
       () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
-  sl.registerLazySingleton<SignUpUserData>(() => SignUpUserData());
+  sl.registerLazySingleton<AuthUserData>(() => AuthUserData());
   sl.registerLazySingleton<ResumeData>(() => ResumeData());
   sl.registerLazySingleton<CallLinkedInData>(() => CallLinkedInData());
 

@@ -7,7 +7,13 @@ import 'package:renjuki2/global/errors/failures.dart';
 
 import '../models/user_model.dart';
 
-class SignUpUserData extends Equatable {
+abstract class AuthUserDataAbstract extends Equatable {
+  Future<Either<Failure, UserModel>> signUp(String email, String password);
+  Future<Either<Failure, UserModel>> signIn(String email, String password);
+}
+
+class AuthUserData extends Equatable implements AuthUserDataAbstract {
+  @override
   Future<Either<Failure, UserModel>> signUp(
       String email, String password) async {
     try {
@@ -35,4 +41,7 @@ class SignUpUserData extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, UserModel>> signIn(String email, String password) {}
 }
