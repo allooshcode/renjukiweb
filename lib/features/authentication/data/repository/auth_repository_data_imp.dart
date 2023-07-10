@@ -7,9 +7,9 @@ import '../../domain/entities/user_entity.dart';
 import '../../domain/repository/auth_Repository.dart';
 import '../data_sources/auth_user_data.dart';
 
-class SignUpRepositoryDataImp implements AuthRepository {
+class AuthRepositoryDataImp implements AuthRepository {
   final AuthUserData auhUserData;
-  SignUpRepositoryDataImp(this.auhUserData);
+  AuthRepositoryDataImp(this.auhUserData);
 
   @override
   Future<Either<Failure, UserEntity>> signup(String email, String password) {

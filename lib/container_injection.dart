@@ -19,15 +19,20 @@ import 'package:renjuki2/features/homepage/domain/usecases/call_mob_mob_ios_usec
 import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/resume_usecase.dart';
 import 'package:renjuki2/global/router/app_router.dart';
+import 'package:renjuki2/global/services/network_services.dart';
 
 import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 
 final sl = GetIt.I;
 
 Future initSl() async {
+
+  //services
+  sl.registerLazySingleton<FireBaseAuthService>(() => FireBaseAuthService());
+
   //contorllers
   sl.registerFactory<AuthBloc>(
-      () => AuthBloc(signUpUseCase: sl<AuthUseCase>()));
+      () => AuthBloc(authUseCase: sl<AuthUseCase>()));
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
 
   sl.registerFactory<HomeBloc>(() => HomeBloc());
@@ -35,32 +40,17 @@ Future initSl() async {
 
   sl.registerLazySingleton<AuthUseCase>(
       () => AuthUseCase(authRepository: sl()));
-  sl.registerLazySingleton<CallResumeUsecase>(() => CallResumeUsecase(sl()));
-  sl.registerLazySingleton<CallLinkedInUsecase>(
-      () => CallLinkedInUsecase(sl()));
-  sl.registerLazySingleton<CallMobAppAndriodUsecase>(
-      () => CallMobAppAndriodUsecase(sl()));
-  sl.registerLazySingleton<CallWebAppUsecase>(() => CallWebAppUsecase(sl()));
 
-  sl.registerLazySingleton<CallMobAppIosUsecase>(
-      () => CallMobAppIosUsecase(sl()));
+
 
   //domain
 
-  sl.registerLazySingleton<AuthRepository>(() => SignUpRepositoryDataImp(sl()));
-  sl.registerLazySingleton<CallResumeRepository>(
-      () => ResumeRepositoryData(resumeData: sl()));
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryDataImp(sl<AuthUserData>()));
 
-  sl.registerLazySingleton<CallLinkedInRepository>(
-      () => CallLinkedInDataRepository(sl()));
 
-  sl.registerLazySingleton<CallAnyLinkRepoBase>(
-      () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
-  sl.registerLazySingleton<AuthUserData>(() => AuthUserData());
-  sl.registerLazySingleton<ResumeData>(() => ResumeData());
-  sl.registerLazySingleton<CallLinkedInData>(() => CallLinkedInData());
+  sl.registerLazySingleton<AuthUserData>(() => AuthUserData(sl<FireBaseAuthService>()));
 
-  sl.registerLazySingleton<CallMobAppData>(() => CallMobAppData());
+
 }

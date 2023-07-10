@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 
 import '../../../../global/app_theme/app_styles.dart';
@@ -31,10 +33,14 @@ class _SignInScreenState extends State<SignInScreen> {
     required BuildContext context,
   }) {
     FocusScope.of(context).unfocus();
+    debugPrint('signin button .....');
 
-    if (!_keyForm.currentState!.validate()) {
+    if(!_keyForm.currentState!.validate()){
       return;
     }
+
+    context.read<AuthBloc>().add(SignInEvent(email, password));
+
   }
 
   @override
@@ -61,7 +67,18 @@ class _SignInScreenState extends State<SignInScreen> {
               ],
             ),
             backgroundColor: Colors.white,
-            body: SafeArea(
+            body: BlocConsumer<AuthBloc, AuthState>(
+  listener: (context, state) {
+    if (state is SignInSuccessState) {
+      context.go('/home', extra: state);
+    }
+
+    if (state is SignInFailureState) {
+      showToast(state.error.toString());
+    }
+  },
+  builder: (context, state) {
+    return SafeArea(
                 child: SingleChildScrollView(
                     child: Form(
                         key: _keyForm,
@@ -164,15 +181,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                                         IconBroken.Password),
                                                   )))),
 
-                                      if (_isLoading)
-                                        const Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
+                                      Visibility(
+                                          visible: (state is SignInLoadingState),
+                                          child: const CircularProgressIndicator()),
                                       CustomButton(
-                                        fun: _isLoading
-                                            ? null
-                                            : () {
-                                                _keyForm.currentState!.save();
+                                        fun:  () {
+                                          debugPrint('signup button .....');
+
+                                          _keyForm.currentState!.save();
 
                                                 _submit(
                                                   username:
@@ -221,6 +237,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   ),
                                 ),
                               )
-                            ])))))));
+                            ])))));
+  },
+)));
   }
 }

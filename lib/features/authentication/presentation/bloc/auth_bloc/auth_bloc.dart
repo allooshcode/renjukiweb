@@ -13,22 +13,34 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthUseCase signUpUseCase;
+  final AuthUseCase authUseCase;
   late UserEntity? user;
 
   final bool _isAuthPageOpen = false;
   bool get isAuthPage => _isAuthPageOpen;
 
-  AuthBloc({required this.signUpUseCase, this.user}) : super(AuthInitial()) {
+  AuthBloc({required this.authUseCase, this.user}) : super(AuthInitial()) {
     on<SignUpEvent>((event, emit) async {
       debugPrint('sign up event work...');
       emit(SignUpLoadingState());
-      final response = await signUpUseCase.signUp(event.email, event.password);
+      final response = await authUseCase.signUp(event.email, event.password);
       response.fold((l) => emit(SignUpFailureState(l.msgError)), (r) {
         user = r;
         emit(SignUpSuccessState());
       });
     });
+
+    on<SignInEvent>((event, emit) async {
+      debugPrint('sign in event work...');
+      emit(SignInLoadingState());
+      final response = await authUseCase.signIn(event.email, event.password);
+      response.fold((l) => emit(SignInFailureState(l.msgError)), (r) {
+        user = r;
+        emit(SignInSuccessState());
+      });
+    });
+
+
   }
 
   void closeAuthPage() {}

@@ -31,7 +31,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future _submit(String username, String email, String password,
       BuildContext context) async {
-    _keyForm.currentState?.validate();
+    if(!_keyForm.currentState!.validate()){
+      return;
+    }
     context.read<AuthBloc>().add(SignUpEvent(email, password));
     debugPrint('signup button .....');
   }
