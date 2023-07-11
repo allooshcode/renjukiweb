@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 class QarouselSlider extends StatelessWidget {
   const QarouselSlider({super.key});
@@ -10,12 +11,12 @@ class QarouselSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 200,
+        height: 300,
         autoPlay: true,
         enlargeCenterPage: true,
         viewportFraction: 0.9,
       ),
-      items: [1,2,3,4,5].map((i) {
+      items: [1,2,3,4].map((i) {
         return Builder(
           builder: (BuildContext context) {
             return ClipRRect(
@@ -27,8 +28,9 @@ class QarouselSlider extends StatelessWidget {
                   decoration: const BoxDecoration(
                       color: Colors.amber
                   ),
-                  child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
-              ),
+                  child:  PhotoView(imageProvider: AssetImage('$i.jpeg')),
+                  )
+
             );
           },
         );

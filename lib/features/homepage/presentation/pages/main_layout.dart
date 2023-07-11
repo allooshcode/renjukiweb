@@ -31,7 +31,7 @@ class MainLayout extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('EXCAVATOR.jpeg'),
             fit: BoxFit.cover,
-            opacity: 0.4,
+            opacity: 0.6,
           ),
         ),
         // width: double.infinity,
@@ -69,10 +69,7 @@ class MainLayout extends StatelessWidget {
           ],
         ),
         body: SingleChildScrollView(
-// <<<<<<< HEAD
-// =======
-//
-// >>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
+
           child: Column(children: [
             CustomFadeAnimation(
               widgetToAnimate: HomePage(

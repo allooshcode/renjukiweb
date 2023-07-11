@@ -42,8 +42,8 @@ class AppStyles {
     fontWeight: FontWeight.w400,);
 
 
-  static final googleStyle = GoogleFonts.montserrat(
+  static final googleStyle = GoogleFonts.abel(
     fontSize: 24,
-    color: Colors.white,
+    color: Colors.blueAccent,
   );
 }
