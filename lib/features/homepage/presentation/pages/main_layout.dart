@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progressive_image/progressive_image.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/about_us_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/app_drawer.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
+import 'package:renjuki2/global/utils/constants.dart';
 import 'package:renjuki2/global/utils/icon_broken.dart';
 
 import '../../../../container_injection.dart';
@@ -77,11 +79,12 @@ class MainLayout extends StatelessWidget {
                 homeBloc: sl(),
               ),
             ),
-            // CustomFadeAnimation(
-            //   widgetToAnimate: WorkPageWeb(
-            //     key: workKey,
-            //   ),
-            // )
+            CustomFadeAnimation(
+              widgetToAnimate: AboutUsPage(
+                key: workKey,
+              ),
+            ),
+            SizedBox(height: AppConstants.unitHeightValue(context)*20,)
           ]),
         ),
         bottomNavigationBar: Container(
