@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:renjuki2/features/homepage/presentation/pages/main_layout.dart';
+import 'package:renjuki2/features/main_layout.dart';
 
 import '../../features/authentication/presentation/pages/signin_screen.dart';
 import '../../features/authentication/presentation/pages/signup_screen.dart';

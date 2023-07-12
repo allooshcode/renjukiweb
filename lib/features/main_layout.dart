@@ -12,10 +12,10 @@ import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 import 'package:renjuki2/global/utils/constants.dart';
 import 'package:renjuki2/global/utils/icon_broken.dart';
 
-import '../../../../container_injection.dart';
-import '../../../../global/shared_widgets/bottom_curve_painter.dart';
-import '../../../../global/shared_widgets/top_curve_painter.dart';
-import '../widgets/singin_signup_container.dart';
+import '../container_injection.dart';
+import '../global/shared_widgets/bottom_curve_painter.dart';
+import '../global/shared_widgets/top_curve_painter.dart';
+import 'homepage/presentation/widgets/singin_signup_container.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({
@@ -71,7 +71,6 @@ class MainLayout extends StatelessWidget {
           ],
         ),
         body: SingleChildScrollView(
-
           child: Column(children: [
             CustomFadeAnimation(
               widgetToAnimate: HomePage(
@@ -84,7 +83,9 @@ class MainLayout extends StatelessWidget {
                 key: workKey,
               ),
             ),
-            SizedBox(height: AppConstants.unitHeightValue(context)*20,)
+            SizedBox(
+              height: AppConstants.unitHeightValue(context) * 20,
+            )
           ]),
         ),
         bottomNavigationBar: Container(
