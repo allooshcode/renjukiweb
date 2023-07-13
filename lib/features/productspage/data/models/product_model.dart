@@ -1,7 +1,13 @@
-class Product {
-  final int id;
-  final String name;
-  final String description;
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 
-  Product({required this.id, required this.name, required this.description});
+class ProductModel extends ProductEntity{
+
+  const ProductModel({required super.productId, required super.productName,
+    required super.description, required super.photoPath, });
+
+  factory ProductModel.fromJson(Map<String, dynamic> map){
+   return ProductModel(productId: map['productId'],productName: map['productName'],
+       photoPath: map['photoPath'],description: map['description']);
+  }
+
 }

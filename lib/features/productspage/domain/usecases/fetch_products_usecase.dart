@@ -1,4 +1,8 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../global/errors/failures.dart';
 import '../../data/models/product_model.dart';
+import '../entity/product_entity.dart';
 import '../repository/product_repository.dart';
 
 class FetchProductsUseCase {
@@ -6,7 +10,7 @@ class FetchProductsUseCase {
 
   FetchProductsUseCase({required this.repository});
 
-  Future<List<Product>> execute() {
+  Future<Either<Failure,List<ProductEntity>>> execute() {
     return repository.fetchProducts();
   }
 }
@@ -16,7 +20,7 @@ class FetchProductDetailsUseCase {
 
   FetchProductDetailsUseCase({required this.repository});
 
-  Future<Product> execute(int productId) {
+  Future<Either<Failure,ProductModel>> execute(int productId) {
     return repository.fetchProductDetails(productId);
   }
 }

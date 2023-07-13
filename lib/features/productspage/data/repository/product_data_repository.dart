@@ -1,24 +1,25 @@
-import 'package:your_project_name/domain/product_repository.dart';
-import 'package:your_project_name/models/product.dart';
+import 'package:dartz/dartz.dart';
 
+
+import '../../../../global/errors/failures.dart';
 import '../../domain/repository/product_repository.dart';
 import '../models/product_model.dart';
 
 class ProductDataRepository implements ProductRepository {
   @override
-  Future<List<Product>> fetchProducts() async {
-    await Future.delayed(Duration(seconds: 2));
-    return [
-      Product(id: 1, name: 'Product 1', description: 'Description 1'),
-      Product(id: 2, name: 'Product 2', description: 'Description 2'),
-      Product(id: 3, name: 'Product 3', description: 'Description 3'),
-    ];
-  }
+  Future<Either<Failure,List<ProductModel>>> fetchProducts() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return right([
+       const ProductModel(productId: 3, productName: 'Product 3', description: 'Description 3',photoPath: ''),
+    ]);}
 
   @override
-  Future<Product> fetchProductDetails(int productId) async {
-    final products = await fetchProducts();
-    final product = products.firstWhere((p) => p.id == productId);
-    return product;
+  Future<Either<Failure, ProductModel>> fetchProductDetails(int productId) {
+    // TODO: implement fetchProductDetails
+    throw UnimplementedError();
   }
-}
+
+  }
+
+
+

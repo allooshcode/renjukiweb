@@ -1,3 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_events.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_state.dart';
+
+import '../../domain/usecases/fetch_products_usecase.dart';
+
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final FetchProductsUseCase fetchProductsUseCase;
   final FetchProductDetailsUseCase fetchProductDetailsUseCase;
@@ -7,17 +13,5 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       required this.fetchProductDetailsUseCase})
       : super(ProductInitialState());
 
-  @override
-  Stream<ProductState> mapEventToState(ProductEvent event) async* {
-    if (event is FetchProductsEvent) {
-      yield ProductLoadingState();
 
-      try {
-        final products = await fetchProductsUseCase.execute();
-        yield ProductLoadedState(products: products);
-      } catch (e) {
-        yield ProductErrorState();
-      }
-    }
-  }
 }
