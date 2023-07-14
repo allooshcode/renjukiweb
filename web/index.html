@@ -38,6 +38,8 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
 </head>
 <body>
   <script>
@@ -55,6 +57,22 @@
       });
     });
   </script>
+
+  <div id="flutter_host">Loading...</div>
+
+  <script>
+      window.addEventListener("load", function (ev) {
+        _flutter.loader.loadEntrypoint({
+          onEntrypointLoaded: async function(engineInitializer) {
+            let appRunner = await engineInitializer.initializeEngine({
+              // Pass a reference to "div#flutter_host" into the Flutter engine.
+              hostElement: document.querySelector("#flutter_host")
+            });
+            await appRunner.runApp();
+          }
+        });
+      });
+    </script>
 
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
