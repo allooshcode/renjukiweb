@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/global/router/app_router.dart';
 
@@ -10,23 +11,26 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   bool _isHomePageOpen = true;
+  final CallFaceBookUsecase callFaceBookUsecase;
   // final AppRouterDelegate routerDelegate;
 
   bool get isHomePage => _isHomePageOpen;
 
-  HomeBloc() : super(HomePageInitState()) {
+  HomeBloc(this.callFaceBookUsecase) : super(HomePageInitState()) {
 
     on<HomePageOpenedEvent>((event, emit) {
       _isHomePageOpen = true;
       emit(HomePageOpenState());
     });
 
-    on<NavigateToAuthPageEvent>((event, emit) {
-      debugPrint('NavigateToAuthPageEvent');
-      _isHomePageOpen = false;
-      emit(HomePageClosedState());
-      emit(NavigateToAuthPageState());
+
+
+
+    on<FaceBookCallEvent>((event, emit) async{
+     final response =  await callFaceBookUsecase.callFaceBook();
+     response.fold((l) => emit(FaceBookStateError()), (r) => emit(FaceBookCallStateSuccess()));
     });
+
   }
 }
 

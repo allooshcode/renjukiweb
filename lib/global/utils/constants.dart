@@ -18,7 +18,7 @@ class AppConstants {
   static const String mobileGooglePlayApp =
       'https://play.google.com/store/apps/details?id=com.suriawholesaler.suriashop';
 
-  static const String webAppLink = 'https://suriawholesaler.com/';
+  static const String faceBookLink = 'https://www.facebook.com/people/REN-JUKI-2009/100092640443114/';
     static const String iosAppLink = 'https://apps.apple.com/tt/app/suria-store/id1606872385?uo=2';
 
   static const String linkidInUrl =

@@ -3,7 +3,7 @@ import 'package:renjuki2/global/errors/exceptions.dart';
 import 'package:renjuki2/global/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CallMobAppData extends CallAnyLinkDataBase {
+class CallLinkData implements CallAnyLinkDataBase {
   @override
   Future<void> callMobileGoogleLink() async {
     try {
@@ -18,10 +18,10 @@ class CallMobAppData extends CallAnyLinkDataBase {
   }
 
   @override
-  Future<void> callWebLink() async {
+  Future<void> callFaceBookLink() async {
     try {
-      if (await canLaunchUrl(Uri.parse(AppConstants.webAppLink))) {
-        await launchUrl(Uri.parse(AppConstants.webAppLink));
+      if (await canLaunchUrl(Uri.parse(AppConstants.faceBookLink))) {
+        await launchUrl(Uri.parse(AppConstants.faceBookLink));
       } else {
         throw ServerException(msgError: 'Could not launch url');
       }

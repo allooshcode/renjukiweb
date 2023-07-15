@@ -32,9 +32,9 @@ class NavigateToAuthPageState extends HomeState {}
 //
 // class ResumeStateDone extends HomeState {}
 //
-// class CallWebAppLinkStateError extends HomeState {}
-//
-// class CallWebAppLinkStateDone extends HomeState {}
+class FaceBookCallStateSuccess extends HomeState {}
+
+class FaceBookStateError extends HomeState {}
 //
 // class CallMobAppLinkStateError extends HomeState {}
 //

@@ -2,14 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:renjuki2/global/errors/failures.dart';
 
-import '../repositories/call_mob_link_repo.dart';
+import '../repositories/call_link_repo.dart';
 
-class CallWebAppUsecase extends Equatable {
+class CallFaceBookUsecase extends Equatable {
   final CallAnyLinkRepoBase callAnyLinkRepoBase;
-  const CallWebAppUsecase(this.callAnyLinkRepoBase);
+  const CallFaceBookUsecase(this.callAnyLinkRepoBase);
 
-  Future<Either<Failure, bool>> callAnyLink() {
-    return callAnyLinkRepoBase.callWebAppRepository();
+  Future<Either<Failure, bool>> callFaceBook() {
+    return callAnyLinkRepoBase.callFaceBook();
   }
 
   @override

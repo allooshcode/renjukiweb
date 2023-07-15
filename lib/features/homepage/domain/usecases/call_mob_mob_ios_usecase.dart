@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:renjuki2/global/errors/failures.dart';
 
-import '../repositories/call_mob_link_repo.dart';
+import '../repositories/call_link_repo.dart';
 
 class CallMobAppIosUsecase extends Equatable {
   final CallAnyLinkRepoBase callAnyLinkRepoBase;

@@ -11,6 +11,7 @@ class GoToSignupEvent extends HomeEvent {
 
 }
 
+
 class NavigateToAuthPageEvent extends HomeEvent {}
 
 class HomePageOpenedEvent extends HomeEvent {}
@@ -27,9 +28,9 @@ class HomePageOpenedEvent extends HomeEvent {}
 //   const CallResumeEvent();
 // }
 //
-// class CallWebLinkEvent extends HomeEvent {
-//   const CallWebLinkEvent();
-// }
+class FaceBookCallEvent extends HomeEvent {
+  const FaceBookCallEvent();
+}
 //
 // class CallMobLinkEvent extends HomeEvent {
 //   const CallMobLinkEvent({required this.isIphoneApp});

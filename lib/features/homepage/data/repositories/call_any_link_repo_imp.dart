@@ -3,10 +3,10 @@ import 'package:renjuki2/features/homepage/data/datasources/call_any_link_data.d
 import 'package:renjuki2/global/errors/exceptions.dart';
 import 'package:renjuki2/global/errors/failures.dart';
 
-import '../../domain/repositories/call_mob_link_repo.dart';
+import '../../domain/repositories/call_link_repo.dart';
 
 class CallAnyLinkRepoImp implements CallAnyLinkRepoBase {
-  final CallMobAppData callAnyLinkData;
+  final CallLinkData callAnyLinkData;
   CallAnyLinkRepoImp({required this.callAnyLinkData});
 
   @override
@@ -20,9 +20,9 @@ class CallAnyLinkRepoImp implements CallAnyLinkRepoBase {
   }
 
   @override
-  Future<Either<Failure, bool>> callWebAppRepository() async {
+  Future<Either<Failure, bool>> callFaceBook() async {
     try {
-      await callAnyLinkData.callWebLink();
+      await callAnyLinkData.callFaceBookLink();
       return right(true);
     } on ServerException catch (err) {
       return left(ServerFuilure(err.toString()));
