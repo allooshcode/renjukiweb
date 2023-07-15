@@ -28,7 +28,6 @@ class HomePageWeb extends StatelessWidget {
             //     painter: TopCurvePainter(),
             //   ),
             // ),
-            const QarouselSlider(),
             SizedBox(
               width: AppConstants.secondaryText *
                   AppConstants.unitHeightValue(context),
@@ -37,7 +36,6 @@ class HomePageWeb extends StatelessWidget {
             SizedBox(
               height: AppConstants.unitHeightValue(context) * 20,
             ),
-
           ]),
     );
   }

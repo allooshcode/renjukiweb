@@ -15,6 +15,7 @@ import 'package:renjuki2/global/utils/icon_broken.dart';
 import '../container_injection.dart';
 import '../global/shared_widgets/bottom_curve_painter.dart';
 import '../global/shared_widgets/top_curve_painter.dart';
+import 'homepage/presentation/widgets/home_page_widgets/web/carausel_slider.dart';
 import 'homepage/presentation/widgets/home_page_widgets/web/footer_info.dart';
 import 'homepage/presentation/widgets/singin_signup_container.dart';
 
@@ -73,12 +74,16 @@ class MainLayout extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            CustomFadeAnimation(
-              widgetToAnimate: HomePage(
-                key: homeKey,
-                homeBloc: sl(),
-              ),
+            // CustomFadeAnimation(
+            //   widgetToAnimate: HomePage(
+            //     key: homeKey,
+            //     homeBloc: sl(),
+            //   ),
+            // ),
+            SizedBox(
+              height: AppConstants.unitHeightValue(context) * 10,
             ),
+            const QarouselSlider(),
             CustomFadeAnimation(
               widgetToAnimate: AboutUsPage(
                 key: workKey,
