@@ -7,10 +7,11 @@ abstract class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GoToSignupEvent extends HomeEvent {
+class GoToSignupEvent extends HomeEvent {}
 
-}
+class HomepageCurveOnEvent extends HomeEvent {}
 
+class HomepageCurveOffEvent extends HomeEvent {}
 
 class NavigateToAuthPageEvent extends HomeEvent {}
 

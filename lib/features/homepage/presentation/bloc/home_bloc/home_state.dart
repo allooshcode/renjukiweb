@@ -9,6 +9,10 @@ abstract class HomeState extends Equatable {
 
 class HomePageInitState extends HomeState {}
 
+class HomePageCurveOn extends HomeState {}
+
+class HomepageCurveOff extends HomeState {}
+
 // Home State
 
 class HomePageOpenState extends HomeState {}

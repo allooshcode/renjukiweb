@@ -17,20 +17,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   bool get isHomePage => _isHomePageOpen;
 
   HomeBloc(this.callFaceBookUsecase) : super(HomePageInitState()) {
-
     on<HomePageOpenedEvent>((event, emit) {
       _isHomePageOpen = true;
       emit(HomePageOpenState());
     });
 
-
-
-
-    on<FaceBookCallEvent>((event, emit) async{
-     final response =  await callFaceBookUsecase.callFaceBook();
-     response.fold((l) => emit(FaceBookStateError()), (r) => emit(FaceBookCallStateSuccess()));
+    on<FaceBookCallEvent>((event, emit) async {
+      final response = await callFaceBookUsecase.callFaceBook();
+      response.fold((l) => emit(FaceBookStateError()),
+          (r) => emit(FaceBookCallStateSuccess()));
     });
 
+    on<HomepageCurveOffEvent>((event, emit) => emit(HomepageCurveOff()));
+    on<HomepageCurveOnEvent>((event, emit) => emit(HomePageCurveOn()));
   }
 }
 

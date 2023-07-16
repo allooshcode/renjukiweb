@@ -20,19 +20,16 @@ import 'homepage/presentation/widgets/home_page_widgets/web/footer_info.dart';
 import 'homepage/presentation/widgets/singin_signup_container.dart';
 
 class MainLayout extends StatelessWidget {
-   MainLayout({
+  MainLayout({
     super.key,
   });
 
-
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
   bool showCurve = true;
-
-
+  final homeKey = GlobalKey();
+  final aboutKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final homeKey = GlobalKey();
-    final workKey = GlobalKey();
     debugPrint(showCurve.toString());
 
     return Stack(children: [
@@ -48,97 +45,111 @@ class MainLayout extends StatelessWidget {
         // height: MediaQuery.of(context).size.height,
       ),
       Scaffold(
-        drawer: const DrawerApp(),
+          drawer: const DrawerApp(),
 // >>>>>>> c8d6a3ae8a816ac74b33b4f7ebd1dd6e1700d0b8
-        appBar: AppBar(
-          flexibleSpace: Container(
-            width: double.infinity,
-            // height: AppConstants.unitHeightValue(context) * 50,
-            color: const Color.fromARGB(255, 243, 239, 239),
-            child: CustomPaint(
-              painter: TopCurvePainter(),
+          appBar: AppBar(
+            flexibleSpace: Container(
+              width: double.infinity,
+              // height: AppConstants.unitHeightValue(context) * 50,
+              color: const Color.fromARGB(255, 243, 239, 239),
+              child: CustomPaint(
+                painter: TopCurvePainter(),
+              ),
+            ),
+            actions: [
+              const SignInSignUp(
+                  // homeBloc: sl(),
+                  ),
+              CustomButton(
+                  fun: () {
+                    Scrollable.ensureVisible(homeKey.currentContext!);
+                  },
+                  title: "Home",
+                  icon: IconBroken.Home),
+              CustomButton(
+                  fun: () {
+                    Scrollable.ensureVisible(aboutKey.currentContext!);
+                  },
+                  title: "about",
+                  icon: IconBroken.Work)
+            ],
+          ),
+          body: NotificationListener<ScrollNotification>(
+            onNotification: (scrollNotification) {
+              final metrics = scrollNotification.metrics;
+              if (metrics.atEdge) {
+                bool isTop = metrics.pixels == 0;
+                if (isTop) {
+                  context.read<HomeBloc>().add(HomepageCurveOnEvent());
+
+                  showCurve = true;
+                } else {
+                  context.read<HomeBloc>().add(HomepageCurveOffEvent());
+                }
+              }
+              return true;
+            },
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: Column(children: [
+                // CustomFadeAnimation(
+                //   widgetToAnimate: HomePage(
+                //     key: homeKey,
+                //     homeBloc: sl(),
+                //   ),
+                // ),
+                SizedBox(
+                  height: AppConstants.unitHeightValue(context) * 10,
+                ),
+                CustomFadeAnimation(
+                    widgetToAnimate: QarouselSlider(
+                  key: homeKey,
+                )),
+                SizedBox(
+                  height: AppConstants.unitHeightValue(context) * 10,
+                ),
+                CustomFadeAnimation(
+                  widgetToAnimate: AboutUsPage(
+                    key: aboutKey,
+                  ),
+                ),
+                SizedBox(
+                  height: AppConstants.unitHeightValue(context) * 20,
+                ),
+                const Stack(children: [BottomFooterInfo()]),
+              ]),
             ),
           ),
-          actions: const [
-            SignInSignUp(
-                // homeBloc: sl(),
-                ),
-
-            // CustomButton(
-            //     fun: () {
-            //       Scrollable.ensureVisible(homeKey.currentContext!);
-            //     },
-            //     title: "Home",
-            //     icon: IconBroken.Home),
-            // CustomButton(
-            //     fun: () {
-            //       Scrollable.ensureVisible(workKey.currentContext!);
-            //     },
-            //     title: "Work",
-            //     icon: IconBroken.Work)
-          ],
-        ),
-        body: NotificationListener<ScrollNotification>(
-          onNotification: (scrollNotification) {
-            final metrics = scrollNotification.metrics;
-            if (metrics.atEdge) {
-              bool isTop = metrics.pixels == 0;
-              if (isTop) {
-                showCurve = true;
-                print('At the top');
-              } else {
-                showCurve =false;
-
-                print('At the bottom');
+          bottomNavigationBar: BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              switch (state) {
+                case HomepageCurveOff():
+                  return const SizedBox();
+                case HomePageCurveOn():
+                  return CustomFadeAnimation(
+                    widgetToAnimate: Container(
+                      width: double.infinity,
+                      // height: AppConstants.unitHeightValue(context) * 50,
+                      color: const Color.fromARGB(255, 243, 239, 239),
+                      child: CustomPaint(
+                        painter: BottomCurvePainter(),
+                      ),
+                    ),
+                  );
+                default:
+                  return CustomFadeAnimation(
+                    widgetToAnimate: Container(
+                      width: double.infinity,
+                      // height: AppConstants.unitHeightValue(context) * 50,
+                      color: const Color.fromARGB(255, 243, 239, 239),
+                      child: CustomPaint(
+                        painter: BottomCurvePainter(),
+                      ),
+                    ),
+                  );
               }
-            }
-            return true;
-          },
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-
-            controller: _scrollController,
-
-
-            child: Column(children: [
-              // CustomFadeAnimation(
-              //   widgetToAnimate: HomePage(
-              //     key: homeKey,
-              //     homeBloc: sl(),
-              //   ),
-              // ),
-              SizedBox(
-                height: AppConstants.unitHeightValue(context) * 10,
-              ),
-              const QarouselSlider(),
-              CustomFadeAnimation(
-                widgetToAnimate: AboutUsPage(
-                  key: workKey,
-                ),
-              ),
-              SizedBox(
-                height: AppConstants.unitHeightValue(context) * 10,
-              ),
-              Stack(children: [
-                CustomPaint(
-                  painter: BottomCurvePainter(),
-                ),
-                const BottomFooterInfo()
-              ]),
-
-            ]),
-          ),
-        ),
-
-        bottomNavigationBar: showCurve ? Container(
-          width: double.infinity,
-          // height: AppConstants.unitHeightValue(context) * 50,
-          color: const Color.fromARGB(255, 243, 239, 239),
-          child:   CustomPaint(
-            painter: BottomCurvePainter(),
-          ),
-        ): null,
-      ),
+            },
+          )),
     ]);
   }
 }
