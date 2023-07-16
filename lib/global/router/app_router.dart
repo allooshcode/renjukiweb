@@ -18,7 +18,7 @@ class AppRouter extends Equatable {
       GoRoute(
         path: '/home',
         builder: (BuildContext context, GoRouterState state) {
-          return const MainLayout();
+          return  MainLayout();
         },
       ),
       GoRoute(

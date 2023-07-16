@@ -24,7 +24,7 @@ class BottomFooterInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
-      color: const Color.fromARGB(255, 243, 239, 239),
+      color: const Color.fromARGB(255, 9, 4, 165),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -81,6 +81,7 @@ class BottomFooterInfo extends StatelessWidget {
                     'Instagram',
                     color: Colors.white,
                     border: false),
+
               ],
             ),
           )
