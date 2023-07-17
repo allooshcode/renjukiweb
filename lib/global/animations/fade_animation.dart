@@ -34,12 +34,9 @@ class _CustomFadeAnimationState extends State<CustomFadeAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: animation,
-      child: FadeTransition(
-        opacity: animation,
-        child: widget.widgetToAnimate,
-      ),
+    return FadeTransition(
+      opacity: animation,
+      child: widget.widgetToAnimate,
     );
   }
 }

@@ -6,9 +6,11 @@ import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc
 import 'package:renjuki2/features/homepage/presentation/pages/about_us_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/app_drawer.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/mobile/about_us_page_mobile.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
+import 'package:renjuki2/global/shared_widgets/responser_widget.dart';
 import 'package:renjuki2/global/utils/constants.dart';
 import 'package:renjuki2/global/utils/icon_broken.dart';
 
@@ -90,34 +92,41 @@ class MainLayout extends StatelessWidget {
               return true;
             },
             child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(children: [
-                // CustomFadeAnimation(
-                //   widgetToAnimate: HomePage(
-                //     key: homeKey,
-                //     homeBloc: sl(),
-                //   ),
-                // ),
-                SizedBox(
-                  height: AppConstants.unitHeightValue(context) * 10,
-                ),
-                CustomFadeAnimation(
-                    widgetToAnimate: QarouselSlider(
-                  key: homeKey,
-                )),
-                SizedBox(
-                  height: AppConstants.unitHeightValue(context) * 10,
-                ),
-                CustomFadeAnimation(
-                  widgetToAnimate: AboutUsPage(
-                    key: aboutKey,
-                  ),
-                ),
-                SizedBox(
-                  height: AppConstants.unitHeightValue(context) * 20,
-                ),
-                const Stack(children: [BottomFooterInfo()]),
-              ]),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // CustomFadeAnimation(
+                    //   widgetToAnimate: HomePage(
+                    //     key: homeKey,
+                    //     homeBloc: sl(),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 10,
+                    ),
+                    CustomFadeAnimation(
+                        widgetToAnimate: QarouselSlider(
+                      key: homeKey,
+                    )),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 10,
+                    ),
+                    CustomFadeAnimation(
+                      widgetToAnimate: ResponserWidget(
+                        webWidget: AboutUsPage(
+                          key: aboutKey,
+                        ),
+                        mobileWidget: AboutUsPageMobile(
+                          key: aboutKey,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 20,
+                    ),
+                    const Stack(children: [BottomFooterInfo()]),
+                  ]),
             ),
           ),
           bottomNavigationBar: BlocBuilder<HomeBloc, HomeState>(
