@@ -27,13 +27,11 @@ class MainLayout extends StatelessWidget {
   });
 
   // final ScrollController _scrollController = ScrollController();
-  bool showCurve = true;
+  bool showCurveOnce = true;
   final homeKey = GlobalKey();
   final aboutKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    debugPrint(showCurve.toString());
-
     return Stack(children: [
       Container(
         decoration: const BoxDecoration(
@@ -82,10 +80,12 @@ class MainLayout extends StatelessWidget {
               if (metrics.atEdge) {
                 bool isTop = metrics.pixels == 0;
                 if (isTop) {
-                  context.read<HomeBloc>().add(HomepageCurveOnEvent());
-
-                  showCurve = true;
+                  if (showCurveOnce) {
+                    context.read<HomeBloc>().add(HomepageCurveOnEvent());
+                  }
+                  showCurveOnce = false;
                 } else {
+                  showCurveOnce = true;
                   context.read<HomeBloc>().add(HomepageCurveOffEvent());
                 }
               }
@@ -130,6 +130,9 @@ class MainLayout extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BlocBuilder<HomeBloc, HomeState>(
+            // buildWhen: (previous, current) {
+            //   return previous is HomePageCurveOn && current is HomepageCurveOff;
+            // },
             builder: (context, state) {
               switch (state) {
                 case HomepageCurveOff():
