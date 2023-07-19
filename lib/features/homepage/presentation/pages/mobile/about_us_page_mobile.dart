@@ -53,11 +53,20 @@ class AboutUsPageMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildCircularAvatar(
-                    '1.jpeg', 'Photo 1 Title', 'Photo 1 Description', context),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/1.jpeg?alt=media&token=b18feed0-5542-45c5-bcdf-03c1a74c52a4',
+                    'Photo 1 Title',
+                    'Photo 1 Description',
+                    context),
                 _buildCircularAvatar(
-                    '2.jpeg', 'Photo 2 Title', 'Photo 2 Description', context),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/3.jpeg?alt=media&token=4dbc6af7-405c-496a-9c05-ecf15a745dc0',
+                    'Photo 2 Title',
+                    'Photo 2 Description',
+                    context),
                 _buildCircularAvatar(
-                    '4.jpeg', 'Photo 3 Title', 'Photo 3 Description', context),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/4.jpeg?alt=media&token=b06245fa-f91c-4c5c-b1da-99b09f0f958f',
+                    'Photo 3 Title',
+                    'Photo 3 Description',
+                    context),
               ],
             ),
           ],

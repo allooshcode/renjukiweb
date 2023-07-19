@@ -36,7 +36,8 @@ class MainLayout extends StatelessWidget {
       Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('EXCAVATOR.jpeg'),
+            image: NetworkImage(
+                'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/1.jpeg?alt=media&token=b18feed0-5542-45c5-bcdf-03c1a74c52a4'),
             fit: BoxFit.cover,
             opacity: 0.6,
           ),

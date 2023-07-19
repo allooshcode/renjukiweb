@@ -30,8 +30,8 @@ class AboutUsPage extends StatelessWidget {
             const SizedBox(height: 8.0),
             const Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                  'Fusce tristique eros mauris, in rutrum enim varius id. '
-                  'Phasellus auctor turpis eu tristique luctus.',
+              'Fusce tristique eros mauris, in rutrum enim varius id. '
+              'Phasellus auctor turpis eu tristique luctus.',
             ),
             const SizedBox(height: 16.0),
             const Text(
@@ -44,28 +44,28 @@ class AboutUsPage extends StatelessWidget {
             const SizedBox(height: 8.0),
             const Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                  'Duis id scelerisque metus. Integer mattis varius augue, '
-                  'vel consectetur libero convallis non.',
+              'Duis id scelerisque metus. Integer mattis varius augue, '
+              'vel consectetur libero convallis non.',
             ),
             const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildCircularAvatar(
-                  '1.jpeg',
-                  'Photo 1 Title',
-                  'Photo 1 Description',context
-                ),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/1.jpeg?alt=media&token=b18feed0-5542-45c5-bcdf-03c1a74c52a4',
+                    'Photo 1 Title',
+                    'Photo 1 Description',
+                    context),
                 _buildCircularAvatar(
-                  '2.jpeg',
-                  'Photo 2 Title',
-                  'Photo 2 Description',context
-                ),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/3.jpeg?alt=media&token=4dbc6af7-405c-496a-9c05-ecf15a745dc0',
+                    'Photo 2 Title',
+                    'Photo 2 Description',
+                    context),
                 _buildCircularAvatar(
-                  '4.jpeg',
-                  'Photo 3 Title',
-                  'Photo 3 Description',context
-                ),
+                    'https://firebasestorage.googleapis.com/v0/b/renjuki.appspot.com/o/4.jpeg?alt=media&token=b06245fa-f91c-4c5c-b1da-99b09f0f958f',
+                    'Photo 3 Title',
+                    'Photo 3 Description',
+                    context),
               ],
             ),
           ],
@@ -74,17 +74,14 @@ class AboutUsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCircularAvatar(
-      String imagePath,
-      String title,
-      String description,BuildContext context
-      ) {
+  Widget _buildCircularAvatar(String imagePath, String title,
+      String description, BuildContext context) {
     return Column(
       children: [
         CircleAvatar(
-          radius: AppConstants.unitWidthValu(context)*10,
+          radius: AppConstants.unitWidthValu(context) * 10,
           backgroundColor: Colors.grey,
-          foregroundImage: AssetImage(imagePath),
+          foregroundImage: NetworkImage(imagePath),
         ),
         const SizedBox(height: 8.0),
         Text(
