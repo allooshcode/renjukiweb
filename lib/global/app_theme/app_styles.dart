@@ -17,7 +17,7 @@ class AppStyles {
   );
 
   static TextStyle getStyleOpen(BuildContext context,
-      {double size = 36, Color color = Colors.deepPurple}) {
+      {double size = 16, Color color = Colors.deepPurple}) {
     return GoogleFonts.saira(
       fontSize: size,
       color: color,

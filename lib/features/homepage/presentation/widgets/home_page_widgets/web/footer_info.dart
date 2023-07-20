@@ -32,23 +32,27 @@ class BottomFooterInfo extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'RENJUKI FOR TRADE AND IMPORT SDN HBD رنجوكي للاستيراد والتصدير',
-                  style: AppStyles.styleSnasR,
+                  'RENJUKI FOR TRADE AND IMPORT SDN HBD',
+                  style: AppStyles.getStyleOpen(context, color: Colors.white),
+                ),
+                Text(
+                  ' رنجوكي للاستيراد والتصدير',
+                  style: AppStyles.getStyleOpen(context, color: Colors.white),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 Text(
                   'no.035-08 jalan imbi,Perjaya Time Squire, 55100 kuala lumpur, Malaysia',
-                  style: AppStyles.googleStyle,
+                  style:AppStyles.getStyleOpen(context, color: Colors.white),
                 ),
                 Text(
                   'Email: INFO@RENJUKI.COM, SALES@RENJUKI.COM',
-                  style: AppStyles.googleStyle,
+                  style: AppStyles.getStyleOpen(context, color: Colors.white),
                 ),
                 Text(
                   'Tel: +60 11 6415 5716 - +60 1185 8713',
-                  style: AppStyles.googleStyle,
+                  style: AppStyles.getStyleOpen(context, color: Colors.white),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
