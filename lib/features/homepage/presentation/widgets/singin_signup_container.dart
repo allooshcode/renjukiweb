@@ -21,10 +21,8 @@ class SignInSignUp extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-           Text(
-            'Welcome to RENJUKI!  ',
-            style:AppStyles.googleStyle
-          ),
+          if (MediaQuery.of(context).size.width > 580)
+            Text('Welcome to RENJUKI!  ', style: AppStyles.googleStyle),
           ElevatedButton(
             onPressed: () {
               context.go('/login'); // authBloc.add(GoSignupEvent());

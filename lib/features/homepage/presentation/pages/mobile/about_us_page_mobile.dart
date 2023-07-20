@@ -82,7 +82,7 @@ class AboutUsPageMobile extends StatelessWidget {
         CircleAvatar(
           radius: AppConstants.unitWidthValu(context) * 30,
           backgroundColor: Colors.grey,
-          foregroundImage: AssetImage(imagePath),
+          foregroundImage: NetworkImage(imagePath),
         ),
         const SizedBox(height: 8.0),
         Text(
