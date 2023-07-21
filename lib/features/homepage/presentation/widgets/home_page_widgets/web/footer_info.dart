@@ -26,7 +26,7 @@ class BottomFooterInfo extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       color: const Color.fromARGB(255, 9, 4, 165),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
@@ -42,17 +42,17 @@ class BottomFooterInfo extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Text(
+                const Text(
                   'no.035-08 jalan imbi,Perjaya Time Squire, 55100 kuala lumpur, Malaysia',
-                  style:AppStyles.getStyleOpen(context, color: Colors.white),
+                    style: TextStyle(color: Colors.white),
                 ),
-                Text(
+                const Text(
                   'Email: INFO@RENJUKI.COM, SALES@RENJUKI.COM',
-                  style: AppStyles.getStyleOpen(context, color: Colors.white),
+                    style:  TextStyle(color: Colors.white),
                 ),
-                Text(
+                const Text(
                   'Tel: +60 11 6415 5716 - +60 1185 8713',
-                  style: AppStyles.getStyleOpen(context, color: Colors.white),
+                    style:  TextStyle(color: Colors.white),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
@@ -61,7 +61,7 @@ class BottomFooterInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.3,
+            width: MediaQuery.of(context).size.width * 0.2,
           ),
           Expanded(
             child: Column(
