@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progressive_image/progressive_image.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
-import 'package:renjuki2/features/homepage/presentation/pages/about_us_page.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/mobile/location_page_mobile.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/web/about_us_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/app_drawer.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/about_us_page_mobile.dart';
+import 'package:renjuki2/features/homepage/presentation/pages/web/location_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
@@ -30,6 +32,8 @@ class MainLayout extends StatelessWidget {
   bool showCurveOnce = true;
   final homeKey = GlobalKey();
   final aboutKey = GlobalKey();
+  final locationKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -111,7 +115,20 @@ class MainLayout extends StatelessWidget {
                       key: homeKey,
                     )),
                     SizedBox(
-                      height: AppConstants.unitHeightValue(context) * 10,
+                      height: AppConstants.unitHeightValue(context) * 20,
+                    ),
+                    CustomFadeAnimation(
+                      widgetToAnimate: ResponserWidget(
+                        webWidget: LocationPageWeb(
+                          key: locationKey,
+                        ),
+                        mobileWidget: LocationPageMobile(
+                          key: locationKey,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 20,
                     ),
                     CustomFadeAnimation(
                       widgetToAnimate: ResponserWidget(
