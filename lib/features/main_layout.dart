@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progressive_image/progressive_image.dart';
+import 'package:renjuki2/features/authentication/domain/entities/user_entity.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/location_page_mobile.dart';
@@ -36,6 +37,8 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = BlocProvider.of<AuthBloc>(context).user;
+
     return Stack(children: [
       Container(
         decoration: const BoxDecoration(
@@ -62,9 +65,10 @@ class MainLayout extends StatelessWidget {
               ),
             ),
             actions: [
-              const SignInSignUp(
-                  // homeBloc: sl(),
-                  ),
+              if (user == null)
+                const SignInSignUp(
+                    // homeBloc: sl(),
+                    ),
               CustomButton(
                   fun: () {
                     Scrollable.ensureVisible(homeKey.currentContext!);

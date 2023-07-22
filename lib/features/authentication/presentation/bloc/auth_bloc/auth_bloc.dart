@@ -16,9 +16,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthUseCase authUseCase;
   late UserEntity? user;
 
-  final bool _isAuthPageOpen = false;
-  bool get isAuthPage => _isAuthPageOpen;
-
   AuthBloc({required this.authUseCase, this.user}) : super(AuthInitial()) {
     on<SignUpEvent>((event, emit) async {
       debugPrint('sign up event work...');
@@ -39,8 +36,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(SignInSuccessState());
       });
     });
-
-
   }
 
   void closeAuthPage() {}
