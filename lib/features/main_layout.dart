@@ -11,6 +11,8 @@ import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/about_us_page_mobile.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/location_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_bloc.dart';
+import 'package:renjuki2/features/productspage/presentation/pages/product_listing_page.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';
 import 'package:renjuki2/global/shared_widgets/responser_widget.dart';
@@ -118,6 +120,7 @@ class MainLayout extends StatelessWidget {
                         widgetToAnimate: QarouselSlider(
                       key: homeKey,
                     )),
+                    ProductListingPage(productBloc: sl(),),
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),
