@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/container_injection.dart';
 import 'package:renjuki2/features/authentication/domain/usecases/auth_usecase.dart';
 import 'package:renjuki2/features/main_layout.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_bloc.dart';
 import 'package:renjuki2/global/app_theme/app_theme_dark.dart';
 import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
@@ -19,7 +20,8 @@ class RenJukiApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(create: (context) => sl<HomeBloc>()),
-        BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>())
+        BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
+        BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

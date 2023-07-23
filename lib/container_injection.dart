@@ -19,43 +19,52 @@ import 'package:renjuki2/features/homepage/domain/usecases/call_mob_link_usecase
 import 'package:renjuki2/features/homepage/domain/usecases/call_mob_mob_ios_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/resume_usecase.dart';
+import 'package:renjuki2/features/productspage/data/repository/product_data_repository.dart';
+import 'package:renjuki2/features/productspage/domain/repository/product_repository.dart';
+import 'package:renjuki2/features/productspage/domain/usecases/fetch_products_usecase.dart';
 import 'package:renjuki2/global/router/app_router.dart';
 import 'package:renjuki2/global/services/network_services.dart';
 
 import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
+import 'features/productspage/presentation/bloc/product_bloc.dart';
 
 final sl = GetIt.I;
 
 Future initSl() async {
-
   //services
   sl.registerLazySingleton<FireBaseAuthService>(() => FireBaseAuthService());
 
   //contorllers
-  sl.registerFactory<AuthBloc>(
-      () => AuthBloc(authUseCase: sl<AuthUseCase>()));
+
+  sl.registerLazySingleton<ProductBloc>(() => ProductBloc(
+      fetchProductsUseCase: sl(), fetchProductDetailsUseCase: sl()));
+
+  sl.registerFactory<AuthBloc>(() => AuthBloc(authUseCase: sl<AuthUseCase>()));
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
 
   sl.registerFactory<HomeBloc>(() => HomeBloc(sl()));
   //usecases
 
+  sl.registerLazySingleton(() => FetchProductsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => FetchProductDetailsUseCase(repository: sl()));
+
   sl.registerLazySingleton<AuthUseCase>(
       () => AuthUseCase(authRepository: sl()));
 
-  sl.registerLazySingleton<CallFaceBookUsecase>(() => CallFaceBookUsecase(sl()));
-
-
+  sl.registerLazySingleton<CallFaceBookUsecase>(
+      () => CallFaceBookUsecase(sl()));
 
   //domain
 
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryDataImp(sl<AuthUserData>()));
-  sl.registerLazySingleton<CallAnyLinkRepoBase>(() => CallAnyLinkRepoImp(callAnyLinkData: sl()));
+  sl.registerLazySingleton<ProductRepository>(() => ProductDataRepository());
 
-
+  sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryDataImp(sl<AuthUserData>()));
+  sl.registerLazySingleton<CallAnyLinkRepoBase>(
+      () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
-  sl.registerLazySingleton<AuthUserData>(() => AuthUserData(sl<FireBaseAuthService>()));
+  sl.registerLazySingleton<AuthUserData>(
+      () => AuthUserData(sl<FireBaseAuthService>()));
   sl.registerLazySingleton<CallLinkData>(() => CallLinkData());
-
-
 }
