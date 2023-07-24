@@ -104,6 +104,7 @@ class MainLayout extends StatelessWidget {
             },
             child: SingleChildScrollView(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -120,7 +121,8 @@ class MainLayout extends StatelessWidget {
                         widgetToAnimate: QarouselSlider(
                       key: homeKey,
                     )),
-                    ProductListingPage(productBloc: sl(),),
+                    SizedBox(
+                        height:AppConstants.unitHeightValue(context) * 50 ,child: ProductListingPage(productBloc: sl(),)),
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),
