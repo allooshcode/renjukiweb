@@ -16,23 +16,20 @@ class ProductsWebBuild extends StatelessWidget {
 
 
 
-    return  SizedBox(
-      
-      child: GridView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,            // physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 1 / 1.2,
-                crossAxisSpacing: 10,
-                crossAxisCount: 4,
-                mainAxisSpacing: 5,
-              ),
-              itemBuilder: (ctx, i) =>   ProductWebItemW(product: productList[i],),
-
-              itemCount: productList.length,
+    return  GridView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,            // physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(8),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1 / 1.2,
+              crossAxisSpacing: 10,
+              crossAxisCount: 4,
+              mainAxisSpacing: 5,
             ),
-    );
+            itemBuilder: (ctx, i) =>   ProductWebItemW(product: productList[i],),
+
+            itemCount: productList.length,
+          );
         }
 
 
