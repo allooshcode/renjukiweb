@@ -36,31 +36,3 @@ class ProductListingPage extends StatelessWidget {
   }
 }
 
-class ProductDetailsPage extends StatelessWidget {
-  final ProductEntity product;
-  final ProductBloc productBloc;
-
-  const ProductDetailsPage(
-      {super.key, required this.product, required this.productBloc});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Product Details'),
-      ),
-      body: Column(
-        children: [
-          Text('Product Name: ${product.productName}'),
-          Text('Product Description: ${product.description}'),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // No need to fetch product details again, as we have already loaded them
-        },
-        child: const Icon(Icons.refresh),
-      ),
-    );
-  }
-}
