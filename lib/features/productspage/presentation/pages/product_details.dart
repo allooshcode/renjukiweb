@@ -14,6 +14,9 @@ import 'package:suriashop/screens/product_details_screen/components/product_size
 import 'package:suriashop/shared/components/reusable_components.dart';
 import 'package:suriashop/shared/style/app_styles.dart';
 
+import '../../../../global/app_theme/app_styles.dart';
+import '../../../../global/shared_widgets/reusable_components.dart';
+
 class ProductDetails extends StatefulWidget {
   static const productdetails = 'ProdcutDetails';
 
@@ -126,21 +129,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                               Text(_lang.getText('Size:').toString()),
                           ],
                         ),
-                        if (product.flavours!.isNotEmpty ||
-                            product.sizes!.isNotEmpty)
-                          ProductSizeFlavour(
-                            // choosedSize: choosedSize,
-                            // choosedFlavor: choosedFalvor,
-                            product: product,
-                          ),
+
+
                         const Divider(
                           indent: 20,
                           endIndent: 20,
                           thickness: 1,
                         ),
-                        CommentButton(
-                          product: product,
-                        )
+
                       ],
                     ),
                   )
