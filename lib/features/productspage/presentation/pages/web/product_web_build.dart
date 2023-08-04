@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 import 'package:renjuki2/global/utils/constants.dart';
 
 import '../../../domain/entity/product_entity.dart';
@@ -26,7 +27,11 @@ class ProductsWebBuild extends StatelessWidget {
               crossAxisCount: 4,
               mainAxisSpacing: 5,
             ),
-            itemBuilder: (ctx, i) =>   ProductWebItemW(product: productList[i],),
+            itemBuilder: (ctx, i) =>   InkWell(
+                onTap: (){
+                  context.goNamed('ProductDetails',pathParameters:{'name':productList[i].productName},extra:productList[i], );
+                },
+                child: ProductWebItemW(product: productList[i],)),
 
             itemCount: productList.length,
           );

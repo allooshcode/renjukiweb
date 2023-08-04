@@ -1,54 +1,37 @@
 // ignore: file_names
 // ignore_for_file: file_names
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:suriashop/models/product.dart';
-import 'package:suriashop/providers/Products.dart';
-import 'package:suriashop/providers/language_porvider.dart';
-import 'package:suriashop/screens/product_details_screen/components/add_cart_button_details.dart';
-import 'package:suriashop/screens/product_details_screen/components/comment_button.dart';
-import 'package:suriashop/screens/product_details_screen/components/product_info.dart';
-import 'package:suriashop/screens/product_details_screen/components/product_size_flavour.dart';
-import 'package:suriashop/shared/components/reusable_components.dart';
-import 'package:suriashop/shared/style/app_styles.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
+
 
 import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/shared_widgets/reusable_components.dart';
+import '../wedgits/add_cart_details_button.dart';
+import '../wedgits/product_item_info.dart';
 
 class ProductDetails extends StatefulWidget {
-  static const productdetails = 'ProdcutDetails';
 
-  const ProductDetails({Key? key}) : super(key: key);
+  final ProductEntity product;
+
+  const ProductDetails({Key? key, required this.product}) : super(key: key);
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  late final String choosedFalvor;
-  late final String choosedSize;
-  late Product product;
+
   // late String productID;
   bool isStarted = false;
 
   @override
   void didChangeDependencies() {
     if (!isStarted) {
-      product = ModalRoute.of(context)!.settings.arguments! as Product;
-      // productID = product.productID!;
-      // product = Provider.of<Products>(context).findProductbyID(productID);
-      if (product.sizes!.isNotEmpty) {
-        Provider.of<Products>(context, listen: false).chooseSize =
-        product.sizes!.keys.toList()[0];
-        // choosedSize = product.sizes!.keys.toList()[0];
-      }
-      if (product.flavours!.isNotEmpty) {
-        Provider.of<Products>(context, listen: false).chooseFlavor =
-        product.flavours![0];
-        // choosedFalvor = product.flavours![0];
-      }
+      // product = ModalRoute.of(context)!.settings.arguments! as Product;
+
+
+
     }
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
@@ -57,13 +40,10 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final _lang = Provider.of<LanguageProvider>(context, listen: false);
 
     final deviceSize = MediaQuery.of(context).size;
     return Directionality(
-      textDirection: Provider.of<LanguageProvider>(context).isEnglish
-          ? TextDirection.ltr
-          : TextDirection.rtl,
+      textDirection:  TextDirection.ltr,
       child: Scaffold(
         body: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -83,11 +63,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: double.infinity,
                   child: Hero(
                     // key: Key(product.productID!),
-                    tag: product.productID!,
+                    tag: widget.product.productId!,
                     child: FadeInImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        product.imageUrl!,
+                        widget.product.photoPath!,
                       ),
                       placeholder: const AssetImage(
                         'assets/images/placeholder.jpg',
@@ -109,26 +89,18 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                       children: [
                         ProductInfoItem(
-                          product: product,
+                          product: widget.product,
                           // choosedSize: choosedSize,
                         ),
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.description,
+                            widget.product.description,
                             style: AppStyles.styleSnasR,
                           ),
                         ),
                         customDivider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            if (product.flavours!.isNotEmpty)
-                              Text(_lang.getText('Flavour:').toString()),
-                            if (product.sizes!.isNotEmpty)
-                              Text(_lang.getText('Size:').toString()),
-                          ],
-                        ),
+
 
 
                         const Divider(
@@ -145,9 +117,8 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
         persistentFooterButtons: [
           AddCartButtonDetails(
-            product: product,
-            // choosedFlavor: choosedFalvor,
-            // choosedSize: choosedSize,
+            product: widget.product,
+
           )
         ],
       ),

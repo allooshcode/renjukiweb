@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 
 
 class AddCartButtonDetails extends StatelessWidget {
@@ -7,22 +8,15 @@ class AddCartButtonDetails extends StatelessWidget {
     Key? key,
     required this.product,
   })
-  // required this.choosedFlavor,
-  // required this.choosedSize})
+
       : super(key: key);
 
-  final Product product;
-  // final String choosedFlavor;
-  // final String choosedSize;
+  final ProductEntity product;
+
   @override
   Widget build(BuildContext context) {
-    final _products = Provider.of<Products>(context, listen: false);
 
-    final _cart = Provider.of<Cart>(context, listen: false);
-    final _lang = Provider.of<LanguageProvider>(context, listen: false);
-    final _userID = Provider.of<UserProvider>(
-      context,
-    ).user().currentUser?.uid;
+
 
     return Container(
       margin: const EdgeInsets.all(8.0),
@@ -37,88 +31,15 @@ class AddCartButtonDetails extends StatelessWidget {
         Border.all(color: Colors.blue, width: 2, style: BorderStyle.solid),
       ),
       child: TextButton(
-        onPressed: _userID != null
-            ? () async {
-          try {
-            _cart.changeCartLoading();
-            await Provider.of<Cart>(context, listen: false)
-                .addCartItemAlready(
-              product,
-              product.quantity,
-              _userID,
-              _products.chooseSize,
-              _products.chooseFlavor,
-            )
-                .then((value) {
-              AwesomeDialog(
-                btnOkColor: Theme.of(context).primaryColor,
-                // dialogBackgroundColor: Theme.of(context).primaryColor,
-                context: context,
-                dialogType: DialogType.SUCCES,
-                animType: AnimType.BOTTOMSLIDE,
-                title: _lang.getText('Successful').toString(),
-                btnOkText: _lang.getText('OK').toString(),
-                desc: _lang.getText('Item Added to Cart').toString(),
-                btnOkOnPress: () {
-                  Navigator.of(context).pop();
-                },
-              ).show();
-              // Scaffold.of(context).hideCurrentSnackBar();
-              // Scaffold.of(context).showSnackBar(SnackBar(
-              //     content:
-              //         Text('great! Item added to Cart')));
-            });
-          } on FirebaseException catch (err) {
-            _cart.changeCartLoading();
-
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.INFO,
-              animType: AnimType.BOTTOMSLIDE,
-              title: _lang.getText('Error').toString(),
-              desc: err.toString(),
-              btnCancelOnPress: () {},
-              btnOkOnPress: () {},
-            )..show();
-          } catch (err) {
-            _cart.changeCartLoading();
-
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.INFO,
-              animType: AnimType.BOTTOMSLIDE,
-              title: _lang.getText('Error').toString(),
-              desc: err.toString(),
-              btnCancelOnPress: () {},
-              btnOkOnPress: () {},
-            )..show();
-          }
-        }
-            : () {
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.INFO,
-            animType: AnimType.BOTTOMSLIDE,
-            btnOkColor: Theme.of(context).primaryColor,
-            btnCancelColor: Theme.of(context).hoverColor,
-            title: _lang.getText('SIGN IN').toString(),
-            desc: _lang.getText('please sign in first').toString(),
-            btnCancelOnPress: () {},
-            btnOkOnPress: () {
-              Navigator.of(context).pushNamed(SignInScreen.SIGNINSCREEN,
-                  arguments: product);
-            },
-          )..show();
+        onPressed: (){
           // Scaffold.of(context).hideCurrentSnackBar();
           // Scaffold.of(context).showSnackBar(SnackBar(
           //     content: Text('please sign in First')));
         },
-        child: Provider.of<Cart>(context).cartloading
-            ? const CircularProgressIndicator()
-            : Text(
-          _lang.getText('Add To Cart').toString(),
+        child: const Text(
+          'Add To Cart',
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             // color: Colors.white,
             fontSize: 15,
             fontFamily: 'OpenSans-Bold',

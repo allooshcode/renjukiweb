@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/main_layout.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
+import 'package:renjuki2/features/productspage/presentation/pages/product_details.dart';
 
 import '../../features/authentication/presentation/pages/signin_screen.dart';
 import '../../features/authentication/presentation/pages/signup_screen.dart';
@@ -19,7 +21,11 @@ class AppRouter extends Equatable {
         path: '/home',
         builder: (BuildContext context, GoRouterState state) {
           return  MainLayout();
-        },
+        },routes:  <RouteBase>[
+          GoRoute(path: 'ProductDetails/:name',name: 'ProductDetails',builder: (ctx,state){
+            return ProductDetails(product: state.extra as ProductEntity);
+          })
+      ]
       ),
       GoRoute(
         path: '/login',

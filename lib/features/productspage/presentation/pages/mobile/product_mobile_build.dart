@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 import 'package:renjuki2/features/productspage/presentation/wedgits/product_item_mobile.dart';
 
@@ -27,7 +28,11 @@ class ProductsMobileBuild extends StatelessWidget {
               crossAxisCount: 2,
               mainAxisSpacing: 5,
             ),
-            itemBuilder: (ctx, i) => ProductItemMobile(product: productList[i]),
+            itemBuilder: (ctx, i) => InkWell(
+                onTap: (){
+                  context.goNamed('ProductDetails',pathParameters:{'name':productList[i].productName},extra:productList[i], );
+                },
+                child: ProductItemMobile(product: productList[i])),
 
             itemCount:productList.length ,
 
