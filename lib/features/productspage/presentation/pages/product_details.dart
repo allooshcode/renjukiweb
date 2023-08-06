@@ -45,6 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Directionality(
       textDirection:  TextDirection.ltr,
       child: Scaffold(
+        backgroundColor:Colors.white,
         body: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
