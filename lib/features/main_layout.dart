@@ -121,7 +121,11 @@ class MainLayout extends StatelessWidget {
                         widgetToAnimate: QarouselSlider(
                       key: homeKey,
                     )),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 20,
+                    ),
                     ProductListingPage(productBloc: sl(),),
+
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),

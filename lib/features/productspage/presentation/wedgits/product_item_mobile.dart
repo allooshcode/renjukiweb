@@ -27,87 +27,75 @@ class ProductItemMobile extends StatelessWidget {
     // // final _userID = user.user().currentUser?.uid;
     // final _cart = Provider.of<Cart>(context, listen: false);
 
-    return GestureDetector(
-      onTap: () {
-        // Navigator.of(context)
-        //     .pushNamed(ProductDetails.productdetails, arguments: product)
-        //     .then((value) {
-        //   if (_cart.cartloading == true) {
-        //     _cart.changeCartLoading();
-        //   }
-        // });
-        // Navigator.push(context, MaterialPageRoute(builder: (_)=>ProdcutDetails()),);
-      },
-      child: Column(
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                GridTileItem(product: product),
-                // if (product.sale == true)
-                //   Positioned(
-                //     right: 10,
-                //     top: 0,
-                //     child: Column(
-                //       mainAxisSize: MainAxisSize.min,
-                //       children: const [
-                //         CircleAvatar(
-                //           backgroundColor: Colors.white,
-                //           child: Icon(
-                //             IconBroken.Discount,
-                //             size: 36,
-                //             color: Colors.red,
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                const FavoriteIcon(),
+    return Column(
+      // mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              GridTileItem(product: product),
+              // if (product.sale == true)
+              //   Positioned(
+              //     right: 10,
+              //     top: 0,
+              //     child: Column(
+              //       mainAxisSize: MainAxisSize.min,
+              //       children: const [
+              //         CircleAvatar(
+              //           backgroundColor: Colors.white,
+              //           child: Icon(
+              //             IconBroken.Discount,
+              //             size: 36,
+              //             color: Colors.red,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              const FavoriteIcon(),
 
-              ],
-            ),
+            ],
           ),
-          Container(
-            padding: EdgeInsets.zero,
-            width: MediaQuery.of(context).size.width * 0.5,
-            decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15))),
-            child: Column(
-              children: [
-                Text(
-                  // productsDoc[Product.NAME],
-                  product.productName,
-                  style: const TextStyle(
-                    color: Colors.yellowAccent,
-                    fontSize: 15,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  // overflow: TextOverflow.ellipsis,
+        ),
+        Container(
+          padding: EdgeInsets.zero,
+          width: MediaQuery.of(context).size.width * 0.5,
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15))),
+          child: Column(
+            children: [
+              Text(
+                // productsDoc[Product.NAME],
+                product.productName,
+                style: const TextStyle(
+                  color: Colors.yellowAccent,
+                  fontSize: 15,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 40,
-                  margin: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                      color: Colors.lightBlueAccent,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15))),
-                  child: AddToCartButton(
-                    product: product,
-                  ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                // overflow: TextOverflow.ellipsis,
+              ),
+              Container(
+                width: double.infinity,
+                height: 40,
+                margin: const EdgeInsets.all(4),
+                decoration: const BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15))),
+                child: AddToCartButton(
+                  product: product,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

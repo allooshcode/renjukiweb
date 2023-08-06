@@ -23,81 +23,67 @@ class ProductWebItemW extends StatelessWidget {
     // // final _userID = user.user().currentUser?.uid;
     // final _cart = Provider.of<Cart>(context, listen: false);
 
-    return GestureDetector(
-      onTap: () {
-        // Navigator.of(context)
-        //     .pushNamed(
-        //   ProductDetails.productdetails,
-        //   arguments: product,
-        // )
-        //     .then((value) {
-        //   if (_cart.cartloading == true) {
-        //     _cart.changeCartLoading();
-        //   }
-        // });
-      },
-      child: Column(
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                GridTileWebItem(product: product),
+    return Column(
+      // mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              GridTileWebItem(product: product),
 
-                const FavoriteIcon(),
-                // if (Provider.of<Product>(
-                //   context,
-                // ).isLoadingAddingFavorite)
-                //   const Center(
-                //     child: CircularProgressIndicator(),
-                //   ),
-              ],
+              const FavoriteIcon(),
+              // if (Provider.of<Product>(
+              //   context,
+              // ).isLoadingAddingFavorite)
+              //   const Center(
+              //     child: CircularProgressIndicator(),
+              //   ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.zero,
+          width: MediaQuery.of(context).size.width * 0.5,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15),
             ),
           ),
-          Container(
-            padding: EdgeInsets.zero,
-            width: MediaQuery.of(context).size.width * 0.5,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15),
+          child: Column(
+            children: [
+              Text(
+                // productsDoc[Product.NAME],
+                product.productName,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                // overflow: TextOverflow.ellipsis,
               ),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  // productsDoc[Product.NAME],
-                  product.productName,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  // overflow: TextOverflow.ellipsis,
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 40,
-                  margin: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onSecondary,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                  child: AddToCartButton(
-                    product: product,
+              Container(
+                width: double.infinity,
+                height: 40,
+                margin: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
                   ),
                 ),
-              ],
-            ),
+                child: AddToCartButton(
+                  product: product,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
