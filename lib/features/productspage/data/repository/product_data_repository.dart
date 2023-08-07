@@ -6,6 +6,8 @@ import '../../domain/repository/product_repository.dart';
 import '../models/product_model.dart';
 
 class ProductDataRepository implements ProductRepository {
+
+  final Productda
   @override
   Future<Either<Failure,List<ProductModel>>> fetchProducts() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -17,6 +19,12 @@ class ProductDataRepository implements ProductRepository {
   Future<Either<Failure, ProductModel>> fetchProductDetails(int productId) {
     // TODO: implement fetchProductDetails
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, bool>> createProduct() {
+
+
   }
 
   }

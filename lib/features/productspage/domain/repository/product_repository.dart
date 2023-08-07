@@ -8,4 +8,5 @@ abstract class ProductRepository {
 
   Future<Either<Failure,List<ProductEntity>>> fetchProducts();
   Future<Either<Failure,ProductModel>> fetchProductDetails(int productId);
+  Future<Either<Failure,bool>> createProduct();
 }
