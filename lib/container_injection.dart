@@ -19,6 +19,7 @@ import 'package:renjuki2/features/homepage/domain/usecases/call_mob_link_usecase
 import 'package:renjuki2/features/homepage/domain/usecases/call_mob_mob_ios_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/resume_usecase.dart';
+import 'package:renjuki2/features/productspage/data/data_sources/remote_data/product_data_remote_source.dart';
 import 'package:renjuki2/features/productspage/data/repository/product_data_repository.dart';
 import 'package:renjuki2/features/productspage/domain/repository/product_repository.dart';
 import 'package:renjuki2/features/productspage/domain/usecases/fetch_products_usecase.dart';
@@ -56,7 +57,8 @@ Future initSl() async {
 
   //domain
 
-  sl.registerLazySingleton<ProductRepository>(() => ProductDataRepository());
+  sl.registerLazySingleton<ProductRepository>(() => ProductDataRepository(
+      productDataRemoteSource: sl<ProductDataRemoteSource>()));
 
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryDataImp(sl<AuthUserData>()));
@@ -64,6 +66,8 @@ Future initSl() async {
       () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
+
+  sl.registerLazySingleton(() => ProductDataRemoteSource());
   sl.registerLazySingleton<AuthUserData>(
       () => AuthUserData(sl<FireBaseAuthService>()));
   sl.registerLazySingleton<CallLinkData>(() => CallLinkData());
