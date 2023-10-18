@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renjuki2/features/homepage/presentation/widgets/home_page_widgets/web/carausel_slider.dart';
-import 'package:renjuki2/features/homepage/presentation/widgets/home_page_widgets/web/header_info_web_widget.dart';
-import 'package:renjuki2/global/animations/tween_animation.dart';
-import 'package:renjuki2/global/shared_widgets/bottom_curve_painter.dart';
 
 import '../../../../../global/utils/constants.dart';
-import '../../widgets/home_page_widgets/web/photo_home.dart';
 
 class HomePageWeb extends StatelessWidget {
   const HomePageWeb({super.key});

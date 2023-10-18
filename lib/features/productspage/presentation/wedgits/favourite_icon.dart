@@ -1,9 +1,7 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../global/app_theme/icon_broken.dart';
-import '../../../../global/shared_widgets/reusable_components.dart';
 
 class FavoriteIcon extends StatelessWidget {
   const FavoriteIcon({Key? key}) : super(key: key);

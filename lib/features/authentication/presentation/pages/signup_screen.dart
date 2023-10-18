@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 
-import '../../../../container_injection.dart';
 import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/app_theme/icon_broken.dart';
 import '../../../../global/shared_widgets/reusable_components.dart';
@@ -125,6 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       if (value!.isEmpty) {
                                         return 'please add your name';
                                       }
+                                      return null;
                                     },
                                     onSaved: (value) {
                                       userInfo['username'] = value!;
@@ -150,6 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           !value.contains('@')) {
                                         return 'enter valid email address';
                                       }
+                                      return null;
                                     },
                                     onSaved: (value) {
                                       userInfo['email'] = value!.trim();
@@ -181,6 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       if (value.length < 6) {
                                         return 'password at least 6 letters';
                                       }
+                                      return null;
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
@@ -215,6 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       if (value != _passwordController.text) {
                                         return "password does not match";
                                       }
+                                      return null;
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:

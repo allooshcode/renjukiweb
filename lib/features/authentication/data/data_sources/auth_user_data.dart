@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
-import 'package:renjuki2/global/errors/exceptions.dart';
 import 'package:renjuki2/global/errors/failures.dart';
 import 'package:renjuki2/global/services/network_services.dart';
 

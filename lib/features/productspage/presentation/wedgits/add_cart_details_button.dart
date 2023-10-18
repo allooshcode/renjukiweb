@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 

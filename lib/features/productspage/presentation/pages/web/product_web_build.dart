@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:renjuki2/global/utils/constants.dart';
 
 import '../../../domain/entity/product_entity.dart';
 import '../../wedgits/product_widget_item.dart';

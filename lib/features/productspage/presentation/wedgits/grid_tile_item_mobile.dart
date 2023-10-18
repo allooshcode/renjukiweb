@@ -48,11 +48,11 @@ class GridTileItem extends StatelessWidget {
           //leading:,
         ),
         child: Hero(
-          tag: product.productId!,
+          tag: product.productId,
           child: FadeInImage(
             fit: BoxFit.cover,
             placeholder: const AssetImage('logo.jpg'),
-            image: NetworkImage(product.photoPath!),
+            image: NetworkImage(product.photoPath),
           ),
         ),
       ),

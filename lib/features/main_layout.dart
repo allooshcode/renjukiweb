@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progressive_image/progressive_image.dart';
-import 'package:renjuki2/features/authentication/domain/entities/user_entity.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/location_page_mobile.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/about_us_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/app_drawer.dart';
-import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/about_us_page_mobile.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/location_page.dart';
-import 'package:renjuki2/features/homepage/presentation/pages/web/work_page_web.dart';
-import 'package:renjuki2/features/productspage/presentation/bloc/product_bloc.dart';
 import 'package:renjuki2/features/productspage/presentation/pages/product_listing_page.dart';
 import 'package:renjuki2/global/animations/fade_animation.dart';
 import 'package:renjuki2/global/shared_widgets/custom_button.dart';

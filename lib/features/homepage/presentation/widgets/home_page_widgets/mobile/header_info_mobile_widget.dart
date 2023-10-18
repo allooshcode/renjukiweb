@@ -11,7 +11,7 @@ class HeaderInfoMobileWidget extends StatelessWidget {
     return Column(children: [
       ListTile(
         title: Text('ALAA AHMAD ALI AL AYATIM',
-            style: Theme.of(context).textTheme.headline1?.copyWith(
+            style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   fontSize: AppConstants.unitHeightValue(context) * 0,
                 )),
         leading: const Icon(IconBroken.Profile),

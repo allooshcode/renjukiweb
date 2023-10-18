@@ -7,7 +7,7 @@ class GridTileWebItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _orientation = MediaQuery.of(context).orientation;
+    final orientation = MediaQuery.of(context).orientation;
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -37,11 +37,11 @@ class GridTileWebItem extends StatelessWidget {
           //leading:,
         ),
         child: Hero(
-          tag: product.productId!,
+          tag: product.productId,
           child: FadeInImage(
             fit: BoxFit.cover,
             placeholder: const AssetImage('logo.png'),
-            image: NetworkImage(product.photoPath!),
+            image: NetworkImage(product.photoPath),
           ),
         ),
       ),

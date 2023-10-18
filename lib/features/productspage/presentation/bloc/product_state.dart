@@ -1,6 +1,5 @@
 import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 
-import '../../data/models/product_model.dart';
 
 abstract class ProductState {}
 

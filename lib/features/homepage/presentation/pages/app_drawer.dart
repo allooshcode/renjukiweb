@@ -9,7 +9,6 @@ import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/aut
 
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/app_theme/icon_broken.dart';
 import '../../../../global/shared_widgets/reusable_components.dart';
 import '../../../../global/shared_widgets/text_item.dart';

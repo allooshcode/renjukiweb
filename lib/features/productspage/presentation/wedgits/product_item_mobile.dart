@@ -1,12 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 import 'package:renjuki2/features/productspage/presentation/wedgits/add_to_cart_button.dart';
 import 'package:renjuki2/features/productspage/presentation/wedgits/favourite_icon.dart';
 import 'package:renjuki2/features/productspage/presentation/wedgits/grid_tile_item_mobile.dart';
 
-import '../../../../global/app_theme/icon_broken.dart';
 
 
 class ProductItemMobile extends StatelessWidget {

@@ -64,11 +64,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: double.infinity,
                   child: Hero(
                     // key: Key(product.productID!),
-                    tag: widget.product.productId!,
+                    tag: widget.product.productId,
                     child: FadeInImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        widget.product.photoPath!,
+                        widget.product.photoPath,
                       ),
                       placeholder: const AssetImage(
                         'assets/images/placeholder.jpg',

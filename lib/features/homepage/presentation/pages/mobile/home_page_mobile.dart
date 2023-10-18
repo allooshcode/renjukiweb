@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../global/animations/tween_animation.dart';
-import '../../../../../global/shared_widgets/bottom_curve_painter.dart';
 import '../../../../../global/utils/constants.dart';
 import '../../widgets/home_page_widgets/web/carausel_slider.dart';
-import '../../widgets/home_page_widgets/web/header_info_web_widget.dart';
-import '../../widgets/home_page_widgets/web/photo_home.dart';
 
 class HomePageMobile extends StatelessWidget {
   const HomePageMobile({super.key});

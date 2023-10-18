@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:renjuki2/features/homepage/domain/usecases/call_web_app_usecase.dart';
-import 'package:renjuki2/features/homepage/presentation/pages/home_page.dart';
-import 'package:renjuki2/global/router/app_router.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

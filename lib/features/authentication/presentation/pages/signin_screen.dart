@@ -18,7 +18,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   Map<String, String> userInfo = {'username': '', 'email': '', 'password': ''};
 
@@ -125,6 +125,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                             if (value!.isEmpty) {
                                               return 'please enter you email or phone';
                                             }
+                                            return null;
                                           },
                                           textDirection: isEnglish
                                               ? TextDirection.ltr
@@ -156,6 +157,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                                     value.length < 6) {
                                                   return 'password should be at least 6 letters';
                                                 }
+                                                return null;
                                               },
                                               onSaved: (value) {
                                                 userInfo['password'] =
