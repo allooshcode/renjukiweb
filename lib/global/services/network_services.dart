@@ -8,23 +8,14 @@ class FireBaseAuthService extends Equatable {
   FirebaseAuth get firebaseAuth => _firebaseAuth;
 
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
-class FirebaseFireStoreServices extends Equatable {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
+class FirebaseFireService extends Equatable {
+  final FirebaseFirestore _fireStoreServices = FirebaseFirestore.instance;
 
-class FirebaseFire extends Equatable {
-  final FirebaseFireStoreServices _fireStoreServices =
-      FirebaseFireStoreServices();
-
-  FirebaseFireStoreServices get firebaseFire => _fireStoreServices;
+  FirebaseFirestore get firebaseFire => _fireStoreServices;
 
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }

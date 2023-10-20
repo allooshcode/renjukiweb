@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:renjuki2/features/categories/web/presentation/pages/category_list.dart';
+import 'package:renjuki2/features/categories/web/presentation/widgets/category_listview_item.dart';
 import 'package:renjuki2/features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/mobile/location_page_mobile.dart';
 import 'package:renjuki2/features/homepage/presentation/pages/web/about_us_page.dart';
@@ -99,7 +101,7 @@ class MainLayout extends StatelessWidget {
             },
             child: SingleChildScrollView(
               child: Column(
-                // mainAxisSize: MainAxisSize.min,
+                  // mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -119,7 +121,13 @@ class MainLayout extends StatelessWidget {
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),
-                    ProductListingPage(productBloc: sl(),),
+                    const CategoriesScreen(),
+                    SizedBox(
+                      height: AppConstants.unitHeightValue(context) * 20,
+                    ),
+                    ProductListingPage(
+                      productBloc: sl(),
+                    ),
 
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,

@@ -6,7 +6,7 @@ import 'package:renjuki2/features/categories/web/domain/repository/category_doma
 import '../../../../../global/errors/failures.dart';
 
 class CategoryFetchingUsecase extends Equatable {
-  final CategoryFetchRepsitory categoryFetchRepsitory;
+  final CategoryDomainRepsitory categoryFetchRepsitory;
 
   const CategoryFetchingUsecase({required this.categoryFetchRepsitory});
 

@@ -7,7 +7,7 @@ import 'package:renjuki2/global/errors/failures.dart';
 import 'package:renjuki2/global/services/network_services.dart';
 
 class CategoryData implements Equatable {
-  final FirebaseFire fireStore;
+  final FirebaseFireService fireStore;
   CategoryData({required this.fireStore});
 
   Future<Either<Failure, List<CategoryModel>>> categoryDataFetch() async {

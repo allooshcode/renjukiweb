@@ -13,5 +13,5 @@ class CategoryLoading extends CategoryState {}
 
 class CategoryLoaded extends CategoryState {
   final List<CategoryEntity> categoryList;
-  const CategoryLoaded(this.categoryList);
+  const CategoryLoaded({required this.categoryList});
 }

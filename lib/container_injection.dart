@@ -4,6 +4,11 @@ import 'package:renjuki2/features/authentication/data/repository/auth_repository
 import 'package:renjuki2/features/authentication/domain/repository/auth_Repository.dart';
 import 'package:renjuki2/features/authentication/domain/usecases/auth_usecase.dart';
 import 'package:renjuki2/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:renjuki2/features/categories/web/data/remote_data_source/category_data.dart';
+import 'package:renjuki2/features/categories/web/data/repository/category_repository_data.dart';
+import 'package:renjuki2/features/categories/web/domain/repository/category_domain_repository.dart';
+import 'package:renjuki2/features/categories/web/domain/usecases/category_fetching_usecase.dart';
+import 'package:renjuki2/features/categories/web/presentation/bloc/category_bloc.dart';
 import 'package:renjuki2/features/homepage/data/datasources/call_any_link_data.dart';
 import 'package:renjuki2/features/homepage/data/repositories/call_any_link_repo_imp.dart';
 import 'package:renjuki2/features/homepage/domain/repositories/call_link_repo.dart';
@@ -22,6 +27,7 @@ final sl = GetIt.I;
 Future initSl() async {
   //services
   sl.registerLazySingleton<FireBaseAuthService>(() => FireBaseAuthService());
+  sl.registerLazySingleton<FirebaseFireService>(() => FirebaseFireService());
 
   //contorllers
 
@@ -32,7 +38,12 @@ Future initSl() async {
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
 
   sl.registerFactory<HomeBloc>(() => HomeBloc(sl()));
+  sl.registerFactory<CategoryBloc>(() => CategoryBloc(sl()));
+
   //usecases
+
+  sl.registerLazySingleton(
+      () => CategoryFetchingUsecase(categoryFetchRepsitory: sl()));
 
   sl.registerLazySingleton(() => FetchProductsUseCase(repository: sl()));
   sl.registerLazySingleton(() => FetchProductDetailsUseCase(repository: sl()));
@@ -45,6 +56,9 @@ Future initSl() async {
 
   //domain
 
+  sl.registerLazySingleton<CategoryDomainRepsitory>(
+      () => CategoryRepositoryData(categoryData: sl()));
+
   sl.registerLazySingleton<ProductRepository>(() => ProductDataRepository(
       productDataRemoteSource: sl<ProductDataRemoteSource>()));
 
@@ -54,7 +68,8 @@ Future initSl() async {
       () => CallAnyLinkRepoImp(callAnyLinkData: sl()));
 
   //data
-
+  sl.registerLazySingleton(
+      () => CategoryData(fireStore: sl<FirebaseFireService>()));
   sl.registerLazySingleton(() => ProductDataRemoteSource());
   sl.registerLazySingleton<AuthUserData>(
       () => AuthUserData(sl<FireBaseAuthService>()));
