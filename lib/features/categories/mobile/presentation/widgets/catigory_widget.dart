@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:suriashop/models/category_model.dart';
-import 'package:suriashop/providers/cart.dart';
-import 'package:suriashop/providers/language_porvider.dart';
-import 'package:suriashop/screens/categories_items/category_items.dart';
-import 'package:suriashop/shared/style/app_styles.dart';
 
 class CategoryDisplayW extends StatelessWidget {
   const CategoryDisplayW({Key? key}) : super(key: key);

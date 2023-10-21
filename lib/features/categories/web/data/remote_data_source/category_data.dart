@@ -14,7 +14,8 @@ class CategoryData implements Equatable {
     List<CategoryModel> categoriesList = [];
     try {
       final categories =
-          await fireStore.firebaseFire.collection('Categories').get();
+          await FirebaseFirestore.instance.collection('Categories').get();
+      // await fireStore.firebaseFire.collection('Categories').get();
       for (var element in categories.docs) {
         categoriesList.add(CategoryModel.fromSnapshot(element.data()));
       }
