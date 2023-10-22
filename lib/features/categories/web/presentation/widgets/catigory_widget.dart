@@ -25,8 +25,8 @@ class CategoryWidgetWeb extends StatelessWidget {
       // Navigator.push(context, MaterialPageRoute(builder: (_)=>ProdcutDetails()),);
       ,
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.20,
-        width: MediaQuery.of(context).size.width * 0.20,
+        height: MediaQuery.of(context).size.height * 0.4,
+        width: MediaQuery.of(context).size.width * 0.5,
         child: Column(
           children: [
             Expanded(

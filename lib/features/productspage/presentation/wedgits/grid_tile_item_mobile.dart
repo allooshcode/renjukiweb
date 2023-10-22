@@ -32,13 +32,9 @@ class GridTileItem extends StatelessWidget {
                   //     fontSize: 22,
                   //     decoration: TextDecoration.lineThrough,
                   //     backgroundColor: Colors.white)
-
                 ),
 
-
-                    // 'RM ' + productsDoc[Product.PRICE]?.toString(),
-
-
+                // 'RM ' + productsDoc[Product.PRICE]?.toString(),
               ],
             ),
           ),
@@ -48,7 +44,7 @@ class GridTileItem extends StatelessWidget {
           //leading:,
         ),
         child: Hero(
-          tag: product.productId,
+          tag: Null,
           child: FadeInImage(
             fit: BoxFit.cover,
             placeholder: const AssetImage('logo.jpg'),

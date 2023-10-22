@@ -13,7 +13,7 @@ class GridTileWebItem extends StatelessWidget {
       borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15), topLeft: Radius.circular(15)),
       child: GridTile(
-        footer:  GridTileBar(
+        footer: GridTileBar(
           backgroundColor: Colors.black54,
           // title:
 
@@ -25,9 +25,7 @@ class GridTileWebItem extends StatelessWidget {
                   ' ${product.productId}',
 
                   // 'RM ' + productsDoc[Product.PRICE]?.toString(),
-
                 ),
-
               ],
             ),
           ),
@@ -37,7 +35,7 @@ class GridTileWebItem extends StatelessWidget {
           //leading:,
         ),
         child: Hero(
-          tag: product.productId,
+          tag: Null,
           child: FadeInImage(
             fit: BoxFit.cover,
             placeholder: const AssetImage('logo.png'),
