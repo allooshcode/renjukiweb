@@ -25,7 +25,7 @@ class RenJukiApp extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         scrollBehavior: const MaterialScrollBehavior().copyWith(
-          dragDevices: {PointerDeviceKind.mouse},
+          dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
         )
 
         // home: MultiBlocProvider(providers: [
