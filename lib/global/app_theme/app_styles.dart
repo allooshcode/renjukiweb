@@ -7,7 +7,7 @@ class AppStyles {
   static const TextStyle textStyle1 = TextStyle(
     color: Colors.blueAccent,
     fontWeight: FontWeight.bold,
-    fontSize: 24,
+    fontSize: 18,
     fontFamily: 'mmoom',
   );
 
@@ -28,7 +28,8 @@ class AppStyles {
   static final styleOpen = GoogleFonts.oswald(
     fontSize: 24,
     color: Colors.black,
-    fontWeight: FontWeight.bold,);
+    fontWeight: FontWeight.bold,
+  );
   // );TextStyle(
   //   fontSize: 24,
   //   color: Colors.black,
@@ -39,8 +40,8 @@ class AppStyles {
   static final styleSnasR = GoogleFonts.montserrat(
     fontSize: 24,
     color: Colors.black,
-    fontWeight: FontWeight.w400,);
-
+    fontWeight: FontWeight.w400,
+  );
 
   static final googleStyle = GoogleFonts.abel(
     fontSize: 24,

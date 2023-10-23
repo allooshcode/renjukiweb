@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renjuki2/features/categories/web/domain/entities/category_entity.dart';
+import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
 class CategoryWidgetWeb extends StatelessWidget {
   const CategoryWidgetWeb({Key? key, required this.categoryEntity})
@@ -25,36 +26,32 @@ class CategoryWidgetWeb extends StatelessWidget {
       // Navigator.push(context, MaterialPageRoute(builder: (_)=>ProdcutDetails()),);
       ,
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.4,
-        width: MediaQuery.of(context).size.width * 0.5,
+        height: MediaQuery.of(context).size.height * 0.5,
+        width: MediaQuery.of(context).size.width * 0.4,
         child: Column(
           children: [
             Expanded(
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      topLeft: Radius.circular(15),
-                    ),
-                    child: GridTile(
-                      child: FadeInImage(
-                        fit: BoxFit.cover,
-                        placeholder:
-                            const AssetImage('assets/images/placeholder.jpg'),
-                        image: NetworkImage(
-                          categoryEntity.image!,
-                          // productsDoc[Product.IMAGEURL],
-                        ),
-                      ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(15),
+                ),
+                child: GridTile(
+                  child: FadeInImage(
+                    fit: BoxFit.fill,
+                    placeholder:
+                        const AssetImage('assets/images/placeholder.jpg'),
+                    image: NetworkImage(
+                      categoryEntity.image!,
+                      // productsDoc[Product.IMAGEURL],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.zero,
-              width: MediaQuery.of(context).size.width * 0.5,
+              padding: const EdgeInsets.all(8),
+              width: MediaQuery.of(context).size.width * 0.35,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onSecondary,
                 borderRadius: const BorderRadius.only(
@@ -70,8 +67,8 @@ class CategoryWidgetWeb extends StatelessWidget {
                     //     ? 'New Category'
                     //     : lang.getText(_category.name).toString(),
                     categoryEntity.name!,
-                    style: const TextStyle(
-                      color: Colors.yellowAccent,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 15,
                     ),
                     textAlign: TextAlign.center,

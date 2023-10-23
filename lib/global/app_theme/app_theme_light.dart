@@ -3,6 +3,10 @@ import 'package:renjuki2/global/app_colors/app_colors_dark.dart';
 
 ThemeData getAppThemeDataLight() {
   return ThemeData(
+      colorScheme: const ColorScheme.light().copyWith(primary: Colors.white),
+
+      // primaryColor: Colors.black,
+      // primaryColorLight: Colors.red,
       // scaffoldBackgroundColor: Colors.blue[400],
       // scaffoldBackgroundColor: const Color(0xFF26a0d3),
       scaffoldBackgroundColor: Colors.transparent,

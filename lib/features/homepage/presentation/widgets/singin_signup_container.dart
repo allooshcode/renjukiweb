@@ -24,7 +24,10 @@ class SignInSignUp extends StatelessWidget {
               // Handle Sign In button pressed
               // You can navigate to the Sign In page or perform any desired action
             },
-            child: const Text('Sign In'),
+            child: const Text(
+              'Sign In',
+              style: AppStyles.textStyle1,
+            ),
           ),
           const SizedBox(height: 8.0),
           // OutlinedButton(

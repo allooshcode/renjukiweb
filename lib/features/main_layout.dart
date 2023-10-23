@@ -121,7 +121,11 @@ class MainLayout extends StatelessWidget {
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),
-                    const CategoriesScreen(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: const CategoriesScreen(),
+                    ),
+
                     SizedBox(
                       height: AppConstants.unitHeightValue(context) * 20,
                     ),

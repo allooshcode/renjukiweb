@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/container_injection.dart';
@@ -23,6 +24,9 @@ class RenJukiApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {PointerDeviceKind.mouse},
+        )
 
         // home: MultiBlocProvider(providers: [
         //   BlocProvider(
@@ -34,6 +38,7 @@ class RenJukiApp extends StatelessWidget {
         //         callMobAppIosUsecase: sl()),
         //   )
         // ], child: const MyPortfolio()),
+        ,
         theme: getAppThemeDataLight(),
         darkTheme: getAppThemeDataDark(),
         themeMode: ThemeMode.light,
