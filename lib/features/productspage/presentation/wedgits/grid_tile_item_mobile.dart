@@ -22,7 +22,7 @@ class GridTileItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  ' RM ${product.productId} ',
+                  ' RM ${product.productName} ',
 
                   // 'RM ' + productsDoc[Product.PRICE]?.toString(),
                   // style: product.sale
@@ -48,7 +48,7 @@ class GridTileItem extends StatelessWidget {
           child: FadeInImage(
             fit: BoxFit.cover,
             placeholder: const AssetImage('logo.jpg'),
-            image: NetworkImage(product.photoPath),
+            image: NetworkImage(product.imageUrl!),
           ),
         ),
       ),

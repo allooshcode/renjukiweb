@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renjuki2/container_injection.dart';
 import 'package:renjuki2/features/productspage/presentation/bloc/product_bloc.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_events.dart';
 import 'package:renjuki2/global/app_theme/app_theme_dark.dart';
 import 'package:renjuki2/global/app_theme/app_theme_light.dart';
 
@@ -20,7 +21,8 @@ class RenJukiApp extends StatelessWidget {
       providers: [
         BlocProvider<HomeBloc>(create: (context) => sl<HomeBloc>()),
         BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
-        BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
+        BlocProvider<ProductBloc>(
+            create: (context) => sl<ProductBloc>()..add(FetchProductsEvent())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

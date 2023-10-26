@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:renjuki2/features/productspage/data/data_sources/remote_data/product_data_remote_source.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 
 import '../../../../global/errors/failures.dart';
 import '../../domain/repository/product_repository.dart';
@@ -10,15 +11,8 @@ class ProductDataRepository implements ProductRepository {
 
   ProductDataRepository({required this.productDataRemoteSource});
   @override
-  Future<Either<Failure, List<ProductModel>>> fetchProducts() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return right([
-      const ProductModel(
-          productId: 3,
-          productName: 'Product 3',
-          description: 'Description 3',
-          photoPath: ''),
-    ]);
+  Future<Either<Failure, List<ProductEntity>>> fetchProducts() async {
+    return productDataRemoteSource.getProducts();
   }
 
   @override

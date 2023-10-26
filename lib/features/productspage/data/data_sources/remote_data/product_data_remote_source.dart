@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:renjuki2/container_injection.dart';
@@ -14,7 +15,13 @@ class ProductDataRemoteSource extends Equatable {
       final response =
           await fireService.firebaseFire.collection('Products').get();
 
-      return right(<ProductModel>[]);
+      final productsList = <ProductModel>[];
+      for (var element in response.docs) {
+        productsList.add(ProductModel.fromSnapshot(element));
+      }
+      print('data prodects .........');
+
+      return right(productsList);
     } on FirebaseException catch (err) {
       return left(ServerFuilure(err.toString()));
     }

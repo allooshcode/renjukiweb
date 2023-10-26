@@ -11,6 +11,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   CategoryBloc(this.categoryFetchingUsecase) : super(CategoryInitial()) {
     on<CategoryEventFetch>((event, emit) async {
+      emit(CategoryLoading());
       final response = await categoryFetchingUsecase.fetch();
       response.fold((l) {
         emit(CategoryLoading());

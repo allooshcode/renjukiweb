@@ -4,14 +4,12 @@
 import 'package:flutter/material.dart';
 import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 
-
 import '../../../../global/app_theme/app_styles.dart';
 import '../../../../global/shared_widgets/reusable_components.dart';
 import '../wedgits/add_cart_details_button.dart';
 import '../wedgits/product_item_info.dart';
 
 class ProductDetails extends StatefulWidget {
-
   final ProductEntity product;
 
   const ProductDetails({Key? key, required this.product}) : super(key: key);
@@ -21,7 +19,6 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-
   // late String productID;
   bool isStarted = false;
 
@@ -29,9 +26,6 @@ class _ProductDetailsState extends State<ProductDetails> {
   void didChangeDependencies() {
     if (!isStarted) {
       // product = ModalRoute.of(context)!.settings.arguments! as Product;
-
-
-
     }
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
@@ -40,12 +34,11 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-
     final deviceSize = MediaQuery.of(context).size;
     return Directionality(
-      textDirection:  TextDirection.ltr,
+      textDirection: TextDirection.ltr,
       child: Scaffold(
-        backgroundColor:Colors.white,
+        backgroundColor: Colors.white,
         body: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
@@ -64,11 +57,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: double.infinity,
                   child: Hero(
                     // key: Key(product.productID!),
-                    tag: widget.product.productId,
+                    tag: widget.product.productName,
                     child: FadeInImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        widget.product.photoPath,
+                        widget.product.imageUrl!,
                       ),
                       placeholder: const AssetImage(
                         'assets/images/placeholder.jpg',
@@ -81,45 +74,40 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             SliverList(
                 delegate: SliverChildListDelegate([
-                  SizedBox(
-                    width: deviceSize.width,
-                    // height: deviceSize.height,
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
+              SizedBox(
+                width: deviceSize.width,
+                // height: deviceSize.height,
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
 
-                      children: [
-                        ProductInfoItem(
-                          product: widget.product,
-                          // choosedSize: choosedSize,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.product.description,
-                            style: AppStyles.styleSnasR,
-                          ),
-                        ),
-                        customDivider(),
-
-
-
-                        const Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          thickness: 1,
-                        ),
-
-                      ],
+                  children: [
+                    ProductInfoItem(
+                      product: widget.product,
+                      // choosedSize: choosedSize,
                     ),
-                  )
-                ]))
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.product.description,
+                        style: AppStyles.styleSnasR,
+                      ),
+                    ),
+                    customDivider(),
+                    const Divider(
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 1,
+                    ),
+                  ],
+                ),
+              )
+            ]))
           ],
         ),
         persistentFooterButtons: [
           AddCartButtonDetails(
             product: widget.product,
-
           )
         ],
       ),
