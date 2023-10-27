@@ -21,8 +21,7 @@ class RenJukiApp extends StatelessWidget {
       providers: [
         BlocProvider<HomeBloc>(create: (context) => sl<HomeBloc>()),
         BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
-        BlocProvider<ProductBloc>(
-            create: (context) => sl<ProductBloc>()..add(FetchProductsEvent())),
+        BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -17,6 +17,7 @@ import 'package:renjuki2/features/productspage/data/data_sources/remote_data/pro
 import 'package:renjuki2/features/productspage/data/repository/product_data_repository.dart';
 import 'package:renjuki2/features/productspage/domain/repository/product_repository.dart';
 import 'package:renjuki2/features/productspage/domain/usecases/fetch_products_usecase.dart';
+import 'package:renjuki2/features/productspage/presentation/bloc/product_events.dart';
 import 'package:renjuki2/global/services/network_services.dart';
 
 import 'features/homepage/presentation/bloc/home_bloc/home_bloc.dart';
@@ -31,8 +32,9 @@ Future initSl() async {
 
   //contorllers
 
-  sl.registerLazySingleton<ProductBloc>(() => ProductBloc(
-      fetchProductsUseCase: sl(), fetchProductDetailsUseCase: sl()));
+  sl.registerLazySingleton<ProductBloc>(() =>
+      ProductBloc(fetchProductsUseCase: sl(), fetchProductDetailsUseCase: sl())
+        ..add(FetchProductsEvent()));
 
   sl.registerFactory<AuthBloc>(() => AuthBloc(authUseCase: sl<AuthUseCase>()));
   // sl.registerFactory(() => AppRouterDelegate(homeBloc: sl<HomeBloc>(), authBloc: sl<AuthBloc>()));
