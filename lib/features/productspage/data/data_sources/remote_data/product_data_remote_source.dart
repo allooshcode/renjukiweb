@@ -12,14 +12,14 @@ class ProductDataRemoteSource extends Equatable {
 
   Future<Either<Failure, List<ProductModel>>> getProducts() async {
     try {
-      print('data prodects .........');
-
       final response =
           await fireService.firebaseFire.collection('Products').get();
+      print('data prodects .........');
 
       final productsList = <ProductModel>[];
       for (var element in response.docs) {
-        productsList.add(ProductModel.fromSnapshot(element));
+        print(element.data());
+        productsList.add(ProductModel.fromSnapshot(element.data()));
       }
 
       return right(productsList);

@@ -22,9 +22,7 @@ class GridTileWebItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  ' ${product.productName}',
-
-                  // 'RM ' + productsDoc[Product.PRICE]?.toString(),
+                  'RM ${product.price}',
                 ),
               ],
             ),
@@ -34,14 +32,15 @@ class GridTileWebItem extends StatelessWidget {
           // leading: AddRemoveWebItem(product: product),
           //leading:,
         ),
-        child: Hero(
-          tag: Null,
-          child: FadeInImage(
-            fit: BoxFit.cover,
-            placeholder: const AssetImage('logo.png'),
-            image: NetworkImage(product.imageUrl!),
-          ),
-        ),
+        child: const Text(''),
+        // child: Hero(
+        //   tag: Null,
+        //   child: FadeInImage(
+        //     fit: BoxFit.cover,
+        //     placeholder: const AssetImage('logo.png'),
+        //     image: NetworkImage(product.imageUrl!),
+        //   ),
+        // ),
       ),
     );
   }

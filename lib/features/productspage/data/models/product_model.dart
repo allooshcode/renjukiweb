@@ -8,16 +8,18 @@ class ProductModel extends ProductEntity {
       required super.price,
       required super.category,
       required super.availableCount,
-      required super.weight});
+      required super.weight,
+      required imageUrl});
 
-  factory ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
+  factory ProductModel.fromSnapshot(Map<String, dynamic> snapshot) {
     return ProductModel(
         productName: snapshot[NAME],
         description: snapshot[DESCRIPTION],
-        price: snapshot[PRICE],
+        price: num.parse(snapshot[PRICE]),
         category: snapshot[CATEGORY],
-        availableCount: snapshot[AVAILABLECOUNT],
-        weight: double.parse(snapshot[WEIGHT]));
+        availableCount: num.parse(snapshot[AVAILABLECOUNT]),
+        weight: double.parse(snapshot[WEIGHT]),
+        imageUrl: snapshot[IMAGEURL]);
   }
   // factory ProductModel.fromJson(Map<String, dynamic> map) {
   //   return ProductModel(

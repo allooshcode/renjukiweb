@@ -4,7 +4,6 @@ import 'package:renjuki2/features/productspage/presentation/wedgits/add_to_cart_
 import 'package:renjuki2/features/productspage/presentation/wedgits/favourite_icon.dart';
 import 'package:renjuki2/features/productspage/presentation/wedgits/grid_tile_web_item.dart';
 
-
 class ProductWebItemW extends StatelessWidget {
   const ProductWebItemW({Key? key, required this.product}) : super(key: key);
 
@@ -69,7 +68,7 @@ class ProductWebItemW extends StatelessWidget {
                 height: 40,
                 margin: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15),
