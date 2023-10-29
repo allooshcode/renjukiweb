@@ -9,7 +9,7 @@ class ProductModel extends ProductEntity {
       required super.category,
       required super.availableCount,
       required super.weight,
-      required imageUrl});
+      required super.imageUrl});
 
   factory ProductModel.fromSnapshot(Map<String, dynamic> snapshot) {
     return ProductModel(

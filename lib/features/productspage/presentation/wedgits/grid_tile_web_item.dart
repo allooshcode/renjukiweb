@@ -32,7 +32,7 @@ class GridTileWebItem extends StatelessWidget {
           // leading: AddRemoveWebItem(product: product),
           //leading:,
         ),
-        child: const Text(''),
+        child: Image.network(product.imageUrl),
         // child: Hero(
         //   tag: Null,
         //   child: FadeInImage(
