@@ -32,19 +32,27 @@ class _DrawerAppState extends State<DrawerApp> {
     required String message,
   }) async {
     Uri url() {
-      if (!kIsWeb) {
+      if (defaultTargetPlatform == TargetPlatform.android ||
+          defaultTargetPlatform == TargetPlatform.iOS) {
         // add the [https]
         return Uri.parse(
             "https://wa.me/$phone/?text=${Uri.parse(message)}"); // new line
       } else {
         // add the [https]
         return Uri.parse(
-            "https://api.whatsapp.com/send?text=${Uri.parse(message)}"); // new line
+            "https://wa.me/$phone?text=${Uri.encodeComponent(message)}");
+        // return Uri.parse(
+
+        //     "https://api.whatsapp.com/send?text=${Uri.parse(message)}"); // new line
       }
     }
 
     if (await canLaunchUrl(url())) {
-      await launchUrl(url());
+      if (!kIsWeb) {
+        await launchUrl(url(), mode: LaunchMode.externalApplication);
+      } else {
+        await launchUrl(url(), mode: LaunchMode.platformDefault);
+      }
     } else {
       throw 'Could not launch ${url()}';
     }
