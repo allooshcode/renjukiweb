@@ -12,7 +12,7 @@ class ProductEntity extends Equatable {
   bool featured = false;
   bool favorite = false;
   late String category;
-  final String imageUrl;
+  late String imageUrl;
   // List<String> sizes;
   Map<String, String>? sizes = {};
   num offer = 0;
