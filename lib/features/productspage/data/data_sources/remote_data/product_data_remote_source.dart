@@ -12,7 +12,8 @@ import 'package:uuid/uuid.dart';
 
 class ProductDataRemoteSource extends Equatable {
   final FirebaseFireService fireService = sl<FirebaseFireService>();
-   final List<ProductModel> _productLists = [];
+  final FireBaseStorage fireBaseStorage = sl<FireBaseStorage>();
+  final List<ProductModel> _productLists = [];
   final List<ProductModel> _soldProducts = [];
   bool allLatest = false;
   bool allSold = false;
@@ -42,13 +43,17 @@ class ProductDataRemoteSource extends Equatable {
     }
   }
 
-  Future<Either<Failure, bool>> createProduct(ProductModel product, File? imageFile, bool imageChanged,
-      bool itemUpdated, bool isBrowser) async{
+  Future<Either<Failure, bool>> createProduct(
+      ProductModel product,
+      File? imageFile,
+      bool imageChanged,
+      bool itemUpdated,
+      bool isBrowser) async {
     try {
       if (imageFile != null) {
         if (imageChanged) {
           if (!isBrowser) {
-            final ref = FirebaseStorage.instance
+            final ref = fireBaseStorage.firebaseStorage
                 .ref()
                 .child('productImages')
                 .child('${product.productName}.jpg');
@@ -61,7 +66,10 @@ class ProductDataRemoteSource extends Equatable {
 
       product.imageUrl = imageUrl!;
       if (itemUpdated) {
-        await fireService.firebaseFire.collection('Products').doc(product.productID).update(
+        await fireService.firebaseFire
+            .collection('Products')
+            .doc(product.productID)
+            .update(
           {
             ProductModel.ID: product.productID,
             ProductModel.NAME: product.productName,
@@ -82,43 +90,33 @@ class ProductDataRemoteSource extends Equatable {
         ).then((value) => imageUrl = null);
       } else {
         final id = uuid.v1();
-        await fireStore.collection('Products').doc(id).set({
-          Product.ID: id,
-          Product.NAME: product.productName,
-          Product.DESCRIPTION: product.description,
-          Product.PRICE: product.price,
-          Product.IMAGEURL: imageUrl,
-          Product.CATEGORY: product.category,
-          Product.AVAILABLECOUNT: product.availableCount,
-          Product.SALE: product.sale,
-          Product.OFFER: product.offer,
-          Product.FEATURED: product.featured,
-          Product.FAVORITE: product.favorite,
-          Product.Flavour: product.flavours,
-          Product.SIZES: product.sizes,
-          Product.SOLD: product.sold,
-          Product.WEIGHT: product.weight.toString()
+        await fireService.firebaseFire.collection('Products').doc(id).set({
+          ProductModel.ID: id,
+          ProductModel.NAME: product.productName,
+          ProductModel.DESCRIPTION: product.description,
+          ProductModel.PRICE: product.price,
+          ProductModel.IMAGEURL: imageUrl,
+          ProductModel.CATEGORY: product.category,
+          ProductModel.AVAILABLECOUNT: product.availableCount,
+          ProductModel.SALE: product.sale,
+          ProductModel.OFFER: product.offer,
+          ProductModel.FEATURED: product.featured,
+          ProductModel.FAVORITE: product.favorite,
+          ProductModel.Flavour: product.flavours,
+          ProductModel.SIZES: product.sizes,
+          ProductModel.SOLD: product.sold,
+          ProductModel.WEIGHT: product.weight.toString()
         }).then((value) => imageUrl = null);
       }
-      notifyListeners();
+      return right(true);
       //final url
     } on FirebaseException catch (e) {
-      throw e.code;
+      return left(ServerFuilure(e.toString()));
     } catch (e) {
-      throw e.toString();
+      return left(ServerFuilure(e.toString()));
     }
   }
-  
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-  }
-
-
-
-
 
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }

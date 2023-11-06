@@ -27,8 +27,9 @@ final sl = GetIt.I;
 
 Future initSl() async {
   //services
-  sl.registerLazySingleton<FireBaseAuthService>(() => FireBaseAuthService());
+  sl.registerLazySingleton<FireBaseStorage>(() => FireBaseStorage());
   sl.registerLazySingleton<FirebaseFireService>(() => FirebaseFireService());
+  sl.registerLazySingleton<FireBaseAuthService>(() => FireBaseAuthService());
 
   //contorllers
 
