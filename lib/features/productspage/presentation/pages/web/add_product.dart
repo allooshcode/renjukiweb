@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
+import 'package:renjuki2/features/productspage/presentation/methodes/save_product_in_ui.dart';
 // import 'package:image_picker_web/image_picker_web.dart';
 import 'package:suriashop/providers/Products.dart';
 import 'package:suriashop/providers/app_provider.dart';
@@ -20,6 +22,7 @@ import 'package:suriashop/screens/add_product/ui/methods/add_products_methods.da
 import 'package:suriashop/shared/components/reusable_components.dart';
 import 'package:suriashop/widgets/categoryDropDown.dart';
 import '../../../models/product.dart';
+import '../../wedgits/add_product_components/image_banner.dart';
 // import 'package:image_picker_for_web/image_picker_for_web.dart';
 
 class AddProduct extends StatefulWidget {
@@ -318,7 +321,7 @@ class _AddProductState extends State<AddProduct> {
                       }
                     },
                     onSaved: (value) {
-                      newProduct = Product(
+                      newProduct = ProductEntity(
                         weight: newProduct.weight,
                         productID: newProduct.productID,
                         productName: value!,
@@ -351,7 +354,7 @@ class _AddProductState extends State<AddProduct> {
                             labelText: 'price',
                           ),
                           onSaved: (value) {
-                            newProduct = Product(
+                            newProduct = ProductEntity(
                               weight: newProduct.weight,
                               productID: newProduct.productID,
                               productName: newProduct.productName,
@@ -392,7 +395,7 @@ class _AddProductState extends State<AddProduct> {
                             onChanged: (bool value) {
                               setState(() {
                                 haveDiscount = value;
-                                newProduct = Product(
+                                newProduct = ProductEntity(
                                   weight: newProduct.weight,
                                   productID: newProduct.productID,
                                   productName: newProduct.productName,
@@ -427,7 +430,7 @@ class _AddProductState extends State<AddProduct> {
                               hintText: ' 1.50 ',
                             ),
                             onSaved: (value) {
-                              newProduct = Product(
+                              newProduct = ProductEntity(
                                 weight: newProduct.weight,
                                 productID: newProduct.productID,
                                 productName: newProduct.productName,
@@ -472,11 +475,12 @@ class _AddProductState extends State<AddProduct> {
                       }
                     },
                     onSaved: (value) {
-                      newProduct = Product(
+                      newProduct = ProductEntity(
                         weight: newProduct.weight,
                         productID: newProduct.productID,
                         productName: newProduct.productName,
                         availableCount: newProduct.availableCount,
+                        imageUrl: newProduct.imageUrl,
                         description: value!,
                         category: newProduct.category,
                         price: newProduct.price,
@@ -508,7 +512,7 @@ class _AddProductState extends State<AddProduct> {
                       FocusScope.of(context).requestFocus(_weightNode);
                     },
                     onSaved: (value) {
-                      newProduct = Product(
+                      newProduct = ProductEntity(
                         weight: newProduct.weight,
                         productID: newProduct.productID,
                         productName: newProduct.productName,
@@ -545,7 +549,7 @@ class _AddProductState extends State<AddProduct> {
                       }
                     },
                     onSaved: (value) {
-                      newProduct = Product(
+                      newProduct = ProductEntity(
                         weight: double.parse(value!),
                         productID: newProduct.productID,
                         productName: newProduct.productName,

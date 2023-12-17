@@ -2,10 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:renjuki2/features/productspage/domain/entity/product_entity.dart';
 import 'package:suriashop/models/product.dart';
 import 'package:suriashop/providers/Products.dart';
 import 'package:suriashop/providers/app_provider.dart';
@@ -19,7 +18,7 @@ class AddProductMethods {
       {required BuildContext context,
       required File? image,
       required Uint8List? pickedImageBytes,
-      required Product newProduct,
+      required ProductEntity newProduct,
       required Set<String> flavours,
       required bool imageChanged,
       required bool itemUpdated,
